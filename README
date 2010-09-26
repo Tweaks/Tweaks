@@ -17,10 +17,11 @@ Project: Tweaks
 Description:
 Tweaks is a Building Block for the Blackboard LMS which enables academics and support staff to customise and extend their site presentation, navigation and structure as well as add templated page designs, small learning activities and Blackboard functionality.
 
-Repository URL: http://github.com/heyyeah/Blackboard-Tweaks
+Repository URL: http://github.com/Tweaks/Tweaks
 
 Project files:
 /BuildingBlock		contains current builds of packaged Building Block for BB versions
+/Documentation		description and screenshots
 README				this file
+/Source				individual scripts and css
 /TrainingSite		contains package of BB training site
-/Tweaks				individual scripts and css
