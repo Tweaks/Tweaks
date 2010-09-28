@@ -60,7 +60,7 @@ css: 'styles/hideshow.css']]></embed>
 </package>
 
 <package id="imagemapper">
-<title>Image Map with Dynamic Blackboard Links</title>
+<title>Image Map Link Mapper</title>
 <type>Structure</type>
 <visible>true</visible>
 <available>true</available>
@@ -187,7 +187,7 @@ IE 7, IE 8</description>
 <embed><![CDATA[css: 'styles/icons.css']]></embed>
 </package>
 <package id="unitmap">
-<title>Dynamic Unit Map</title>
+<title>Dynamic Unit Map Table</title>
 <type>Structure</type>
 <visible>true</visible>
 <available>true</available>
@@ -217,7 +217,7 @@ css: 'styles/selfenrol_thickbox.css']]></embed>
 <title>Collapsed Menu</title>
 <type>Structure</type>
 <visible>true</visible>
-<available>true</available>
+<available>false</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
 Safari 4 Mac&#13;
