@@ -6,9 +6,9 @@
 #output li:first-child { font-weight: bold; }
 #output ul {
 	margin: 0 5px 5px 0;
-	padding: 5px
+	padding: 5px;
 	border: 1px solid grey;
-	list-style: none
+	list-style: none;
 	float: left;
 	min-width: 240px;
 	padding-right: 6px;
