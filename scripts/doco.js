@@ -1,3 +1,4 @@
+// process settings XML from repository
 var jXML;
 var sourceRepositoryURL = "http://tweaks.github.com/Tweaks/Source/WebContent/";
 jQuery.ajax({
@@ -7,14 +8,14 @@ jQuery.ajax({
 	success: function(xml) {
  		jXML = jQuery(xml);
 		var html = "";
+		// read packages into lists
  		jXML.find("package").each(function(){
- 			var id = jQuery(this).attr("id");
- 			var title = jQuery(this).find("title").text();
- 			var type = jQuery(this).find("type").text();
- 			var available = jQuery(this).find("available").text();
- 			// quick way to sort the lists?
- 			if (available == "true")
+ 			if (jQuery(this).find("available").text() == "true") {
+				var id = jQuery(this).attr("id");
+				var type = jQuery(this).find("type").text();
+				var title = jQuery(this).find("title").text();
  				jQuery("#"+type.replace(" ", "")).append("<li><input type=\"radio\"  name=\"tweak_script\" id=\""+id+"\" class=\""+type+"\"/>"+"<label for='"+id+"'>"+title+"</label></li>");
+ 			}
 		});
 		// sort lists
 		jQuery("#output ul").each(function(){ sortList(jQuery(this)); });
@@ -34,20 +35,19 @@ jQuery.ajax({
 		jQuery("#expand").click(function(){jQuery("#code").toggle()});
 	}
 });
+// utility formatting functions
 function inlineFormatInstructions(element) {
 	jQuery(element).html(jQuery(element).html().replace(/&lt;br[\/]?&gt;/g, "<br/>").replace(/'/g, "\""));
 }
 function buildCode(embedCode) {
-	// insert path
+	// insert repository path into setup script and embedCode
 	embedCode = embedCode.replace("'s","'"+sourceRepositoryURL+"s");
-	// jquery + setup
 	var scriptBlock = "<"+"script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js\" type=\"text/javascript\"></"+"script><br/>"+
 		"<"+"script src=\""+sourceRepositoryURL+"jquery.tweakSetup.js\" type=\"text/javascript\"><"+"/script><br/>"+
 		"<"+"script type=\"text/javascript\">"+embedCode+"<"+"/script>";
-	// add in path..
 	jQuery("#code").text(scriptBlock);
 }
-// utility function adapted from http://www.onemoretake.com/2009/02/25/sorting-elements-with-jquery/
+// utility sort function adapted from http://www.onemoretake.com/2009/02/25/sorting-elements-with-jquery/
 function sortList(ul) {
 	var listitems = ul.children('li:gt(0)');
 	if (listitems) {
