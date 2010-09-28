@@ -53,7 +53,7 @@ function buildCode(embedCode) {
 // utility function adapted from http://www.onemoretake.com/2009/02/25/sorting-elements-with-jquery/
 function sortList(ul) {
 	var listitems = ul.children('li:gt(0)');
-	if (listitems.length) {
+	if (listitems) {
 		listitems = listitems.get();
 		listitems.sort(function(a, b) {
 		   var compA = $(a).text().toUpperCase();
