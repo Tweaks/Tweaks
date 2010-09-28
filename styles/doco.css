@@ -1,0 +1,23 @@
+@charset "UTF-8";
+#doco, ul, li, p { 
+	font-family: Calibri, "Trebuchet MS", Helvetica; 
+}
+#output li { margin-left: 0; padding-left: 0; }
+#output li:first-child { font-weight: bold; }
+#output ul {
+	margin: 0 5px 5px 0;
+	padding: 5px
+	border: 1px solid grey;
+	list-style: none
+	float: left;
+	min-width: 240px;
+	padding-right: 6px;
+}
+#doco, #code { clear: both; }
+#expand, #code { display:none; }
+#code { 
+	padding: 3px;
+	background: #FFD;
+	border: 1px solid #332;
+	font-family: "Lucida Console", Monaco, monospace;
+}

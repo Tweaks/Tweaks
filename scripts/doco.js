@@ -29,10 +29,7 @@ jQuery.ajax({
  			jQuery("#doco").append("<br/><img src=\""+sourceRepositoryURL+thisID+".png\"/>");
  			jQuery("#expand").show();
 		});
-		// move to CSS
-		jQuery("#output li").css({"margin-left": "0", "padding-left":"0"});
-		jQuery("#output ul").each(function(){ jQuery(this).find("li:first").css({"font-weight": "bold"});});
-		jQuery("#output ul").css({"margin":"0 5px 5px 0", "padding":"5px", "border": "1px solid grey", "list-style":"none", "font-family": "Calibri, Trebuchet MS, Helvetica", "float": "left", "min-width": "240px", "padding-right": "6px"});
+		// presentation
 		jQuery("#output ul").css({"min-height": jQuery("#output ul:first").height()+"px"});
 		jQuery("#expand").click(function(){jQuery("#code").toggle()});
 	}
