@@ -52,11 +52,14 @@ function buildCode(embedCode) {
 }
 // utility function adapted from http://www.onemoretake.com/2009/02/25/sorting-elements-with-jquery/
 function sortList(ul) {
-	var listitems = ul.children('li:gt(0)').get();
-	listitems.sort(function(a, b) {
-	   var compA = $(a).text().toUpperCase();
-	   var compB = $(b).text().toUpperCase();
-	   return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
-	})
-	jQuery.each(listitems, function(idx, itm) { ul.append(itm); });
+	var listitems = ul.children('li:gt(0)');
+	if (listitems.length) {
+		listitems = listitems.get();
+		listitems.sort(function(a, b) {
+		   var compA = $(a).text().toUpperCase();
+		   var compB = $(b).text().toUpperCase();
+		   return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
+		})
+		jQuery.each(listitems, function(idx, itm) { ul.append(itm); });
+	}
 }
