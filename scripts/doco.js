@@ -17,7 +17,7 @@ jQuery.ajax({
  				jQuery("#"+type.replace(" ", "")).append("<li><input type=\"radio\"  name=\"tweak_script\" id=\""+id+"\" class=\""+type+"\"/>"+"<label for='"+id+"'>"+title+"</label></li>");
 		});
 		// sort lists
-		jQuery("#output ul").each(function(){ sortList(this); });
+		jQuery("#output ul").each(function(){ sortList(jQuery(this)); });
  		// attach doco events
 		jQuery("#output input").live('click', function(){
 			var thisID = jQuery(this).attr("id");
