@@ -16,7 +16,7 @@ Copyright 2010 Tim Plaisted, Queensland University of Technology
 Status: rewriting abd testing for online trial deployment across BB8, BB9 and BB9.1
 */ 
 // paths: configured via bb admin
-var tweak_path = "/webapps/qut-tweakbb-bb_bb60/"; 
+var tweak_path = ""; // local: /webapps/qut-tweakbb-bb_bb60/"; 
 var tweak_live_help = "http://blackboard.qut.edu.au/webapps/portal/frameset.jsp?tab_tab_group_id=_5_1&url=/webapps/blackboard/execute/courseMain?course_id=_59724_1"; 
 var tweak_bb_active_url_pattern = "listContent.jsp";
 var tweak_bb_display_view = location.href.indexOf(tweak_bb_active_url_pattern) > 0;
@@ -50,7 +50,7 @@ jQuery(function($) {
     $(tweak_bb_page_id +" script.tweak_script").parents(tweak_row_element).hide();
 });
 
-// Lazy Loading code
+// Lazy Loading code: modified from xLazyLoader to work with jQuery 1.4.2
 /*
  * xLazyLoader 1.0 - Plugin for jQuery
  * 
@@ -61,7 +61,6 @@ jQuery(function($) {
  *
  * Depends:
  *   jquery.js
- *   tweak_properties.js: declares basepath // how to implement: ?
  *
  *  Copyright (c) 2008 Oleg Slobodskoi (jimdo.com)
  */
