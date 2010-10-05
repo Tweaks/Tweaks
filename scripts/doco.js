@@ -32,7 +32,7 @@ jQuery.ajax({
 			var thisID = jQuery(this).attr("id");
 			var tweakData = jXML.find("package[id='"+thisID+"']");
  			jQuery("#doco").text(tweakData.find("instruction").text());
- 			buildCode(tweakData.find("embed").text());
+ 			buildCode(tweakData.find("title").text(), thisID, tweakData.find("embed").text());
  			inlineFormatInstructions("#doco");
  			inlineFormatInstructions("#code");
  			jQuery("#doco").append("<br/><img src=\"images/"+thisID+".png\"/>");
@@ -51,13 +51,16 @@ jQuery.ajax({
 function inlineFormatInstructions(element) {
 	jQuery(element).html(jQuery(element).html().replace(/&lt;br[\/]?&gt;/g, "<br/>").replace(/'/g, "\""));
 }
-function buildCode(embedCode) {
+function buildCode(title, id, embedCode) {
 	// insert repository path into setup script and embedCode
 	embedCode = embedCode.replace("'s","'"+sourceRepositoryURL+"s");
+	var message = ". This Tweak is for trial purposes only and is running off an remote server. It will only work if internet access is available. This item will be hidden in Edit Mode: OFF (i.e. the view that students see).";
 	var scriptBlock = "<"+"script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js\" type=\"text/javascript\"></"+"script><br/>"+
 		"<"+"script src=\""+sourceRepositoryURL+"jquery.tweakSetup.js\" type=\"text/javascript\"><"+"/script><br/>"+
-		"<"+"script type=\"text/javascript\">"+embedCode+"<"+"/script>";
-	jQuery("#code").text(scriptBlock);
+		"<"+"script type=\"text/javascript\" class=\"tweak_script\">"+
+		"jQuery(function($) {$.xLazyLoader({"+embedCode+"});});<"+
+		"/script>";
+	jQuery("#code").text(title+message+scriptBlock);
 }
 // utility sort function adapted from http://www.onemoretake.com/2009/02/25/sorting-elements-with-jquery/
 function sortList(ul) {
