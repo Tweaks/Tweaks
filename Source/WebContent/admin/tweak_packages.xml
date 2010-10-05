@@ -248,7 +248,7 @@ Firefox 3.5 Mac&#13;
 Safari 4 Mac&#13;
 IE 7, IE 8</description>
 <instruction>This tweak inserts Back to Top Link(s) wherever tweak is added to the page.</instruction>
-<embed><![CDATA[js: 'scripts/jquery_backtotop_9_1.js']]></embed>
+<embed><![CDATA[js: 'scripts/jquery_backtotop.js']]></embed>
 </package>
 <package id="checklist">
 <title>Checklist</title>
