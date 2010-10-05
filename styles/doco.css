@@ -2,6 +2,8 @@
 #doco, ul, li, p { 
 	font-family: Calibri, "Trebuchet MS", Helvetica; 
 }
+body { padding: 10px;  font-size: 15px; }
+input { margin: 3px 1ex; } 
 #output li { margin-left: 0; padding-left: 0; }
 #output li:first-child { font-weight: bold; }
 #output ul {
@@ -13,8 +15,11 @@
 	min-width: 240px;
 	padding-right: 6px;
 }
-#doco, #code { clear: both; }
+p, #doco, #code { clear: both; }
 #expand, #code { display:none; }
+.pagehead { width: 800px; }
+#doco { max-width: 1016px; }
+#doco img { border: 1px solid #DDD; padding: 8px; margin-top: 5px;} 
 #code { 
 	padding: 3px;
 	background: #FFD;

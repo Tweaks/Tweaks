@@ -1,23 +1,31 @@
 // process settings XML from repository
 var jXML;
-var sourceRepositoryURL = "http://tweaks.github.com/Tweaks/Source/WebContent/";
+var sourceRepositoryURL = "Source/WebContent/";//http://tweaks.github.com/Tweaks/
 jQuery.ajax({
     type: "GET",
 	url: sourceRepositoryURL+"admin/tweak_packages.xml",
 	dataType: "xml",
 	success: function(xml) {
  		jXML = jQuery(xml);
-		var html = "";
-		// read packages into lists
+		// set up packages container
+		var packages = {}; jQuery("#output ul").each(function(){ packages[jQuery(this).attr("id")]=new Array(); });
+ 		// set up template
+		var markup = "<li><input type=\"radio\" name=\"tweak_script\" id=\"${id}\"/><label for=\"${id}\">${title}</label></li>";
+		jQuery.template( "docoTemplate", markup);
+		// read packages in
  		jXML.find("package").each(function(){
  			if (jQuery(this).find("available").text() == "true") {
-				var id = jQuery(this).attr("id");
-				var type = jQuery(this).find("type").text();
-				var title = jQuery(this).find("title").text();
- 				jQuery("#"+type.replace(" ", "")).append("<li><input type=\"radio\"  name=\"tweak_script\" id=\""+id+"\" class=\""+type+"\"/>"+"<label for='"+id+"'>"+title+"</label></li>");
+				var type = jQuery(this).find("type").text().replace(" ", "");
+				var tweakData = {	id : jQuery(this).attr("id"),
+									title : jQuery(this).find("title").text() };
+				packages[type].push(tweakData);
  			}
 		});
-		// sort lists
+		// render packages
+		jQuery.each(packages, function(key, value) {
+			jQuery.tmpl("docoTemplate", value).appendTo("#"+key);
+		});
+		// sort package lists
 		jQuery("#output ul").each(function(){ sortList(jQuery(this)); });
  		// attach doco events
 		jQuery("#output input").live('click', function(){
@@ -27,12 +35,16 @@ jQuery.ajax({
  			buildCode(tweakData.find("embed").text());
  			inlineFormatInstructions("#doco");
  			inlineFormatInstructions("#code");
- 			jQuery("#doco").append("<br/><img src=\""+sourceRepositoryURL+thisID+".png\"/>");
- 			jQuery("#expand").show();
+ 			jQuery("#doco").append("<br/><img src=\"images/"+thisID+".png\"/>");
+ 			// check if BB9 selected
+ 			if (jQuery("#BBVersions input:checked").attr("id") == "BB9")
+	 			jQuery("#expand").show();
+	 		else
+	 			jQuery("#expand").hide();
 		});
 		// presentation
 		jQuery("#output ul").css({"min-height": jQuery("#output ul:first").height()+"px"});
-		jQuery("#expand").click(function(){jQuery("#code").toggle()});
+		jQuery("#expand").click(function(){jQuery("#code").toggle(); return false; });
 	}
 });
 // utility formatting functions
