@@ -14,12 +14,11 @@ jQuery("#BBVersions input").live("click", function(){
 	displayVersionTweaks(version);
 
 	if (version != "BB9")
-		jQuery("#expand, #code").hide(); // add show disable
-
-	if (version == "BB9_x")
-		jQuery("#BB9_x_message").show();
+		jQuery("#expand, #code").hide();
 	else
-		jQuery("#BB9_x_message").hide();
+		jQuery("#expand").show();
+		
+	jQuery("#BB9_x_message").toggle(version == "BB9_x");
 });
 
 // default select BB9
