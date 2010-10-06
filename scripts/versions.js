@@ -12,12 +12,10 @@ jQuery.each(tweakVersions, function(key, value) {
 jQuery("#BBVersions input").live("click", function(){
 	var version = jQuery(this).attr("id");
 	displayVersionTweaks(version);
-
 	if (version != "BB9")
 		jQuery("#expand, #code").hide();
 	else
 		jQuery("#expand").show();
-		
 	jQuery("#BB9_x_message").toggle(version == "BB9_x");
 });
 
@@ -29,8 +27,6 @@ function displayVersionTweaks(bbVersion) {
 	var tweaksArray = tweakVersions[bbVersion];
 	jQuery("li").each(function(){
 		var id = jQuery(this).find("input").attr("id");
-		if (id) {
-			if(jQuery.inArray(id, tweaksArray) > -1) { jQuery(this).show(); } else { jQuery(this).hide(); }
-		}
+		if (id) {jQuery(this).toggle(jQuery.inArray(id, tweaksArray) > -1);}
 	});
 }
