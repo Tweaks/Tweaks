@@ -36,8 +36,6 @@ jQuery.ajax({
  			inlineFormatInstructions("#doco");
  			inlineFormatInstructions("#code");
  			jQuery("#doco").append("<br/><img src=\"images/"+thisID+".png\"/>");
- 			// show embed code if BB9 selected
- 			jQuery("#expand").toggle(jQuery("#BBVersions input:checked").attr("id") == "BB9");
 		});
 		// presentation
 		jQuery("#output ul").css({"min-height": jQuery("#output ul:first").height()+"px"});
