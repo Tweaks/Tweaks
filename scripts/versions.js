@@ -1,7 +1,7 @@
 var tweakVersions = {
-	BB9_x : ["hider", "addcolourstripe", "replaceicon", "showhidetext", "imagemapper", "printframe", "quicktest", "deeplink", "iframecontent", "addstyle", "colourpage", "rightPod", "quickpoll", "icons", "unitmap", "selfenrol", "collapsemenu", "visualunitmap", "backtotoplink", "checklist", "noContentWrapper", "Submenu"],
+	BB8   : ["hider", "replaceicon", "showhidetext", "imagemapper", "printframe", "quicktest", "iframecontent", "icons", "unitmap", "visualunitmap", "backtotoplink", "checklist", "Submenu"],
 	BB9   : ["hider", "addcolourstripe", "replaceicon", "showhidetext", "imagemapper", "printframe", "quicktest", "deeplink", "iframecontent", "addstyle", "colourpage", "rightPod", "quickpoll", "icons", "unitmap", "selfenrol", "collapsemenu", "visualunitmap", "backtotoplink", "checklist", "noContentWrapper", "Submenu"],
-	BB8   : ["hider", "replaceicon", "showhidetext", "imagemapper", "printframe", "quicktest", "iframecontent", "icons", "unitmap", "visualunitmap", "backtotoplink", "checklist", "Submenu"]};
+	BB9_x : ["hider", "addcolourstripe", "replaceicon", "showhidetext", "imagemapper", "printframe", "quicktest", "deeplink", "iframecontent", "addstyle", "colourpage", "rightPod", "quickpoll", "icons", "unitmap", "selfenrol", "collapsemenu", "visualunitmap", "backtotoplink", "checklist", "noContentWrapper", "Submenu"]};
 
 // build selector: template is too much work!
 jQuery.each(tweakVersions, function(key, value) {

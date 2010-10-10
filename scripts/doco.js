@@ -12,6 +12,7 @@ jQuery.ajax({
  		// set up template
 		var markup = "<li><input type=\"radio\" name=\"tweak_script\" id=\"${id}\"/><label for=\"${id}\">${title}</label></li>";
 		jQuery.template( "docoTemplate", markup);
+		jQuery("#loading").remove();
 		// read packages in
  		jXML.find("package").each(function(){
  			if (jQuery(this).find("available").text() == "true") {
