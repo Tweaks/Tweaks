@@ -53,7 +53,7 @@ function buildCode(title, id, embedCode) {
 	var message = ". <br/><"+"!-- TweakID="+id+"-->This <a href=\"http://tweaks.github.com/Tweaks/index.html\" target=\"_new\">Tweak</a> is for trial purposes only and is running off an remote server. It will only work if internet access is available.<br/>Refer to the <a href=\"http://tweaks.github.com/Tweaks/description.html#"+id+"\" target=\"_new\">Tweaks Site for instructions</a>.<br/><p>"+
 	"This item will be hidden in Edit Mode: OFF (i.e. the view that students see).</p>";
 	// insert repository path into setup script and embedCode
-	embedCode = embedCode.replace("'s","'"+sourceRepositoryURL+"s");
+	embedCode = embedCode.replace(/'s/g, "'"+sourceRepositoryURL+"s");
 	var scriptBlock = "<"+"script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js\" type=\"text/javascript\"></"+"script><br/>"+
 		"<"+"script src=\""+sourceRepositoryURL+"jquery.tweakSetup.js\" type=\"text/javascript\"><"+"/script><br/>"+
 		"<"+"script type=\"text/javascript\" class=\"tweak_script\">"+
