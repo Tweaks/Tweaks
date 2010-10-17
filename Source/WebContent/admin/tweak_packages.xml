@@ -118,7 +118,7 @@ IE 7, IE 8</description>
 </package>
 <package id="iframecontent">
 <title>Load IFRAME as Content</title>
-<type>Tools</type>
+<type>Structure</type>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
@@ -284,7 +284,7 @@ css: 'styles/submenu.css']]></embed>
 </package>
 <package id="subsite">
 <title>Load Subsite</title>
-<type>Tools</type>
+<type>Structure</type>
 <visible>true</visible>
 <available>true</available>
 <description>Browser(s) tested:FF 3.5, IE 7, Safari 4, Chrome B7</description>
