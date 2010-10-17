@@ -7,7 +7,8 @@
 		<available>true</available>
 		<description>Tested:&#13;
 Firefox 3.5 Mac&#13;
-Safari 4 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
 IE 7, IE 8</description>
 		<instruction>This tweak will hide a row in display mode. This can be used to hide items that you do not want visible to students but need to be available to retain functionality. eg. items containing CSS or scripts. (Requires some HTML). &lt;br/&gt;&lt;br/&gt;1. Add the following HTML to an item to hide rows:&lt;br/&gt;&lt;br/&gt;&lt;div class='hidemyrow'&gt;row&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;</instruction>
 		<embed><![CDATA[js: 'scripts/jquery_hider.js']]></embed>
@@ -19,7 +20,8 @@ IE 7, IE 8</description>
 		<available>true</available>
 		<description>Tested:&#13;
 Firefox 3.5 Mac&#13;
-Safari 4 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
 IE 7, IE 8</description>
 		<instruction>This tweak adds a colour stripe to a Blackboard item. (Requires some HTML).&lt;br/&gt;&lt;br/&gt;1.  Edit the item, go into HTML mode add the following code:&lt;br/&gt;&lt;span class='colourSpan'&gt;colourcode&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;Replace 'colourcode' with a valid HTML hex colour eg. #003399. Please see http://www.webmonkey.com/reference/Color_Charts for example colours.</instruction>
 		
@@ -39,20 +41,22 @@ IE 7, IE 8</description>
 <available>true</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
-Safari 4 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
 IE 7, IE 8</description>
 <instruction>This tweak allows you to replace or hide standard blackboard icons.&lt;br/&gt;&lt;br/&gt;Replacing&lt;br/&gt;1. Add a Blackboard item with one of the following names to replace the corresponding icons.&lt;br/&gt;2. Upload a picture to the item using the picture button and hit submit.&lt;br/&gt;&lt;br/&gt;Replacing Icon types&lt;br/&gt;Everything Replacement Icon&lt;br/&gt;Item Replacement Icon&lt;br/&gt;Folder&lt;br/&gt;Replacement Icon&lt;br/&gt;Blog Replacement Icon&lt;br/&gt;Wiki Replacement Icon&lt;br/&gt;Title Replacement Icon&lt;br/&gt;&lt;br/&gt;Replacing specific row/s icons&lt;br/&gt;Replacement Icon: Name of Row (Must match row name)&lt;br/&gt;OR&lt;br/&gt;Replacement Icon: Row Set e.g.  Replacement Icon: Tutorial replaces all 'Tutorial ...'  icons&lt;br/&gt;&lt;br/&gt;Hiding specific row/s icons&lt;br/&gt;Hide Icon: Name of Row OR Hide Icon: Row Set (as above)</instruction>
 <embed><![CDATA[js: 'scripts/jquery_replaceicons.js']]></embed>
 </package>
 
 <package id="showhidetext">
-<title>Show Hide text</title>
+<title>Show Hide Text</title>
 <type>Learning Activities</type>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
-Safari 4 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
 IE 7, IE 8</description>
 <instruction>This tweak adds  'Show/hide text' links to defined text in an item. (Requires some HTML).&lt;br/&gt;&lt;br/&gt;1. Create Item. &lt;br/&gt; 2. Enter all the text into the text box editor. Toggle to HTML mode. &lt;br/&gt; 3. Put this HTML around the content you want as Show/Hide text.&lt;div class='hidden'&gt;Your content here&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;Optional: To customise the toggle text instruction, add the HTML below to a Blackboard item. This will new instruction will be used for all show / hide items on the page. &lt;br/&gt;&lt;span id='showHideInstruction'&gt;Your own hide show instruction here&lt;/span&gt;</instruction>
 <embed><![CDATA[js: 'scripts/jquery_hideshow.js',
@@ -66,7 +70,8 @@ css: 'styles/hideshow.css']]></embed>
 <available>true</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
-Safari 4 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
 IE 7, IE 8</description>
 <instruction>This tweak dynamically maps Blackboard resources (folders and links) into an Image Map. (Requires some HTML).&lt;br/&gt;&lt;br/&gt;1. Create a Blackboard item and add an image using the Attach Image button.&lt;br/&gt;2. Add your Blackboard folders and external or course links to the page that you wish to link to from the image map.&lt;br/&gt;3. Generate an image map for this image. We recommend you use a web editor such as Dreamweaver or an online image map editor. Make sure you add the exact names of the folders or links to the ALT tag for each image map area. You can leave the href as '#'. 4. Add this image map HTML to the Blackboard page and make sure to add the 'usemap' attribute to the image.&lt;br/&gt;&lt;br/&gt;Your image map should look like this:&lt;br/&gt;&lt;br/&gt;&lt;img border='0' src='[BLACKBOARD IMAGE URL]' alt='Tree' usemap='#map'/&gt;&lt;br/&gt;&lt;map name='map'&gt;&lt;br/&gt;&lt;area shape='rect' coords='31,46,100,77' href='#' alt='Link 1'/&gt;&lt;br/&gt;&lt;area shape='rect' coords='31,106,100,137' href='#' alt='Link 2'/&gt;&lt;br/&gt;&lt;area shape='rect' coords='398,48,467,79' href='#' alt='Link 3'/&gt;&lt;br/&gt;&lt;area shape='rect' coords='398,108,467,139' href='#' alt='Link 4'/&gt; &lt;br/&gt;&lt;/map&gt;&lt;br/&gt;&lt;br/&gt;Refer to Tweak Example site for an example and Image Map resource links. If you run into any problems, check that each image map link ALT tag corresponds exactly and uniquely to your folder / link names.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_dynamicimagemaplinks.js']]></embed>
@@ -79,7 +84,8 @@ IE 7, IE 8</description>
 <available>true</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
-Safari 4 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
 IE 7, IE 8</description>
 <instruction>This tweak inserts a print frame link in the top right hand corner of the page frame.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_printframe.js',
@@ -93,7 +99,8 @@ css: 'styles/blackboardprint.css']]></embed>
 <available>true</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
-Safari 4 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
 IE 7, IE 8</description>
 <instruction>You can use this tweak as a quick way to give feedback embedded in content. (Requires some HTML).&lt;br/&gt;&lt;br/&gt;1. In a new item, type in your question text.&lt;br/&gt;2. Add a table with 2 columns and a row for each answer. Place an answer and its corresponding feedback in adjacent columns.&lt;br/&gt;3. Hit the HTML Source button and add &lt;div class='quiz'&gt;&lt;/div&gt; around the question text. e.g. &lt;div class='quiz'&gt;Your question here.&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;See Examples of Tweak Packages Site below for example quiz and code.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_quicktest2.js',
@@ -111,7 +118,8 @@ css: 'styles/quicktest.css']]></embed>
 <available>true</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
-Safari 4 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
 IE 7, IE 8</description>
 <instruction>This will make a folder or external link to another Blackboard site open within proper frame context.&lt;br/&gt;&lt;br/&gt;1. Make sure you are in EDIT MODE Off, then right click a Blackboard folder link and select Copy link.&lt;br/&gt;2. Create an External Link item, paste the link into the URL field and then add the following code to the item text in HTML mode to activate it:&lt;br/&gt;&lt;div class='makeDeepLink'&gt;Link opens in a new Window&lt;/div&gt;</instruction>
 <embed><![CDATA[js: 'scripts/jquery_makedeeplink.js']]></embed>
@@ -123,7 +131,8 @@ IE 7, IE 8</description>
 <available>true</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
-Safari 4 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
 IE 7, IE 8</description>
 <instruction>This tweak is useful for loading a web package into the full content area of Blackboard.&lt;br/&gt;&lt;br/&gt;1. Upload your web package as an attachment to a Blackboard item called 'Web Package' and select 'special action': 'unpackage this file' and submit.&lt;br/&gt;2. Select the web page inside the unpackaged file.&lt;br/&gt;3. Switch to EDIT MODE Off to test web package in student view.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_loadiframeascontent.js']]></embed>
@@ -135,7 +144,8 @@ IE 7, IE 8</description>
 <available>true</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
-Safari 4 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
 IE 7, IE 8</description>
 <instruction>This tweak allows you to load a style sheet to the page where this tweak is added.&lt;br/&gt;&lt;br/&gt;1. Upload your style sheet as an attachment on to an item called 'Stylesheet'.&lt;br/&gt;This item will be hidden from students.&lt;br/&gt;&lt;br/&gt;Advanced: you can reference this stylesheet on other Blackboard pages by adding this tweak and the following HTML &lt;div class='loadStyle'&gt;pathToCSS file&lt;/div&gt;. See Tweak Demo site for example.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_loadstyle.js']]></embed>
@@ -147,7 +157,8 @@ IE 7, IE 8</description>
 <available>true</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
-Safari 4 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
 IE 7, IE 8</description>
 <instruction>This tweak changes the background colour of the page. (Requires some HTML).&lt;br/&gt;&lt;br/&gt;1. Add the following HTML to a Blackboard item &lt;span id='colourPage'&gt;colourcode&lt;/span&gt; where 'colourcode' is a valid HTML hex colour (e.g. #003399) you want for the background of the page. Note, this will override any one background styles.&lt;br/&gt;&lt;br/&gt;Please see http://www.webmonkey.com/reference/Color_Charts for example colours.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_colourpage.js']]></embed>
@@ -193,7 +204,8 @@ IE 7, IE 8</description>
 <available>true</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
-Safari 4 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
 IE 7, IE 8</description>
 <instruction>This tweak dynamically maps Blackboard resources (folders and links) into a unit map table. &lt;br/&gt;&lt;br/&gt;1. Add a Blackboard item named 'Unit Map'. Add a table with a heading row plus a row for each week / topic and columns for an index plus the different resource types you want to map. ( e.g. Lectures, Tutorials, Assessment.)&lt;br/&gt;2. Fill in the Resource types along the top row cells and the weeks / topics down the left column. Add any extra text in the content cells to describe the content of the table items.&lt;br&gt; 3. Add Blackboard resources e.g. folders using the index column title + ':' + resource row as a prefix.&lt;br/&gt;e.g. Week 1: Lecture  Schematics.&lt;br/&gt;&lt;br/&gt;See Examples of Tweak Packages Site below for example and advanced options on link formatting, placement, highlighting and display.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_dynamicresourcetable.js',
@@ -232,7 +244,8 @@ IE 7, IE 8</description>
 <available>true</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
-Safari 4 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
 IE 7, IE 8</description>
 <instruction>This tweak dynamically overlays an image with any Blackboard folders, site links or external links on the page. It positions and styles the links based on predesigned stylesheet options.&lt;br/&gt;&lt;br/&gt;1. Add a Blackboard item named 'Unit Map'. Add an image for the unit map to this item.&lt;br/&gt;2. Position this item on your Blackboard page above the items you wish to be added to the image map.&lt;br/&gt;3. Position the Tweak below the last folder you wise to be added to the unit image menu.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_dynamictextmap.js',
@@ -245,7 +258,8 @@ css: 'styles/dynamictextmap.css']]></embed>
 <available>true</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
-Safari 4 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
 IE 7, IE 8</description>
 <instruction>This tweak inserts Back to Top Link(s) wherever tweak is added to the page.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_backtotop.js']]></embed>
@@ -257,7 +271,8 @@ IE 7, IE 8</description>
 <available>true</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
-Safari 4 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
 IE 7, IE 8</description>
 <instruction>This tweak formats any items with 'Set Review Status (Enabled)' into a checklist.&lt;br/&gt;&lt;br/&gt;1. Add an item called 'Checklist'.&lt;br/&gt;2. Enable Review Status for any items you wish to appear in the checklist by selecting the item context menu and select Set Review Status.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_checklist.js',
@@ -268,7 +283,11 @@ css: 'styles/checklist.css']]></embed>
 <type>Tools</type>
 <visible>true</visible>
 <available>true</available>
-<description>Browser(s) tested:FF 3.5.7, IE 7.0.5, Safari 4.0.3</description>
+<description>Tested:&#13;
+Firefox 3.5 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
+IE7.05</description>
 <instruction>ADVANCED: This tweak unwraps hard coded Blackboard links in text so that the link goes to the normal page without doubling the breadcrumb trail. (Requires some HTML)&lt;br/&gt;&lt;br/&gt;1. Add the following HTML around item content to unwrap links:&lt;br/&gt;&lt;div class=’noContentWrapper’&gt;YOUR CONTENT&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;Note: we strongly recommend using normal Blackboard Unit / Community links over hard coded text links as any link modifications or Unit Copies will require maintenance of the in text links.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_nocontentwrapper.js']]></embed>
 </package>
@@ -277,7 +296,11 @@ css: 'styles/checklist.css']]></embed>
 <type>Structure</type>
 <visible>true</visible>
 <available>true</available>
-<description>Browser(s) tested:FF 3.5.7, IE 7.0.5, Safari 4.0.3</description>
+<description>Tested:&#13;
+Firefox 3.5 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
+IE7, IE8</description>
 <instruction>This tweak adds a horizontal submenu based on the content items and subfolders of the current page. The menu can be text only, text overlaying an image or inserted into custom HTML. Integrates with other tweaks - e.g. check the Tweak Example site below for an example which uses Image Map, CSS and Icon replacement to great effect.&lt;br/&gt;&lt;br/&gt;1. Add your content items and folders to your page.&lt;br/&gt;2. Add the tweak at the base of the page.&lt;br/&gt;Optional:&lt;br/&gt;3. Add a Content item called 'Menu Image' and insert an image in the content area of the item. Make sure to include image height, width, alt text (and optionally CSS class). The image should be wide enough to accommodate the text of the menu items.&lt;br/&gt;&lt;br/&gt;See the Tweak site for advanced examples using custom HTML.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_submenu.js',
 css: 'styles/submenu.css']]></embed>
@@ -287,7 +310,12 @@ css: 'styles/submenu.css']]></embed>
 <type>Presentation</type>
 <visible>true</visible>
 <available>true</available>
-<description>Browser(s) tested:FF 3.5, IE 7, Safari 4, Chrome B7</description>
+<description>Tested:&#13;
+Firefox 3.5 Mac&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
+IE 7
+</description>
 <instruction>This tweak is useful for loading a section of another Blackboard Site into the full content area of your current Blackboard site (for example - if you have content section created in a shared site that you want embedded in other sites).&lt;br/&gt;&lt;br/&gt;1. Copy a link to the section of the sub site (e.g. from the left hand menu, or the Blackboard folder). Make sure you are in EDIT mode OFF -- and that students have guest or enrolled access to the subsite.&lt;br/&gt;2. In the parent Blackboard Site, create an External Link called 'Site Link' and paste in the URL to the sub site section.&lt;br/&gt;3. After adding this Tweak, switch to EDIT Mode Off to see the subsite load.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_loadsubsite.js']]></embed>
 </package>
