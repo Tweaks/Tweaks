@@ -1,0 +1,8 @@
+@charset "UTF-8";
+/* CSS Document */
+.quickpoll { font-family:Arial, Helvetica, sans-serif; }
+.quickpoll span { font-weight: bold; display: block; padding: 3px 0; }
+.pollanswer { padding: 2px 0;}
+.quickpoll .votes { background:#00CCFF; padding: 2px; border: 1px solid #003399; }
+.quickpoll div.maxvotes { background:#FF6600; }
+.rpoll {display: none; }

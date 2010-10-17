@@ -42,7 +42,7 @@ Firefox 3.5 Mac&#13;
 Safari 4 Mac&#13;
 IE 7, IE 8</description>
 <instruction>This tweak allows you to replace or hide standard blackboard icons.&lt;br/&gt;&lt;br/&gt;Replacing&lt;br/&gt;1. Add a Blackboard item with one of the following names to replace the corresponding icons.&lt;br/&gt;2. Upload a picture to the item using the picture button and hit submit.&lt;br/&gt;&lt;br/&gt;Replacing Icon types&lt;br/&gt;Everything Replacement Icon&lt;br/&gt;Item Replacement Icon&lt;br/&gt;Folder&lt;br/&gt;Replacement Icon&lt;br/&gt;Blog Replacement Icon&lt;br/&gt;Wiki Replacement Icon&lt;br/&gt;Title Replacement Icon&lt;br/&gt;&lt;br/&gt;Replacing specific row/s icons&lt;br/&gt;Replacement Icon: Name of Row (Must match row name)&lt;br/&gt;OR&lt;br/&gt;Replacement Icon: Row Set e.g.  Replacement Icon: Tutorial replaces all 'Tutorial ...'  icons&lt;br/&gt;&lt;br/&gt;Hiding specific row/s icons&lt;br/&gt;Hide Icon: Name of Row OR Hide Icon: Row Set (as above)</instruction>
-<embed><![CDATA[js: 'scripts/jquery_replaceicons_9_1.js']]></embed>
+<embed><![CDATA[js: 'scripts/jquery_replaceicons.js']]></embed>
 </package>
 
 <package id="showhidetext">
@@ -118,7 +118,7 @@ IE 7, IE 8</description>
 </package>
 <package id="iframecontent">
 <title>Load IFRAME as Content</title>
-<type>Presentation</type>
+<type>Tools</type>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
@@ -177,8 +177,8 @@ css: 'styles/quickpoll.css']]></embed>
 <package id="icons">
 <title>Add Coloured Icon Box</title>
 <type>Presentation</type>
-<visible>true</visible>
-<available>true</available>
+<visible>false</visible>
+<available>false</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
 Safari 4 Mac&#13;
@@ -187,7 +187,7 @@ IE 7, IE 8</description>
 <embed><![CDATA[css: 'styles/icons.css']]></embed>
 </package>
 <package id="unitmap">
-<title>Dynamic Unit Map Table</title>
+<title>Dynamic Unit/Course Map Table</title>
 <type>Structure</type>
 <visible>true</visible>
 <available>true</available>
@@ -196,15 +196,15 @@ Firefox 3.5 Mac&#13;
 Safari 4 Mac&#13;
 IE 7, IE 8</description>
 <instruction>This tweak dynamically maps Blackboard resources (folders and links) into a unit map table. &lt;br/&gt;&lt;br/&gt;1. Add a Blackboard item named 'Unit Map'. Add a table with a heading row plus a row for each week / topic and columns for an index plus the different resource types you want to map. ( e.g. Lectures, Tutorials, Assessment.)&lt;br/&gt;2. Fill in the Resource types along the top row cells and the weeks / topics down the left column. Add any extra text in the content cells to describe the content of the table items.&lt;br&gt; 3. Add Blackboard resources e.g. folders using the index column title + ':' + resource row as a prefix.&lt;br/&gt;e.g. Week 1: Lecture  Schematics.&lt;br/&gt;&lt;br/&gt;See Examples of Tweak Packages Site below for example and advanced options on link formatting, placement, highlighting and display.</instruction>
-<embed><![CDATA[js: 'scripts/jquery_dynamicresourcetable_9_1.js',
+<embed><![CDATA[js: 'scripts/jquery_dynamicresourcetable.js',
 
 css: 'styles/dynamicresourcetable.css']]></embed>
 </package>
 <package id="selfenrol">
 <title>Self Enrol Link</title>
 <type>Tools</type>
-<visible>true</visible>
-<available>true</available>
+<visible>false</visible>
+<available>false</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
 Safari 4 Mac&#13;
@@ -280,6 +280,16 @@ css: 'styles/checklist.css']]></embed>
 <description>Browser(s) tested:FF 3.5.7, IE 7.0.5, Safari 4.0.3</description>
 <instruction>This tweak adds a horizontal submenu based on the content items and subfolders of the current page. The menu can be text only, text overlaying an image or inserted into custom HTML. Integrates with other tweaks - e.g. check the Tweak Example site below for an example which uses Image Map, CSS and Icon replacement to great effect.&lt;br/&gt;&lt;br/&gt;1. Add your content items and folders to your page.&lt;br/&gt;2. Add the tweak at the base of the page.&lt;br/&gt;Optional:&lt;br/&gt;3. Add a Content item called 'Menu Image' and insert an image in the content area of the item. Make sure to include image height, width, alt text (and optionally CSS class). The image should be wide enough to accommodate the text of the menu items.&lt;br/&gt;&lt;br/&gt;See the Tweak site for advanced examples using custom HTML.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_submenu.js',
+css: 'styles/submenu.css']]></embed>
+</package>
+<package id="subsite">
+<title>Load Subsite</title>
+<type>Tools</type>
+<visible>true</visible>
+<available>true</available>
+<description>Browser(s) tested:FF 3.5, IE 7, Safari 4, Chrome B7</description>
+<instruction>This tweak is useful for loading a section of another Blackboard Site into the full content area of your current Blackboard site (for example - if you have content section created in a shared site that you want embedded in other sites).&lt;br/&gt;&lt;br/&gt;1. Copy a link to the section of the sub site (e.g. from the left hand menu, or the Blackboard folder). Make sure you are in EDIT mode OFF -- and that students have guest or enrolled access to the subsite.&lt;br/&gt;2. In the parent Blackboard Site, create an External Link called 'Site Link' and paste in the URL to the sub site section.&lt;br/&gt;3. After adding this Tweak, switch to EDIT Mode Off to see the subsite load.</instruction>
+<embed><![CDATA[js: 'scripts/jquery_subsite.js',
 css: 'styles/submenu.css']]></embed>
 </package>
 </packages>
