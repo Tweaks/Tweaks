@@ -289,7 +289,7 @@ css: 'styles/submenu.css']]></embed>
 <available>true</available>
 <description>Browser(s) tested:FF 3.5, IE 7, Safari 4, Chrome B7</description>
 <instruction>This tweak is useful for loading a section of another Blackboard Site into the full content area of your current Blackboard site (for example - if you have content section created in a shared site that you want embedded in other sites).&lt;br/&gt;&lt;br/&gt;1. Copy a link to the section of the sub site (e.g. from the left hand menu, or the Blackboard folder). Make sure you are in EDIT mode OFF -- and that students have guest or enrolled access to the subsite.&lt;br/&gt;2. In the parent Blackboard Site, create an External Link called 'Site Link' and paste in the URL to the sub site section.&lt;br/&gt;3. After adding this Tweak, switch to EDIT Mode Off to see the subsite load.</instruction>
-<embed><![CDATA[js: 'scripts/jquery_subsite.js',
+<embed><![CDATA[js: 'scripts/jquery_loadsubsite.js',
 css: 'styles/submenu.css']]></embed>
 </package>
 </packages>
