@@ -12,7 +12,7 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-   version 1.6. author Tim Plaisted 2010 */
+   version 1.8. author Tim Plaisted 2010 */
 jQuery(function($){
 	// utility extension: case insensitive contains
 	jQuery.expr[':'].contains = function(a,i,m){
@@ -85,41 +85,33 @@ jQuery(function($){
 			// normal table processing
 			for (var column = 0; column < resourceTypes.length; column++) {
 				if (sectionTitle.length && resourceTypes[column].length) {
-					$("#pageList li h3 a:contains('"+sectionTitle+": "+resourceTypes[column]+"')").each(function() {
-						var thislink = $(this).clone();
-						// link display options
-						if (displayLinkTopicIndexText && !displayLinkResourceText)
-							$(thislink).text($(thislink).text().replace(resourceTypes[column]+" ", ""));
-						else if (!displayLinkTopicIndexText && displayLinkResourceText)
-							$(thislink).text($(thislink).text().replace(sectionTitle+": ", ""));
-						else if (!displayLinkTopicIndexText && !displayLinkResourceText)
-							$(thislink).text($(thislink).text().replace(sectionTitle+": "+resourceTypes[column]+" ", ""));
-						// else display all
-						
-						// add details field
-						var detailsHTML = $.trim($(this).parents("li").find("div.details span").find("script").remove().end().html());
-						if (detailsHTML.length)
-							detailsHTML = "<div class=\"insertDetails\">"+detailsHTML+"</div>";
-							
+					$("#pageList h3.item:contains('"+sectionTitle+": "+resourceTypes[column]+"')").each(function() {
+
 						if(location.href.indexOf("Content.")>0)
 							$(this).parents("li").hide();
 						
 						var thiscell = $unitMap.find("tr:eq("+(row+1)+") td:eq("+(column+columnOffset)+")");
+
+						// set up link (if there is one): consider / is there better way that deals with filtering edit mode links ok
+						var thislink = $(this).find("a:contains('"+sectionTitle+": "+resourceTypes[column]+"')").clone();
+						if (thislink.length)
+							thislink = setUpLinkOptions(thislink, thiscell, displayLinkTopicIndexText, displayLinkResourceText, sectionTitle, resourceTypes[column]);
 					
-						// highlighting and trim
-						if ($(thislink).text().indexOf("NB:")>=0) {	
-							$(thislink).text($(thislink).text().replace("NB:", ""));
-							thiscell.addClass("NB");
-						} else if ($(thislink).text().indexOf("NB2:")>=0) {	
-							$(thislink).text($(thislink).text().replace("NB2:", ""));
-							thiscell.addClass("NB2");
-						}
-						$(thislink).text($.trim($(thislink).text()));
+						// attachments (reinsert trailing space outside links)
+						var attachments = $(this).next("div.details").find("ul.attachments a").clone().each(function() {
+												$(this).html($.trim($(this).text()));
+										  }).addClass("attachmentLink");
 						
+						// details field
+						var detailsHTML = $.trim($(this).next("div.details").find("span").find("script").remove().end().html());
+						if (detailsHTML.length)
+							detailsHTML = "<div class=\"insertDetails\">"+detailsHTML+"</div>";
+							
+						// add to cell
 						if(prependLinks)
-							thiscell.prepend(" ").prepend(detailsHTML).prepend(thislink);
+							thiscell.prepend(" ").prepend(detailsHTML).prepend(attachments).prepend(thislink);
 						else
-							thiscell.append(" ").append(thislink).append(detailsHTML);
+							thiscell.append(" ").append(thislink).append(attachments).append(detailsHTML);
 					});
 				}
 			}
@@ -127,7 +119,38 @@ jQuery(function($){
 		// clean up IE CSS issue
 		if($.browser.msie)
 			$unitMap.find("ul").css("margin","1px 0 1px 15px");
+
+		// process attachment links
+		$unitMap.find(".attachmentLink").attr("target", "_blank").each(function() { unWrapLink(this); }).after("<span>&nbsp; </span>");
+		
 		// reattach to DOM
 		$uniMapParent.append($unitMap);
 	}
 });
+
+function setUpLinkOptions(thislink, thiscell, displayLinkTopicIndexText, displayLinkResourceText, sectionTitle, resourceTypesColumn) {
+	// link display options
+	if (displayLinkTopicIndexText && !displayLinkResourceText)
+		thislink.text(thislink.text().replace(resourceTypesColumn+" ", ""));
+	else if (!displayLinkTopicIndexText && displayLinkResourceText)
+		thislink.text(thislink.text().replace(sectionTitle+": ", ""));
+	else if (!displayLinkTopicIndexText && !displayLinkResourceText)
+		thislink.text(thislink.text().replace(sectionTitle+": "+resourceTypesColumn+" ", ""));
+		
+	// highlighting and trim
+	if (thislink.text().indexOf("NB:")>=0) {	
+		thislink.text(thislink.text().replace("NB:", ""));
+		thiscell.addClass("NB");
+	} else if (thislink.text().indexOf("NB2:")>=0) {	
+		thislink.text(thislink.text().replace("NB2:", ""));
+		thiscell.addClass("NB2");
+	}
+	thislink.text(jQuery.trim(thislink.text()));
+		
+	return thislink;
+}
+
+function unWrapLink(link) { 
+	var this_href=jQuery(link).attr("href"); 
+	jQuery(link).attr("href", unescape(this_href.substr(this_href.search("href=")+5, this_href.length)).replace("amp;", "")); 
+}
