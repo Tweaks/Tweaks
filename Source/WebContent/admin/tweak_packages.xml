@@ -6,7 +6,7 @@
 		<visible>true</visible>
 		<available>true</available>
 		<description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
@@ -19,7 +19,7 @@ IE 7, IE 8</description>
 		<visible>true</visible>
 		<available>true</available>
 		<description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
@@ -40,7 +40,7 @@ IE 7, IE 8</description>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
@@ -54,7 +54,7 @@ IE 7, IE 8</description>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
@@ -69,7 +69,7 @@ css: 'styles/hideshow.css']]></embed>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
@@ -83,7 +83,7 @@ IE 7, IE 8</description>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
@@ -98,7 +98,7 @@ css: 'styles/blackboardprint.css']]></embed>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
@@ -117,7 +117,7 @@ css: 'styles/quicktest.css']]></embed>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
@@ -130,7 +130,7 @@ IE 7, IE 8</description>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
@@ -143,7 +143,7 @@ IE 7, IE 8</description>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
@@ -156,7 +156,7 @@ IE 7, IE 8</description>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
@@ -203,7 +203,7 @@ IE 7, IE 8</description>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
@@ -243,7 +243,7 @@ IE 7, IE 8</description>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
@@ -257,7 +257,7 @@ css: 'styles/dynamictextmap.css']]></embed>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
@@ -270,7 +270,7 @@ IE 7, IE 8</description>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
@@ -284,10 +284,10 @@ css: 'styles/checklist.css']]></embed>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
-IE7.05</description>
+IE 7, IE 8</description>
 <instruction>ADVANCED: This tweak unwraps hard coded Blackboard links in text so that the link goes to the normal page without doubling the breadcrumb trail. (Requires some HTML)&lt;br/&gt;&lt;br/&gt;1. Add the following HTML around item content to unwrap links:&lt;br/&gt;&lt;div class=’noContentWrapper’&gt;YOUR CONTENT&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;Note: we strongly recommend using normal Blackboard Unit / Community links over hard coded text links as any link modifications or Unit Copies will require maintenance of the in text links.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_nocontentwrapper.js']]></embed>
 </package>
@@ -297,10 +297,10 @@ IE7.05</description>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
-IE7, IE8</description>
+IE 7, IE 8</description>
 <instruction>This tweak adds a horizontal submenu based on the content items and subfolders of the current page. The menu can be text only, text overlaying an image or inserted into custom HTML. Integrates with other tweaks - e.g. check the Tweak Example site below for an example which uses Image Map, CSS and Icon replacement to great effect.&lt;br/&gt;&lt;br/&gt;1. Add your content items and folders to your page.&lt;br/&gt;2. Add the tweak at the base of the page.&lt;br/&gt;Optional:&lt;br/&gt;3. Add a Content item called 'Menu Image' and insert an image in the content area of the item. Make sure to include image height, width, alt text (and optionally CSS class). The image should be wide enough to accommodate the text of the menu items.&lt;br/&gt;&lt;br/&gt;See the Tweak site for advanced examples using custom HTML.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_submenu.js',
 css: 'styles/submenu.css']]></embed>
@@ -311,11 +311,10 @@ css: 'styles/submenu.css']]></embed>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
-Firefox 3.5 Mac&#13;
+Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
-IE 7
-</description>
+IE 7, IE 8</description>
 <instruction>This tweak is useful for loading a section of another Blackboard Site into the full content area of your current Blackboard site (for example - if you have content section created in a shared site that you want embedded in other sites).&lt;br/&gt;&lt;br/&gt;1. Copy a link to the section of the sub site (e.g. from the left hand menu, or the Blackboard folder). Make sure you are in EDIT mode OFF -- and that students have guest or enrolled access to the subsite.&lt;br/&gt;2. In the parent Blackboard Site, create an External Link called 'Site Link' and paste in the URL to the sub site section.&lt;br/&gt;3. After adding this Tweak, switch to EDIT Mode Off to see the subsite load.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_loadsubsite.js']]></embed>
 </package>
