@@ -27,3 +27,5 @@ p, #doco, #code { clear: both; }
 	font-family: "Lucida Console", Monaco, monospace;
 	font-size: 0.8em;
 }
+/* instructions */
+ol { margin: auto; padding-left: 20px; }
