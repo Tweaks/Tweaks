@@ -28,4 +28,5 @@ p, #doco, #code { clear: both; }
 	font-size: 0.8em;
 }
 /* instructions */
-ol { margin: auto; padding-left: 20px; }
+ol, ul.alt { margin: auto; padding-left: 20px; }
+ol ol { list-style-type: lower-roman; }
