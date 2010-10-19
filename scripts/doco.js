@@ -40,7 +40,12 @@ jQuery.ajax({
 		});
 		// presentation
 		jQuery("#output ul").css({"min-height": jQuery("#output ul:first").height()+"px"});
-		jQuery("#expand a:first").click(function(){jQuery("#code").toggle(); return false; });
+		jQuery("#expand a:first").click(function(){
+			if (jQuery("#output input:checked").length)
+				jQuery("#code").toggle(); return false; 
+			else
+				alert("Select a Tweak above");
+		});
 		// item selected?
 		if (location.hash.length) { jQuery(location.hash).click(); }
 	}
