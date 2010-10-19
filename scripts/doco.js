@@ -42,9 +42,10 @@ jQuery.ajax({
 		jQuery("#output ul").css({"min-height": jQuery("#output ul:first").height()+"px"});
 		jQuery("#expand a:first").click(function(){
 			if (jQuery("#output input:checked").length)
-				jQuery("#code").toggle(); return false; 
+				jQuery("#code").toggle();
 			else
 				alert("Select a Tweak above");
+			return false; 
 		});
 		// item selected?
 		if (location.hash.length) { jQuery(location.hash).click(); }
