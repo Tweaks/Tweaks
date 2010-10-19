@@ -40,7 +40,7 @@ jQuery.ajax({
 		});
 		// presentation
 		jQuery("#output ul").css({"min-height": jQuery("#output ul:first").height()+"px"});
-		jQuery("#expand a:first").click(function(){
+		jQuery("#expand a:last").click(function(){
 			if (jQuery("#output input:checked").length)
 				jQuery("#code").toggle();
 			else
