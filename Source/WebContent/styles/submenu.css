@@ -1,0 +1,9 @@
+#menuTitle { font-size: 1.9em; font-weight: bold; padding: 5px 0;} 
+#graphicMenu, #graphicMenu #menuTitle { position: relative; }
+#graphicMenu #intmenu {position: absolute; } 
+#graphicMenu #intmenu, #graphicMenu #menuTitle {left: 10px;}
+/* good to make these colours easy to override */
+#graphicMenu #menuTitle,
+#graphicMenu #intmenu a {color: #FFF;} 
+#graphicMenu #intmenu a:hover {color: #FFCE00;}
+#loadingGraphic { width: 16px;height: 16px;background-image:url('../images/ajax-loader.gif'); }

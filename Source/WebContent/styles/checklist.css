@@ -1,0 +1,26 @@
+.checklist fieldset {
+	margin: 5px;
+	float: left;
+}
+.checklist label {
+	padding: 5px 10px 10px 5px;
+	font-size: 0.9em;
+}
+.checklist h4 {
+	margin: 4px 0;
+	padding: 3px;
+	background:#CCDDFF none repeat scroll 0 0;
+}
+.checklist {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	line-height: 1.2em;
+	border:1px solid black;
+	padding:1px 3px 3px 5px;
+	width:50%;
+}
+.checklist a {
+	display: none;
+}
+.checklist div:hover a {
+	display: inline;
+}

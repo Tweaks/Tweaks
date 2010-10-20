@@ -1,0 +1,8 @@
+@media print {
+#navigationPane, div.navigationPane, #printlink {
+display:none !important;
+}
+#contentPanel {
+margin:0 !important;
+}
+}
