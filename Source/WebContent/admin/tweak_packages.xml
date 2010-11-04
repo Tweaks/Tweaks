@@ -126,7 +126,7 @@ IE 7, IE 8</description>
 </package>
 <package id="iframecontent">
 <title>Load IFRAME as Content</title>
-<type>Presentation</type>
+<type>Tools</type>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
@@ -307,7 +307,7 @@ css: 'styles/submenu.css']]></embed>
 </package>
 <package id="subsite">
 <title>Load Subsite</title>
-<type>Presentation</type>
+<type>Tools</type>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
@@ -316,6 +316,19 @@ Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
 <instruction>This tweak is useful for loading a section of another Blackboard Site into the full content area of your current Blackboard site (for example - if you have content section created in a shared site that you want embedded in other sites).&lt;br/&gt;&lt;br/&gt;1. Copy a link to the section of the sub site (e.g. from the left hand menu, or the Blackboard folder). Make sure you are in EDIT mode OFF -- and that students have guest or enrolled access to the subsite.&lt;br/&gt;2. In the parent Blackboard Site, create an External Link called 'Site Link' and paste in the URL to the sub site section.&lt;br/&gt;3. After adding this Tweak, switch to EDIT Mode Off to see the subsite load.</instruction>
+<embed><![CDATA[js: 'scripts/jquery_loadsubsite.js']]></embed>
+</package>
+<package id="banner">
+<title>Banner</title>
+<type>Presentation</type>
+<visible>true</visible>
+<available>true</available>
+<description>Tested:&#13;
+Firefox 3.6&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
+IE 7, IE 8</description>
+<instruction>This tweak adds a banner image to a Blackboard page above the page title.&lt;br/&gt;&lt;br/&gt;1. Create a new item on your Blackboard page called 'Banner'. &lt;br/&gt;2. Insert your banner image into the content of this item using the 'Attach Image' button in rich text editor.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_loadsubsite.js']]></embed>
 </package>
 </packages>
