@@ -341,7 +341,7 @@ Firefox 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
-<instruction>This tweak creates a clickable FAQ section.&lt;br/&gt;&lt;br/&gt;1. Create a new item on your Blackboard page called with 'FAQ' included somewhere in the title. &lt;br/&gt;2. *Type* your Questions and Answers into the text editor ensuring all Questions and Answers are followed by a carriage return. &lt;br/&gt;3. Highlight the text of each Question and make it bold using Bold text formatting buton in the rich text editor toolbar.</instruction>
+<instruction>This tweak creates a clickable FAQ section.&lt;br/&gt;&lt;br/&gt;1. Create a new item on your Blackboard page with 'FAQ' included somewhere in the title. &lt;br/&gt;2. *Type* your Questions and Answers into the text editor ensuring all Questions and Answers start on a new line. &lt;br/&gt;3. Highlight the text of each Question and make it bold using the Bold text formatting button in the rich text editor toolbar.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_faq.js']]></embed>
 </package>
 </packages>
