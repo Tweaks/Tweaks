@@ -17,7 +17,8 @@ jQuery(function($) {
 				$("#content").html("<iframe src=\""+webPackageLink.attr("href")+"\" width=\"100%\" height=\"950\" frameBorder=\"0\"></iframe>");
 				$("#content iframe").load(restyleFrame).ready(restyleFrame);
 			}
-		} 
+		}
+		$("#contentPanel div.topRound").hide();
 	}
 });
 
@@ -26,6 +27,8 @@ function restyleFrame() {
 	window.scrollTo(window.scrollX,0); // trial scroll
 	if (frame.find("#navigationPane, #breadcrumbs").length) {
 		frame.find("#navigationPane, #breadcrumbs").hide();
+		frame.find("body").css("padding","0");
+		frame.find("div.locationPane").css("margin-top", "0");
 		frame.find("#contentPane, div.contentPane").css("margin","0px 4px 0px 0px");
 		frame.find("a").click(function(){
 			// filtering better here as only occurs on click?
