@@ -14,7 +14,6 @@
    limitations under the License.
 
  * jquery_faq
- * todo: add CSS file .faqAnswer").css("display", "block") .faqQuestion").css({"padding-top": "8px", "display": "block" and display: print
  */
 jQuery(function($) {
 	// find faqs
@@ -26,12 +25,12 @@ jQuery(function($) {
 			jQuery(this).nextUntil(".faqQuestion, *:has(.faqQuestion)").wrap("<span class=\"faqAnswer\"><span>");
 		});
 		// attach faq functionality
-		faqRows.find(".faqQuestion").css({"padding-top": "8px", "display": "block"}).click(function(){
+		faqRows.find(".faqQuestion").click(function(){
 			var faqShowing = (jQuery(this).next(".faqAnswer:visible").length > 0);
 			jQuery(".faqAnswer").hide();
 			jQuery(this).nextUntil(".faqQuestion, *:has(.faqQuestion)").toggle(!faqShowing);
 		});
 		// hide on init
-		jQuery(".faqAnswer").css("display", "block").hide();
+		jQuery(".faqAnswer").hide();
 	}
 });

@@ -209,7 +209,6 @@ Chrome B7&#13;
 IE 7, IE 8</description>
 <instruction>This tweak dynamically maps Blackboard resources (folders and links) into a unit map table. &lt;br/&gt;&lt;br/&gt;1. Add a Blackboard item named 'Unit Map'. Add a table with a heading row plus a row for each week / topic and columns for an index plus the different resource types you want to map. ( e.g. Lectures, Tutorials, Assessment.)&lt;br/&gt;2. Fill in the Resource types along the top row cells and the weeks / topics down the left column. Add any extra text in the content cells to describe the content of the table items.&lt;br&gt; 3. Add Blackboard resources e.g. folders using the index column title + ':' + resource row as a prefix.&lt;br/&gt;e.g. Week 1: Lecture  Schematics.&lt;br/&gt;&lt;br/&gt;See Examples of Tweak Packages Site below for example and advanced options on link formatting, placement, highlighting and display.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_dynamicresourcetable.js',
-
 css: 'styles/dynamicresourcetable.css']]></embed>
 </package>
 <package id="selfenrol">
@@ -342,6 +341,7 @@ Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
 <instruction>This tweak creates a clickable FAQ section.&lt;br/&gt;&lt;br/&gt;1. Create a new item on your Blackboard page with 'FAQ' included somewhere in the title. &lt;br/&gt;2. *Type* your Questions and Answers into the text editor ensuring all Questions and Answers start on a new line. &lt;br/&gt;3. Highlight the text of each Question and make it bold using the Bold text formatting button in the rich text editor toolbar.</instruction>
-<embed><![CDATA[js: 'scripts/jquery_faq.js']]></embed>
+<embed><![CDATA[js: 'scripts/jquery_faq.js',
+css: 'styles/faq.css']]></embed>
 </package>
 </packages>
