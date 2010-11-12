@@ -15,7 +15,7 @@
 
  * jquery_faq
  */
-/* added support for nextUntilIncludingTextNodes from StackOverflow */
+/* nextUntil Including TextNodes adapted from StackOverflow: http://stackoverflow.com/questions/3276133/jquery-wrapping-text-and-elements-between-hr-tags */
 jQuery(function($) {
 	// find faqs
 	var faqRows = jQuery("#pageList h3.item:contains('FAQ')").parents("li").addClass("faq");
@@ -44,19 +44,3 @@ jQuery(function($) {
 		jQuery(".faqAnswer").hide();
 	}
 });
-/*
-var faqRows = jQuery("#pageList h3.item:contains('FAQ')").parents("li").addClass("faq");
-jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq *[style*='bold']").addClass("faqQuestion");
-jQuery(".faqQuestion:eq(0)").nextUntilIncludingTextNodes(".faqQuestion"); 
-
-$('hr.begin').each(function(){
-    var $set = $();
-    var nxt = this.nextSibling;
-    while(nxt) {
-        if(!$(nxt).is('hr.end')) {
-            $set.push(nxt);
-            nxt = nxt.nextSibling;
-        } else break;
-    } 
-   $set.wrapAll('<div class="content" />');
-});*/

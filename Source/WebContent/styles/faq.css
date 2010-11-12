@@ -5,6 +5,5 @@ padding-top: 8px;
 display: block;
 cursor: pointer;
 }
-.faqAnswer {
-display: block;
-}
+.faqAnswer { display: block; }
+.faqAnswer br:first-child {display: none; }
