@@ -15,6 +15,7 @@
 
  * jquery_faq
  */
+/* added support for nextUntilIncludingTextNodes from StackOverflow */
 jQuery(function($) {
 	// find faqs
 	var faqRows = jQuery("#pageList h3.item:contains('FAQ')").parents("li").addClass("faq");
@@ -22,7 +23,16 @@ jQuery(function($) {
 		// find questions and answers
 		// jQuery 1.4.2 bug: faqRows.children("div.details").find("b, strong, *[style*='bold']").addClass("faqQuestion").each(function(){
 		jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq *[style*='bold']").addClass("faqQuestion").each(function(){
-			jQuery(this).nextUntil(".faqQuestion, *:has(.faqQuestion)").wrap("<span class=\"faqAnswer\"><span>");
+			//jQuery(this).nextUntil(".faqQuestion, *:has(.faqQuestion)").wrap("<div class=\"faqAnswer\"><div>");
+			var $set = $();
+			var nxt = this.nextSibling;
+			while(nxt) {
+				if(!$(nxt).is('.faqQuestion, *:has(.faqQuestion)')) {
+					$set.push(nxt);
+					nxt = nxt.nextSibling;
+				} else break;
+			} 
+			$set.wrapAll('<div class="faqAnswer"/>');
 		});
 		// attach faq functionality
 		faqRows.find(".faqQuestion").click(function(){
@@ -34,3 +44,19 @@ jQuery(function($) {
 		jQuery(".faqAnswer").hide();
 	}
 });
+/*
+var faqRows = jQuery("#pageList h3.item:contains('FAQ')").parents("li").addClass("faq");
+jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq *[style*='bold']").addClass("faqQuestion");
+jQuery(".faqQuestion:eq(0)").nextUntilIncludingTextNodes(".faqQuestion"); 
+
+$('hr.begin').each(function(){
+    var $set = $();
+    var nxt = this.nextSibling;
+    while(nxt) {
+        if(!$(nxt).is('hr.end')) {
+            $set.push(nxt);
+            nxt = nxt.nextSibling;
+        } else break;
+    } 
+   $set.wrapAll('<div class="content" />');
+});*/
