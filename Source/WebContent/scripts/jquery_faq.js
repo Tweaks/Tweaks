@@ -22,17 +22,26 @@ jQuery(function($) {
 	if (faqRows) {
 		// find questions and answers
 		// jQuery 1.4.2 bug: faqRows.children("div.details").find("b, strong, *[style*='bold']").addClass("faqQuestion").each(function(){
+		//jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq *[style*='bold']").addClass("faqQuestion").each(function(){
 		jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq *[style*='bold']").addClass("faqQuestion").each(function(){
+			var node = jQuery(this);
+			//   alert(node);
+			while(node.parents("div.details").length && !node.parent().is("span.fnt0")) {
+				node = node.parent();
+			}
+			node.addClass("faqQuestion").find(".faqQuestion").removeClass("faqQuestion");
+		});
+		jQuery("#pageList .faqQuestion").each(function(){
 			//jQuery(this).nextUntil(".faqQuestion, *:has(.faqQuestion)").wrap("<div class=\"faqAnswer\"><div>");
-			var $set = $();
+			var $set = jQuery();
 			var nxt = this.nextSibling;
 			while(nxt) {
-				if(!$(nxt).is('.faqQuestion, *:has(.faqQuestion)')) {
+				if(!jQuery(nxt).is('.faqQuestion, *:has(.faqQuestion)')) {
 					$set.push(nxt);
 					nxt = nxt.nextSibling;
 				} else break;
 			} 
-			$set.wrapAll('<div class="faqAnswer"/>');
+			$set.wrapAll('<div class="faqAnswer"/>');		
 		});
 		// attach faq functionality
 		faqRows.find(".faqQuestion").click(function(){
@@ -44,3 +53,39 @@ jQuery(function($) {
 		jQuery(".faqAnswer").hide();
 	}
 });
+		/*
+		var questionsFound = 0;
+		jQuery("#tq").each(function(){
+			//var startElem = jQuery("#tq").get();
+			questionsFound++;
+			jQuery(this).addClass("faqQuestionStart"+questionsFound);
+			var foundBegin = false;
+			var foundEnd = false;
+			//var $set = jQuery();
+			jQuery("#tq").parents("div.details").children().contents().each(function() {
+				if(jQuery(this).is('.faqQuestionStart, *:has(.faqQuestionStart)')) { foundBegin = true; alert("hereB"); } // '.faqQuestionStart, *:has(.faqQuestionStart)'
+				if(jQuery(this).is('.faqQuestion, *:has(.faqQuestion)')) { foundEnd = true;	alert("hereE");}
+				if (foundBegin && !foundEnd)
+					alert("hereX"); // $set.push(jQuery(this).get());
+			}); //.wrapAll('<div class="faqAnswer"/>');​
+		});*/
+			//jQuery(this).removeClass("faqQuestionStart").addClass("faqQuestion");
+		
+		//jQuery(this).nextUntil(".faqQuestion, *:has(.faqQuestion)").wrap("<div class=\"faqAnswer\"><div>");
+		/*
+		var $set = $();
+		var nxt = this.nextSibling;
+		if 
+		while(nxt) {
+			if(!$(nxt).is('.faqQuestion, *:has(.faqQuestion)')) {
+				$set.push(nxt);
+				nxt = nxt.nextSibling;
+			} else break;
+		} 
+		
+		$set.wrapAll('<div class="faqAnswer"/>');
+		*/
+		/* old style 
+		jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq *[style*='bold']").addClass("faqQuestion").each(function(){
+			var jQuery(this).nextUntil(".faqQuestion, *:has(.faqQuestion)").addClass("
+			*/
