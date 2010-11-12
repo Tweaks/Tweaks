@@ -20,8 +20,8 @@ jQuery(function($) {
 	var faqRows = jQuery("#pageList h3.item:contains('FAQ')").parents("li").addClass("faq");
 	if (faqRows) {
 		// find questions and answers
-		// jQuery 1.4.2 bug: faqRows.children("div.details").find("b, strong, div[style*='bold']").addClass("faqQuestion").each(function(){
-		jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq div[style*='bold']").addClass("faqQuestion").each(function(){
+		// jQuery 1.4.2 bug: faqRows.children("div.details").find("b, strong, *[style*='bold']").addClass("faqQuestion").each(function(){
+		jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq *[style*='bold']").addClass("faqQuestion").each(function(){
 			jQuery(this).nextUntil(".faqQuestion, *:has(.faqQuestion)").wrap("<span class=\"faqAnswer\"><span>");
 		});
 		// attach faq functionality
