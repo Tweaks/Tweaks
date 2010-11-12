@@ -23,9 +23,8 @@ jQuery(function($) {
 		// find questions and answers
 		// jQuery 1.4.2 bug: faqRows.children("div.details").find("b, strong, *[style*='bold']").addClass("faqQuestion").each(function(){
 		//jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq *[style*='bold']").addClass("faqQuestion").each(function(){
-		jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq *[style*='bold']").addClass("faqQuestion").each(function(){
+		jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq div[style*='bold'], , #pageList .faq span[style*='bold']").addClass("faqQuestion").each(function(){
 			var node = jQuery(this);
-			//   alert(node);
 			while(node.parents("div.details").length && !node.parent().is("span.fnt0")) {
 				node = node.parent();
 			}
