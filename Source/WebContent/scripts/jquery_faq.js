@@ -23,11 +23,11 @@ jQuery(function($) {
 		// find questions and answers
 		// jQuery 1.4.2 bug: faqRows.children("div.details").find("b, strong, *[style*='bold']").addClass("faqQuestion").each(function(){
 		//jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq *[style*='bold']").addClass("faqQuestion").each(function(){
-		alert(faqRows.find("div.details").find("b, strong, *[style*='bold']").length);
-		alert(faqRows.find("div.details").find("b, strong, span[style*='bold'], div[style*='bold']").length);
-		alert(jQuery("#pageList .faq span[style*='bold']").length);
+		alert(faqRows.find("div.details").find("b, strong, *[style*=bold]").length);
+		alert(faqRows.find("div.details").find("b, strong, span[style*=bold], div[style*=bold]").length);
+		alert(jQuery("#pageList .faq span[style*=bold]").length);
 		// set up questions and make sure parent is at top level of content
-		jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq div[style*='bold'], #pageList .faq span[style*='bold']").addClass("faqQuestion").each(function(){
+		jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq div[style*=bold], #pageList .faq span[style*=bold]").addClass("faqQuestion").each(function(){
 			var node = jQuery(this);
 			while(node.parents("div.details").length && !node.parent().is("span.fnt0"))
 				node = node.parent();
