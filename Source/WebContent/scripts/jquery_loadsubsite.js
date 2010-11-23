@@ -14,7 +14,7 @@ jQuery(function($) {
 			if(webPackageLink.length)
 			{
 				$("#content").hide();
-				$("#content").html("<iframe src=\""+webPackageLink.attr("href")+"\" width=\"100%\" height=\"950\" frameBorder=\"0\"></iframe>");
+				$("#content").html("<iframe src=\""+webPackageLink.attr("href")+"\" width=\"100%\" height=\"2950\" frameBorder=\"0\"></iframe>");
 				$("#content iframe").load(restyleFrame).ready(restyleFrame);
 			}
 		}
@@ -33,14 +33,16 @@ function restyleFrame() {
 		frame.find("a").click(function(){
 			// filtering better here as only occurs on click?
 			if (jQuery(this).attr("href") == "#" ||
+				jQuery(this).filter("[target]").length > 0 ||
 				jQuery(this).hasClass("hideShowLink") ||
 				jQuery(this).parent("#intmenu").length > 0) { 
-				/* submenu, hideshow: do nothing */
+				/* javascript link, targetted link, hideshow, submenu: do nothing */
 				return true;
 			} else
 				jQuery("#content iframe").css("margin-left", "-2000px");
 		});
 		jQuery("#content").show();
+		jQuery("#content iframe").height(frame.find("body").height()+55);
 		jQuery("#content iframe").css("margin-left", "auto");
 	}
 }
