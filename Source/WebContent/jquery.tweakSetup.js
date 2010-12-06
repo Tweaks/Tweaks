@@ -1,4 +1,5 @@
-/*
+/* Tweak Setup. File also contains lazy Loading code adapted from xLazyLoader by Oleg Slobodoskoi (see separate copyright notice below)
+
 Copyright 2010 Tim Plaisted, Queensland University of Technology
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,44 +14,44 @@ Copyright 2010 Tim Plaisted, Queensland University of Technology
    See the License for the specific language governing permissions and
    limitations under the License.
 
-Status: rewriting abd testing for online trial deployment across BB8, BB9 and BB9.1
+Status: rewriting and testing for online trial deployment across BB8, BB9 and BB9.1
 */ 
 // paths: configured via bb admin
 var tweak_path = ""; // local: /webapps/qut-tweakbb-bb_bb60/"; 
 var tweak_live_help = "http://blackboard.qut.edu.au/webapps/portal/frameset.jsp?tab_tab_group_id=_5_1&url=/webapps/blackboard/execute/courseMain?course_id=_59724_1"; 
 var tweak_bb_active_url_pattern = "listContent.jsp";
-var tweak_bb_display_view = location.href.indexOf(tweak_bb_active_url_pattern) > 0;
-var bb_page_id_9 = "#pageList";
-var bb_page_id_9_x = "#content_listContainer";
-
-// version: detected at run time: could just put bb page_id as configurable single item, but prefer to make it work by default across versions as much as possible
-var tweak_bb_page_id, tweak_row_element, BB8, BB9, BB9_x;
-
-// Tweak currently compatible with 8, 9 and 9.1
+// static code: tweak currently compatible with 8, 9 and 9.1
 function BBVersionSetup() {
+	// namespace setup and display view
+	window.tweak_bb = {
+		display_view: (location.href.indexOf(tweak_bb_active_url_pattern) > 0)
+	};
+	// version detect
+	var bb_page_id_9 = "#pageList";
+	var bb_page_id_9_x = "#content_listContainer";
+	var BB8, BB9, BB9_x;
 	BB8 = BB9 = BB9_x = false;
 	BB9_x = (jQuery(bb_page_id_9_x).length == 1);
 	if (!BB9_x)
 		BB9 = (jQuery(bb_page_id_9).length == 1);
 	if (!BB9) { // make BB8 look like 9
 		BB8 = true;
-		var page = tweak_bb_display_view ? jQuery("h1.pageTitle").next("table") : jQuery("#endActionBar ~ table:eq(0)");
+		var page = tweak_bb.display_view ? jQuery("h1.pageTitle").next("table") : jQuery("#endActionBar ~ table:eq(0)");
 		page.attr("id", "pageList");
 	}
-	tweak_bb_page_id = BB9_x ? bb_page_id_9_x : bb_page_id_9 ;
-	tweak_row_element = BB8 ? "tr" : "li";
+	// add version id and rowspace info to namespace
+	tweak_bb.page_id = BB9_x ? bb_page_id_9_x : bb_page_id_9 ;
+	tweak_bb.row_element = BB8 ? "tr" : "li";
 }
 
-// display: would prefer better way of only calling these lines once..
-jQuery.noConflict();
+jQuery.noConflict(); /* as using CDN version of jQuery */
 jQuery(function($) {
-  if (window.tweak_bb_page_id == null)
+  if (window.tweak_bb == null)
     BBVersionSetup();
-  if (tweak_bb_display_view)
-    $(tweak_bb_page_id +" script.tweak_script").parents(tweak_row_element).hide();
+  if (tweak_bb.display_view)
+    $(tweak_bb.page_id +" script.tweak_script").parents(tweak_bb.row_element).hide();
 });
 
-// Lazy Loading code: modified from xLazyLoader to work with jQuery 1.4.2
 /*
  * xLazyLoader 1.0 - Plugin for jQuery
  * 
@@ -189,4 +190,4 @@ jQuery(function($) {
 		};
 	};
 
-})(jQuery);		
+})(jQuery);
