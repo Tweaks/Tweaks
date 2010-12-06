@@ -40,7 +40,7 @@ jQuery(function($){
 			
 		if (link.length) {
 			$(this).attr("href", link.attr("href"));
-			if (window.tweak_bb_display_view || $("body.ineditmode").length == 0)
+			if ($("body.ineditmode").length == 0)
 				$(matchingHeader).parents("li").hide();
 		}
 	}
