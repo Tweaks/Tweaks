@@ -32,16 +32,19 @@ function BBVersionSetup() {
 	var BB8, BB9, BB9_x;
 	BB8 = BB9 = BB9_x = false;
 	BB9_x = (jQuery(bb_page_id_9_x).length == 1);
-	if (!BB9_x)
+	if (!BB9_x) {
 		BB9 = (jQuery(bb_page_id_9).length == 1);
-	if (!BB9) { // make BB8 look like 9
-		BB8 = true;
-		var page = tweak_bb.display_view ? jQuery("h1.pageTitle").next("table") : jQuery("#endActionBar ~ table:eq(0)");
-		page.attr("id", "pageList");
+		if (!BB9) { // make BB8 look like 9
+			BB8 = true;
+			var page = tweak_bb.display_view ? jQuery("h1.pageTitle").next("table") : jQuery("#endActionBar ~ table:eq(0)");
+			page.attr("id", "pageList");
+		}
 	}
 	// add version id and rowspace info to namespace
-	tweak_bb.page_id = BB9_x ? bb_page_id_9_x : bb_page_id_9 ;
+	tweak_bb.page_id = BB9_x ? bb_page_id_9_x : bb_page_id_9;
 	tweak_bb.row_element = BB8 ? "tr" : "li";
+	// contents, headings, images
+	// content: h3.item siblings div.details now h3.parents li find div.details
 }
 
 jQuery.noConflict(); /* as using CDN version of jQuery */
