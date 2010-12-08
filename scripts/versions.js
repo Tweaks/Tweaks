@@ -12,6 +12,9 @@ jQuery.each(tweakVersions, function(key, value) {
 jQuery("#BBVersions input").live("click", function(){
 	var version = jQuery(this).attr("id");
 	displayVersionTweaks(version);
+	// hide doco if not released for version
+	if (jQuery("li input:checked:visible").length==0)
+		jQuery("#doco, #code").empty(); jQuery("#code").hide();	
 	if (version == "BB8")
 		jQuery("#expand, #code").hide();
 	else
