@@ -55,6 +55,7 @@ jQuery.ajax({
 function inlineFormatInstructions(element) {
 	jQuery(element).html(jQuery(element).html().replace(/&lt;br[\/]?&gt;/g, "<br/>").replace(/'/g, "\""));
 }
+// revisit this if _x transition code is more than temporary
 function buildCode(title, id, embedCode) {
 	var message = ". <br/><"+"!-- TweakID="+id+"-->This <a href=\"http://tweaks.github.com/Tweaks/index.html\" target=\"_new\">Tweak</a> is for trial purposes only and is running off an remote server. It will only work if internet access is available.<br/>Refer to the <a href=\"http://tweaks.github.com/Tweaks/description.html#"+id+"\" target=\"_new\">Tweaks Site for instructions</a>.<br/><p>"+
 	"This item will be hidden in Edit Mode: OFF (i.e. the view that students see).</p>";
