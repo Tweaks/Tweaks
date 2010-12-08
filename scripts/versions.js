@@ -1,7 +1,7 @@
 var tweakVersions = {
 	BB8   : ["hider", "replaceicon", "showhidetext", "imagemapper", "printframe", "quicktest", "icons", "unitmap", "checklist", "Submenu"],
 	BB9   : ["hider", "addcolourstripe", "replaceicon", "showhidetext", "imagemapper", "printframe", "quicktest", "deeplink", "iframecontent", "addstyle", "colourpage", "rightPod", "quickpoll", "icons", "unitmap", "selfenrol", "collapsemenu", "visualunitmap", "backtotoplink", "checklist", "noContentWrapper", "Submenu", "subsite", "banner", "faq"],
-	BB9_x : ["hider", "addcolourstripe", "replaceicon", "showhidetext", "imagemapper", "printframe", "quicktest", "deeplink", "iframecontent", "addstyle", "colourpage", "rightPod", "quickpoll", "icons", "unitmap", "selfenrol", "collapsemenu", "visualunitmap", "backtotoplink", "checklist", "noContentWrapper", "Submenu", "subsite", "banner", "faq"]};
+	BB9_x : ["hider", "replaceicon", "showhidetext", "imagemapper", "printframe", "iframecontent", "addstyle", "colourpage", "icons", "backtotoplink", "banner"]};
 
 // build selector: template is too much work!
 jQuery.each(tweakVersions, function(key, value) {
@@ -12,7 +12,7 @@ jQuery.each(tweakVersions, function(key, value) {
 jQuery("#BBVersions input").live("click", function(){
 	var version = jQuery(this).attr("id");
 	displayVersionTweaks(version);
-	if (version != "BB9")
+	if (version == "BB8")
 		jQuery("#expand, #code").hide();
 	else
 		jQuery("#expand").show();
