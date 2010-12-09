@@ -38,28 +38,31 @@ jQuery(function($) {
   // make sure script items, hidden classes and menu constructors not included
   $(tweak_bb.page_id +" .hidemyrow, "+tweak_bb.page_id+" script.tweak_script, #menuHTML, #menuImage, #menuHTMLSplash, #menuImageSplash").parents(tweak_bb.row_element).hide();
   $("#pageTitleDiv").hide(); // required? currently defaults to hiding the page title
-  
+
   // find tweak item on page and mark previous item as end of menu
   $(tweak_bb.page_id +" script.tweak_script").parents(tweak_bb.row_element+":contains('Submenu')").prev("li:visible").find("h3:first").addClass("endMenu");
 
   // parse in content items until end of menu: consider filter or nextUntil ^ I think even speed?
-  $(tweak_bb.page_id +" > "+tweak_bb.row_element+":visible").find("h3").each(function() { 
+  $(tweak_bb.page_id +" > "+tweak_bb.row_element+":visible").find("h3.item, div.item h3").each(function() { 
   	// base functionality : folders
 	var title = $.trim($(this).text());
-	var id = "menu"+$(this).attr("id");
+	var id = "menu"+($(this).hasClass("item") ? $(this).attr("id") : $(this).parent().attr("id"));
 	var desc = $.trim($(this).parents(tweak_bb.row_element).find("div.details").text().replace("'",""));
 	var href= "#";
+	var target = "self";
     $(this).addClass("inMenu");
 
 	// content and link functionality: if not contain link: then this row was an item so add class
-	var itemLink = $(this).find("span > a");
+	var itemLink = $(this).find("a:first");
 	if (itemLink.length == 0)
 		$(this).parents(tweak_bb.row_element).addClass("menuitem "+id);
-	else if (itemLink.attr("href").indexOf("launchLink.jsp")>0) //else 
+	else if (itemLink.attr("href").indexOf("launchLink.jsp")>0 || itemLink.attr("href").indexOf("course_id")<0) { // check this 
 		href = itemLink.attr("href");
-
+		target = itemLink.attr("target");
+	}
+	
 	// push to array
-	intMenuItems.push({"id":id,"title":title,"desc":desc,"href":href});
+	intMenuItems.push({"id":id,"title":title,"desc":desc,"href":href,"target":target});
 
 	// break from loop at tweak script
 	if ($(this).hasClass("endMenu")) {
@@ -90,7 +93,7 @@ function setupMenuLinks(intMenuItems) {
 	var menuHTML = "<div id=\"intmenu\">";
 	for(var i = 0; i < intMenuItems.length; i++) {
 		var altText = (intMenuItems[i].desc.length > 0) ? intMenuItems[i].desc : intMenuItems[i].title;
-		menuHTML+= "<a href='"+ intMenuItems[i].href + "' id='"+ intMenuItems[i].id +"' title='"+ altText +"'>"+ intMenuItems[i].title+"</a> ";
+		menuHTML+= "<a href='"+ intMenuItems[i].href + "' id='"+ intMenuItems[i].id +"' title='"+ altText +"' target='"+ intMenuItems[i].target +"'>"+ intMenuItems[i].title+"</a> ";
 	}
 	// trim trailing chars and return
 	return menuHTML.replace(/ $/, "</div>");
@@ -194,7 +197,7 @@ function loadMenuPage(menuid) {
 	var menupageURL = document.location.href.replace(/(.*content_id=)[^&]*(.*)/, "$1"+menuid+"$2");;
 	
 	// load content and append to page
-	jQuery("#loading ul").load(menupageURL+" #pageList>li", function() {
+	jQuery("#loading ul").load(menupageURL+" "+tweak_bb.page_id+">"+tweak_bb.row_element, function() {
 		jQuery("#loadingGraphic").hide();
 		jQuery("#loading>ul>li").addClass("menuitem");
 		jQuery("#loading>ul>li").addClass(menuid);
@@ -215,7 +218,7 @@ function retriggerReplaceIcons() {
 		findReplacementIcons();
 		hideIcons();
 		// clean up
-		jQuery(tweak_bb.page_id +" h3.replacementicon, #pageList h3.hideicon").parents(tweak_bb.row_element).hide();	
+		jQuery(tweak_bb.page_id +" h3.replacementicon, "+tweak_bb.page_id +" h3.hideicon").parents(tweak_bb.row_element).hide();	
 		jQuery(tweak_bb.page_id +" img.replacementicon").hide();
 	}
 }
