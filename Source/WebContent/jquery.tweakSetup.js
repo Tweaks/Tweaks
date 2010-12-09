@@ -181,7 +181,7 @@ jQuery(function($) {
 			link.rel = 'stylesheet';
 			link.href = href;
 			link.id = name;
-			link.media = 'screen';
+			//link.media = 'screen';
 			head.appendChild(link);
 		};
 		
