@@ -20,7 +20,9 @@ jQuery(function($){
 
 	$(tweak_bb.page_id+" h3:contains('Stylesheet')").parents(tweak_bb.row_element).find("ul.attachments").addClass("hidemyrow").find("a").each(function() {
 		var thisLink = $(this).attr("href");
-		$(this).after("<div class=\"loadStyle\">"+ thisLink.substr(thisLink.search("/course"))+"</div>");
+		if (thisLink.indexOf("contentWrapper") > 0)
+			thisLink = thisLink.substr(thisLink.search("/course"));
+		$(this).after("<div class=\"loadStyle\">"+ thisLink +"</div>");
 	});
 	$(tweak_bb.page_id+" .loadStyle").each(function(){
 		var URLofCSS = $(this).hide().text();
