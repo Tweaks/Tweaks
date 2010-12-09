@@ -21,7 +21,7 @@ jQuery(function($){
 
 	// find banner and append
 	if ($("#banner").length == 0)
-		$(tweak_bb.page_id+" h3:contains(\"Banner\"):eq(0)").parents(tweak_row_element).find("div.details").find("img:first").attr("id","banner");
+		$(tweak_bb.page_id+" h3:contains(\"Banner\"):eq(0)").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","banner");
 	$("#banner").css("display", "block").parents(tweak_bb.row_element).addClass("banner").hide().end().prependTo("#pageTitleDiv");
 	// style
 	$("#titleicon").hide();
