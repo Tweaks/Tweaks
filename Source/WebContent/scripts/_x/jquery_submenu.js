@@ -56,7 +56,9 @@ jQuery(function($) {
 	var itemLink = $(this).find("a:first");
 	if (itemLink.length == 0)
 		$(this).parents(tweak_bb.row_element).addClass("menuitem "+id);
-	else if (itemLink.attr("href").indexOf("launchLink.jsp")>0 || itemLink.attr("href").indexOf("course_id")<0) { // check this 
+	else if (itemLink.attr("href").indexOf("launchLink.jsp")>0 ||
+			 itemLink.attr("href").indexOf("contentWrapper")>0 ||
+			 itemLink.attr("href").indexOf("course_id")<0) { // check this 
 		href = itemLink.attr("href");
 		target = itemLink.attr("target");
 	}
