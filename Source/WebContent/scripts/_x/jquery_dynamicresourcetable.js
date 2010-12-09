@@ -155,5 +155,6 @@ function setUpLinkOptions(thislink, thiscell, displayLinkTopicIndexText, display
 
 function unWrapLink(link) { 
 	var this_href=jQuery(link).attr("href"); 
-	jQuery(link).attr("href", unescape(this_href.substr(this_href.search("href=")+5, this_href.length)).replace("amp;", "")); 
+	if (jQuery(link).attr("href").indexOf("contentWrapper") > 0)
+		jQuery(link).attr("href", unescape(this_href.substr(this_href.search("href=")+5, this_href.length)).replace("amp;", "")); 
 }
