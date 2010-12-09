@@ -1,7 +1,7 @@
 Copyright 2010 Tim Plaisted, Queensland University of Technology
 
    Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
+   you may not use files from this project except in compliance with the License.
    You may obtain a copy of the License at
 
        http://www.apache.org/licenses/LICENSE-2.0
@@ -21,7 +21,6 @@ Repository URL: http://github.com/Tweaks/Tweaks
 
 Project files:
 /BuildingBlock		contains current builds of packaged Building Block for BB versions
-/Documentation		description and screenshots
 README				this file
 /Source				individual scripts and css
-/TrainingSite		contains package of BB training site
+/TrainingSite		contains package of BB training site (To be done)
