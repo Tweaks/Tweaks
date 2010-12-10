@@ -13,6 +13,9 @@
    See the License for the specific language governing permissions and
    limitations under the License. */
 jQuery(function($) {
+	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
+		window.tweak_bb = { page_id: tweak_bb.page_id +"", row_element: tweak_bb.row_element };
+
 	// utility extension: case insensitive contains
 	jQuery.expr[':'].cicontains = function(a,i,m){
 		return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase())>=0;
@@ -22,7 +25,7 @@ jQuery(function($) {
 			$("#content").replaceWith($("iframe:eq(0)").get());
 		else
 		{ // look for item called web package
-			var webPackageLink = $("#pageList h3.item:cicontains(\"Site Link\")").parents("li").find("a:first");
+			var webPackageLink = $(tweak_bb.page_id +" h3:cicontains(\"Site Link\")").parents(tweak_bb.row_element).find("a:first");
 			unWrapLink(webPackageLink);
 			if(webPackageLink.length)
 			{
