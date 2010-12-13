@@ -21,6 +21,6 @@ jQuery(function($){
 		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
 	jQuery(".makeDeepLink").each(function() {
 		var targetLink = jQuery(this).parents(tweak_bb.row_element).find("a:first");
-		targetLink.attr("href", deepLink(targetLink.attr("href"))).attr("target", "_blank").unbind("click");
-	})
+		targetLink.attr("href", deepLink(targetLink.attr("href"))).attr("target", "_blank").removeAttr("onclick").unbind("click");
+	});
 });
