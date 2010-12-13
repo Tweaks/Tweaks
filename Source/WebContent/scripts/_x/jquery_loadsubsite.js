@@ -14,7 +14,7 @@
    limitations under the License. */
 jQuery(function($) {
 	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
-		window.tweak_bb = { page_id: tweak_bb.page_id +"", row_element: tweak_bb.row_element };
+		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
 
 	// utility extension: case insensitive contains
 	jQuery.expr[':'].cicontains = function(a,i,m){
