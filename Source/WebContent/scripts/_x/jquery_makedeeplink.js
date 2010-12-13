@@ -20,7 +20,7 @@ jQuery(function($){
 	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
 		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
 	jQuery(".makeDeepLink").each(function() {
-		var targetLink = jQuery(".makeDeepLink").parents("li").find("a:first");
-		targetLink.attr("href", deepLink(targetLink.attr("href"))).attr("target", "_blank");
+		var targetLink = jQuery(this).parents(tweak_bb.row_element).find("a:first");
+		targetLink.attr("href", deepLink(targetLink.attr("href"))).attr("target", "_blank").unbind("click");
 	})
 });
