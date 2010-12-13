@@ -15,6 +15,9 @@
 */
 function callCheckList() {;
 	jQuery(function($){
+		if (window.tweak_bb == null || window.tweak_bb.page_id == null)
+			window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+
 		// look for Mark Reviewed items
 		var markReviewedItems = jQuery(tweak_bb.page_id +" "+tweak_bb.row_element+" a[href*=\"eviewed\"]");
 		if (markReviewedItems.length) {
@@ -24,7 +27,7 @@ function callCheckList() {;
 			markReviewedItems.each(function(i){
 				var itemChecked = jQuery(this).text().indexOf("Mark Review")<0;
 				var itemRef = jQuery(this).parents(tweak_bb.row_element).find("h3:first");
-				var itemID = "ch"+itemRef.attr("id"); // add checklist ID prefix
+				var itemID = "ch"+((itemRef.filter("[id]").length) ? itemRef.attr("id") : itemRef.parent().attr("id")); // add checklist ID prefix
 				itemRef.prepend("<a name=\"hash_"+itemID+"\" id=\"hash_"+itemID+"\"></a>");
 				checkListCode += "<div><input type=\"checkbox\" name=\"checklist\" id=\""+itemID+"\"" +
 								(itemChecked?" checked=\"checked\"":"") + "/>" +
@@ -32,7 +35,10 @@ function callCheckList() {;
 			});
 			checkListCode += "</div>";
 			// output
-			jQuery(tweak_bb.page_id +" h3:contains(\"Checklist\")").parents(tweak_bb.row_element).find("div.details span").append(checkListCode);
+			var target = jQuery(tweak_bb.page_id +" h3:contains(\"Checklist\")").parents(tweak_bb.row_element).find("div.details");
+			if (target.find("span").length)
+				target = target.find("span:first");
+			target.append(checkListCode);
 			// attach functionality
 			jQuery(tweak_bb.page_id +" .checklist input:checkbox").live("click", function() {
 				var thisID = jQuery(this).attr("id").substr(2);
