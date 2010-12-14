@@ -65,13 +65,13 @@ function dynamicTextMap() {
 			
 		// look through links to count total columns/modules in advance for formatting and add class for retrieval
 		var columns = 0, itemIndex = 0, rows = 0, thisRowCols = 0, maxRowCols = 0;
-		mapsource.parents(tweak_bb.row_element).find("h3:first").each(function(){
-			var thisItem = jQuery(this);
+		mapsource.parents(tweak_bb.row_element).nextAll(tweak_bb.row_element).each(function(){
+			var thisItem = jQuery(this).find("h3:first");
 			// process until Visual Unit Map Tweak
-			if(thisItem.text().indexOf("Tweak")>-1 && thisItem.parents(tweak_bb.row_element).find("div.details:contains(\"map\")").length)
+			if (thisItem.length == 0 || (thisItem.text().indexOf("Tweak")>-1 && thisItem.parents(tweak_bb.row_element).find("div.details:contains(\"map\")").length))
 				return false;
 
-			var itemTitleLink = thisItem.find("span a:first").addClass("mapItemLink"); // add class for retrieval
+			var itemTitleLink = thisItem.find("a:first").addClass("mapItemLink"); // add class for retrieval
 			if (itemTitleLink.length)
 			{
 				itemIndex++;
