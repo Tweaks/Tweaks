@@ -47,6 +47,8 @@ jQuery.ajax({
 				alert("Select a Tweak above");
 			return false; 
 		});
+		// version default BB9_x
+		jQuery("#BB9_x").click();
 		// item selected?
 		if (location.hash.length) { jQuery(location.hash).click(); }
 	}

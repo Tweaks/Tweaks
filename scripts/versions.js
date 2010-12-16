@@ -22,9 +22,6 @@ jQuery("#BBVersions input").live("click", function(){
 	jQuery("#BB9_x_message").toggle(version == "BB9_x");
 });
 
-// default select BB9_x
-jQuery("#BB9_x").click();
-
 // display correct tweaks for version
 function displayVersionTweaks(bbVersion) {
 	var tweaksArray = tweakVersions[bbVersion];
