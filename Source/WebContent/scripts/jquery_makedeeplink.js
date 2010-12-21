@@ -16,4 +16,11 @@
 var getCourseID = function(url) { return url.replace(/Course%26id/, "course_id").replace(/\%3D/g, "=").replace(/.*course_id=([^&%]+).*/, "$1"); }; //.replace(/.*course_id=([^&]+).*/, "$1"); };
 var getContentID = function(url) { return url.replace(/Content%26id/, "content_id").replace(/\%3D/g, "=").replace(/.*content_id=([^&%]+).*/, "$1"); }; //.replace(/.*content_id=([^&]+).*/, "$1"); };
 var deepLink = function (url) { return "/webapps/portal/frameset.jsp?tab_tab_group_id=_2_1&url=%2fwebapps%2fblackboard%2fcontent%2flistContent.jsp%3fcourse_id%3d"+ getCourseID(url) +"%26content_id%3d" + getContentID(url) + "%26mode%3dreset"; };
-jQuery(function($){$(".makeDeepLink").each(function() { var targetLink = jQuery(this).parents("li").find("a:first"); targetLink.attr("href", deepLink(targetLink.attr("href"))).attr("target", "_blank"); }) });
+jQuery(function($){
+	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
+		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+	jQuery(".makeDeepLink").each(function() {
+		var targetLink = jQuery(this).parents(tweak_bb.row_element).find("a:first");
+		targetLink.attr("href", deepLink(targetLink.attr("href"))).attr("target", "_blank").removeAttr("onclick").unbind("click");
+	});
+});

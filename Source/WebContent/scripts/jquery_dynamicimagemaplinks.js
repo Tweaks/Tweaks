@@ -21,34 +21,37 @@
 	       3. Optionally include detailed description in details field -- and add a HTML item with id="description" to have mouseover text
 */
 jQuery(function($){
-  $("#pageList map").children().each(function() {
+  if (window.tweak_bb == null || window.tweak_bb.page_id == null)
+	window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+	
+  $(tweak_bb.page_id+" map").children().each(function() {
 	var altText = $.trim($(this).attr("alt"));
 	if (altText.length) {
 		// find alt text in page headers
-		var matchingHeader = $("#pageList h3.item:contains('"+altText+"')");
+		var matchingHeader = $(tweak_bb.page_id+" h3:contains('"+altText+"')");
 
 		// check header for a link
 		var link = $(matchingHeader).find("a:first:contains('"+altText+"')");
 
 		// if no link found in header, look for item's file attachment
 		if (link.length == 0)
-			link = $(matchingHeader).next("div.details").find("ul.attachments a:first");
+			link = $(matchingHeader).parents(tweak_bb.row_element).find("div.details").find("ul.attachments a:first");
 		
 		// look for description
-		var desc = $(matchingHeader).next("div.details").clone().remove("a").text();
+		var desc = $(matchingHeader).parents(tweak_bb.row_element).find("div.details").clone().remove("a").text();
 		if (desc) { $(this).data("desc", desc); }
 			
 		if (link.length) {
 			$(this).attr("href", link.attr("href"));
-			if (window.tweak_bb_display_view || $("body.ineditmode").length == 0)
-				$(matchingHeader).parents("li").hide();
+			if ($("body.ineditmode").length == 0)
+				$(matchingHeader).parents(tweak_bb.row_element).hide();
 		}
 	}
   });
   
   // attach description event
   if ($("#description").length) {
-	$("#pageList map area").mouseover(function(){
+	$(tweak_bb.page_id+" map area").mouseover(function(){
 		var desc = jQuery(this).data("desc");
 		if (desc != null) { jQuery("#description").text(desc)+" "; }
 	});

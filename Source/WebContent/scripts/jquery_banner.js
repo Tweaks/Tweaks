@@ -16,11 +16,16 @@
 looks for "Banner" item or image with id="banner" and inserts it above the page title
 */
 jQuery(function($){
+	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
+		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+
+	// find banner and append
 	if ($("#banner").length == 0)
-		$("#pageList h3.item:contains(\"Banner\"):eq(0)").next("div.details").find("img:first").attr("id","banner");
-	$("#banner").css("display", "block").parents("li").addClass("banner").hide().end().prependTo("#pageTitleDiv");
+		$(tweak_bb.page_id+" h3:contains(\"Banner\"):eq(0)").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","banner");
+	$("#banner").css("display", "block").parents(tweak_bb.row_element).addClass("banner").hide().end().prependTo("#pageTitleDiv");
+	// style
 	$("#titleicon").hide();
-	$("#pageTitleDiv h1").css("padding-top", "8px");
-	if (location.href.indexOf("listContentEditable.jsp")>0)
-		$("#pageList li.banner").show();
+	$("#pageTitleDiv h1").css({"padding-top": "8px", "float": "none"});
+	// edit mode
+	$("body.ineditmode "+tweak_bb.page_id+" "+tweak_bb.row_element+".banner").show();
 });

@@ -14,13 +14,16 @@
    limitations under the License.
    version 1.8. author Tim Plaisted 2010 */
 jQuery(function($){
+	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
+		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+
 	// utility extension: case insensitive contains
 	jQuery.expr[':'].contains = function(a,i,m){
 		return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase())>=0;
 	};
 	// find id="unitMap" or table in BB item "Unit Map"
 	if ($("#unitMap").length == 0)
-		$("#pageList h3.item:contains(\"Unit Map\")").parents("li").find("div.details table").eq(0).attr("id", "unitMap");
+		$(tweak_bb.page_id +" h3:contains(\"Unit Map\")").parents(tweak_bb.row_element).find("div.details table").eq(0).attr("id", "unitMap");
 	var $unitMap = $("#unitMap"),	
 		$firstRow = $unitMap.find("tr").eq(0),
 		numResources = $firstRow.find("td").length-1;
@@ -85,10 +88,10 @@ jQuery(function($){
 			// normal table processing
 			for (var column = 0; column < resourceTypes.length; column++) {
 				if (sectionTitle.length && resourceTypes[column].length) {
-					$("#pageList h3.item:contains('"+sectionTitle+": "+resourceTypes[column]+"')").each(function() {
+					$(tweak_bb.page_id +" h3:contains('"+sectionTitle+": "+resourceTypes[column]+"')").each(function() {
 
 						if(location.href.indexOf("Content.")>0)
-							$(this).parents("li").hide();
+							$(this).parents(tweak_bb.row_element).hide();
 						
 						var thiscell = $unitMap.find("tr:eq("+(row+1)+") td:eq("+(column+columnOffset)+")");
 
@@ -98,12 +101,12 @@ jQuery(function($){
 							thislink = setUpLinkOptions(thislink, thiscell, displayLinkTopicIndexText, displayLinkResourceText, sectionTitle, resourceTypes[column]);
 					
 						// attachments (reinsert trailing space outside links)
-						var attachments = $(this).next("div.details").find("ul.attachments a").clone().each(function() {
+						var attachments = $(this).parents(tweak_bb.row_element).find("div.details").find("ul.attachments a").clone().each(function() {
 												$(this).html($.trim($(this).text()));
 										  }).addClass("attachmentLink");
 						
 						// details field
-						var detailsHTML = $.trim($(this).next("div.details").find("span").find("script").remove().end().html());
+						var detailsHTML = $.trim($(this).parents(tweak_bb.row_element).find("div.details").find("span").find("script").remove().end().html());
 						if (detailsHTML.length)
 							detailsHTML = "<div class=\"insertDetails\">"+detailsHTML+"</div>";
 							
@@ -152,5 +155,6 @@ function setUpLinkOptions(thislink, thiscell, displayLinkTopicIndexText, display
 
 function unWrapLink(link) { 
 	var this_href=jQuery(link).attr("href"); 
-	jQuery(link).attr("href", unescape(this_href.substr(this_href.search("href=")+5, this_href.length)).replace("amp;", "")); 
+	if (jQuery(link).attr("href").indexOf("contentWrapper") > 0)
+		jQuery(link).attr("href", unescape(this_href.substr(this_href.search("href=")+5, this_href.length)).replace("amp;", "")); 
 }

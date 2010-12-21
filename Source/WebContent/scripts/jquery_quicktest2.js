@@ -14,7 +14,10 @@
    limitations under the License.
 */
 jQuery(function($){
-	$("#pageList .quiz").each(function(q){
+	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
+		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+		
+	$(tweak_bb.page_id +" .quiz").each(function(q){
 		$(this).attr("id", "quiz"+q).wrapInner("<span class=\"question\"></span>").addClass("quicktest");
 		
 		// answers

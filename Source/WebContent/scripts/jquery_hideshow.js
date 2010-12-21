@@ -26,11 +26,14 @@ var defaultInstruction = "Show/hide text";	// change this for default instructio
 var hideClass = "hidden";
 
 jQuery(function($) {
+ if (window.tweak_bb == null || window.tweak_bb.page_id == null)
+	window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+	
  instText = ($("#showHideInstruction").length) ? $("#showHideInstruction").text() : defaultInstruction;
- $("<a href='#' class='hideShowLink'>"+instText+"</a>").insertBefore("#pageList li div."+hideClass).css("display", "block");
- $("#pageList a.hideShowLink").click(function(e){ $(this).next().toggleClass("hidden"); e.preventDefault();});
- if(location.href.indexOf('listContent.') > 0){
-	 $("#pageList .hidemyrow").parents("li").hide();
+ $("<a href='#' class='hideShowLink'>"+instText+"</a>").insertBefore(tweak_bb.page_id+" div."+hideClass).css("display", "block");
+ $(tweak_bb.page_id+" a.hideShowLink").click(function(e){ $(this).next().toggleClass("hidden"); e.preventDefault();});
+ if($("body.ineditmode").length == 0){
+	 $(tweak_bb.page_id+" .hidemyrow").parents(tweak_bb.row_element).hide();
 	 $("#showHideInstruction").hide();
  }
 });

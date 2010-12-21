@@ -22,6 +22,9 @@ looks for "Menu Image" item,  #menuImage, #menuImageSplash > generates Image men
 todo	.splash page + change menu class
 		selected
 */
+if (window.tweak_bb == null || window.tweak_bb.page_id == null)
+	window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+
 jQuery(function($) {
  if (location.href.indexOf("listContent.jsp")>0) {
 
@@ -30,42 +33,47 @@ jQuery(function($) {
   
   // if user not using HTML ID marker: look for "Menu Image" item >> if found: assign it's image an ID marker
   if ($("#menuHTML, #menuImage, #menuHTMLSplash").length == 0) // also #menuImageSplash, but leaving out in case the sub page item doesn't have marker
-  	$("#pageList h3.item:contains(\"Menu Image\"):eq(0)").next("div.details").find("img:first").attr("id","menuImage");
+  	$(tweak_bb.page_id +" h3:contains(\"Menu Image\"):eq(0)").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","menuImage");
   
   // make sure script items, hidden classes and menu constructors not included
-  $("#pageList > li .hidemyrow, #pageList > li script.tweak_script, #menuHTML, #menuImage, #menuHTMLSplash, #menuImageSplash").parents("li").hide();
+  $(tweak_bb.page_id +" .hidemyrow, "+tweak_bb.page_id+" script.tweak_script, #menuHTML, #menuImage, #menuHTMLSplash, #menuImageSplash").parents(tweak_bb.row_element).hide();
   $("#pageTitleDiv").hide(); // required? currently defaults to hiding the page title
-  
+
   // find tweak item on page and mark previous item as end of menu
-  $("#pageList > li script.tweak_script").parents("li:contains('Submenu')").prev("li:visible").find("h3.item").addClass("endMenu");
+  $(tweak_bb.page_id +" script.tweak_script").parents(tweak_bb.row_element+":contains('Submenu')").prev("li:visible").find("h3:first").addClass("endMenu");
 
   // parse in content items until end of menu: consider filter or nextUntil ^ I think even speed?
-  $("#pageList > li:visible").find("h3.item").each(function() { 
+  $(tweak_bb.page_id +" > "+tweak_bb.row_element+":visible").find("h3.item, div.item h3").each(function() { 
   	// base functionality : folders
 	var title = $.trim($(this).text());
-	var id = "menu"+$(this).attr("id");
-	var desc = $.trim($(this).next("div.details").text().replace("'",""));
+	var id = "menu"+($(this).hasClass("item") ? $(this).attr("id") : $(this).parent().attr("id"));
+	var desc = $.trim($(this).parents(tweak_bb.row_element).find("div.details").text().replace("'",""));
 	var href= "#";
+	var target = "self";
     $(this).addClass("inMenu");
 
 	// content and link functionality: if not contain link: then this row was an item so add class
-	var itemLink = $(this).find("span > a");
+	var itemLink = $(this).find("a:first");
 	if (itemLink.length == 0)
-		$(this).parents("li").addClass("menuitem "+id);
-	else if (itemLink.attr("href").indexOf("launchLink.jsp")>0) //else 
+		$(this).parents(tweak_bb.row_element).addClass("menuitem "+id);
+	else if (itemLink.attr("href").indexOf("launchLink.jsp")>0 ||
+			 itemLink.attr("href").indexOf("contentWrapper")>0 ||
+			 itemLink.attr("href").indexOf("course_id")<0) { // check this 
 		href = itemLink.attr("href");
-
+		target = itemLink.attr("target");
+	}
+	
 	// push to array
-	intMenuItems.push({"id":id,"title":title,"desc":desc,"href":href});
+	intMenuItems.push({"id":id,"title":title,"desc":desc,"href":href,"target":target});
 
 	// break from loop at tweak script
 	if ($(this).hasClass("endMenu")) {
 		if ($("#menuHTMLSplash, #menuImageSplash").length) // this was a request for splash page menus - possibly all to have 'home page' content
-			$(this).parents("li").nextAll("li:visible").addClass("menuitem");
+			$(this).parents(tweak_bb.row_element).nextAll(tweak_bb.row_element+":visible").addClass("menuitem");
 		return false;
 	}
   });
-  $("h3.inMenu").parents("li").hide();
+  $("h3.inMenu").parents(tweak_bb.row_element).hide();
 
   // generate menu links HTML from array
   var menuLinksHTML = setupMenuLinks(intMenuItems);
@@ -77,7 +85,7 @@ jQuery(function($) {
   setupMenuEvents();
   
   // see if there is an item to display on load
-  $("#displayFirst").parents("li").find("h3.item").each(function(){ displaySection("menu"+jQuery(this).attr("id")); updateTitle(jQuery.trim(jQuery(this).text())); });
+  $("#displayFirst").parents(tweak_bb.row_element).find("h3").each(function(){ displaySection("menu"+jQuery(this).attr("id")); updateTitle(jQuery.trim(jQuery(this).text())); });
  } 
 });
 
@@ -87,7 +95,7 @@ function setupMenuLinks(intMenuItems) {
 	var menuHTML = "<div id=\"intmenu\">";
 	for(var i = 0; i < intMenuItems.length; i++) {
 		var altText = (intMenuItems[i].desc.length > 0) ? intMenuItems[i].desc : intMenuItems[i].title;
-		menuHTML+= "<a href='"+ intMenuItems[i].href + "' id='"+ intMenuItems[i].id +"' title='"+ altText +"'>"+ intMenuItems[i].title+"</a> ";
+		menuHTML+= "<a href='"+ intMenuItems[i].href + "' id='"+ intMenuItems[i].id +"' title='"+ altText +"' target='"+ intMenuItems[i].target +"'>"+ intMenuItems[i].title+"</a> ";
 	}
 	// trim trailing chars and return
 	return menuHTML.replace(/ $/, "</div>");
@@ -98,11 +106,11 @@ function addMenuToPage(menuLinksHTML) {
 
   // html options: add custom html to page and insert link menu
   if (jQuery("#menuHTMLSplash").length == 1) {
-	jQuery("#pageList").before(jQuery("#menuHTMLSplash").clone().remove());
-	jQuery("#pageList").before(jQuery("#menuHTML").clone().remove());
+	jQuery(tweak_bb.page_id +"").before(jQuery("#menuHTMLSplash").clone().remove());
+	jQuery(tweak_bb.page_id +"").before(jQuery("#menuHTML").clone().remove());
 	jQuery("#menuLinksSplashDiv").html(menuLinksHTML);
   } else if (jQuery("#menuHTML").length == 1) {
-	jQuery("#pageList").before(jQuery("#menuHTML").clone().remove());
+	jQuery(tweak_bb.page_id +"").before(jQuery("#menuHTML").clone().remove());
 	jQuery("#menuLinksDiv").html(menuLinksHTML);
   }
   else // image or plain text options: setup html, then add to page
@@ -116,7 +124,7 @@ function addMenuToPage(menuLinksHTML) {
 		menuHTML = addMenuImageWrapper(menuImage, menuHTML);
 
 	// add to page
-	jQuery("#pageList").before(menuHTML);
+	jQuery(tweak_bb.page_id +"").before(menuHTML);
 
 	// dynamic positioning of text over image: only does things if graphicMenu (graphicWrapper) exists
 	dynamicPositionImageMenu();
@@ -171,9 +179,9 @@ function selectSubPage() {
 /*** menu > content display and page loading code ***/
 function displaySection(menuid) {
 	jQuery(".menuitem").hide();
-	if(jQuery("#pageList ."+menuid).length == 0)
+	if(jQuery(tweak_bb.page_id +" ."+menuid).length == 0)
 		loadMenuPage(menuid);
-	jQuery("#pageList ."+menuid).show();
+	jQuery(tweak_bb.page_id +" ."+menuid).show();
 	// consider: set class of menu container and selected item to be selected
 }
 
@@ -184,21 +192,21 @@ function loadMenuPage(menuid) {
 	if (jQuery("#loading li").length > 0)
 		jQuery("#loading li").remove();
 	if (jQuery("#loadingGraphic").length == 0)
-	    jQuery("#pageList").before("<div id=\"loadingGraphic\"></div>");
+	    jQuery(tweak_bb.page_id +"").before("<div id=\"loadingGraphic\"></div>");
 	
 	jQuery("#loadingGraphic").show();
 	
 	var menupageURL = document.location.href.replace(/(.*content_id=)[^&]*(.*)/, "$1"+menuid+"$2");;
 	
 	// load content and append to page
-	jQuery("#loading ul").load(menupageURL+" #pageList>li", function() {
+	jQuery("#loading ul").load(menupageURL+" "+tweak_bb.page_id+">"+tweak_bb.row_element, function() {
 		jQuery("#loadingGraphic").hide();
 		jQuery("#loading>ul>li").addClass("menuitem");
 		jQuery("#loading>ul>li").addClass(menuid);
 		// clean up and append
 		jQuery("#loading li:contains('Tweak')").remove();
 		localFixLearningObjLink(jQuery);
-		jQuery("#pageList").append(jQuery("#loading>ul>li"));
+		jQuery(tweak_bb.page_id +"").append(jQuery("#loading>ul>li"));
 		jQuery("#loading li").remove();
 		// retrigger replace icons
 		retriggerReplaceIcons();
@@ -212,8 +220,8 @@ function retriggerReplaceIcons() {
 		findReplacementIcons();
 		hideIcons();
 		// clean up
-		jQuery("#pageList h3.replacementicon, #pageList h3.hideicon").parents("li").hide();	
-		jQuery("#pageList img.replacementicon").hide();
+		jQuery(tweak_bb.page_id +" h3.replacementicon, "+tweak_bb.page_id +" h3.hideicon").parents(tweak_bb.row_element).hide();	
+		jQuery(tweak_bb.page_id +" img.replacementicon").hide();
 	}
 }
 
@@ -242,18 +250,6 @@ var singleDecodeLink = function(url) {
 };
 /* end header code script */
 
-// ref
-// edit mode code
-  //var editMode = location.href.indexOf("listContent.jsp")<0;
-  //if (!editMode) {
-  //} else
-  // $("#pageList > li .hidemyrow, #pageList > li script.tweak_script, #menuHTML, #menuImage").parents("li").addClass("specialRow");
-    //if (editMode) { 
-    //  if ($(this).parents("li").hasClass("specialRow")) // TODO: low priority clean up all this extra hacking for edit mode or remove it
-    //  	return true;
-    //  title = title.replace(/\s*Edit\s*Copy\s*Delete/, ""); // TODO: lowest priority, filter instead of text replace
-    //} else // consider caching parent query and performing once?
-    
 // hash / bookmarking code -- implemented when I needed intra section links - now not essential but may be request..
   // url hash = id for linking / bookmarking / lookup > display first
   /* TODO - consider smarts

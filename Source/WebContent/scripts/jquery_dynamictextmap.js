@@ -18,6 +18,9 @@
 	* todo:	MSIE CSS override load check
 	*			Dynamically shift down rows based on preceding row's position
 	*/
+if (window.tweak_bb == null || window.tweak_bb.page_id == null)
+	window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+
 function dynamicTextMap() {
 	// utility extension: case insensitive contains
 	jQuery.expr[':'].contains = function(a,i,m){
@@ -27,10 +30,10 @@ function dynamicTextMap() {
 	var mapsource = jQuery("#dynamicmap");
 	// if no item with ID, search for item titled Unit Map or Unit Navigation (horizontal layout)
 	if (mapsource.length == 0)
-		mapsource = jQuery("#pageList").find("h3.item:contains(\"Unit Map\"), h3.item:contains(\"Unit Navigation\")").siblings("div.details").find("img:first");
+		mapsource = jQuery(tweak_bb.page_id).find("h3:contains(\"Unit Map\"), h3:contains(\"Unit Navigation\")").parents(tweak_bb.row_element).find("div.details").find("img:first");
 
 	// horizontal layout - text to be confirmed
-	if (mapsource.parents("li").find("h3.item:contains(\"Unit Navigation\")").length)
+	if (mapsource.parents(tweak_bb.row_element).find("h3:contains(\"Unit Navigation\")").length)
 		mapsource.addClass("horizontal");
 		
 	// set up container div for dynamic map
@@ -62,29 +65,29 @@ function dynamicTextMap() {
 			
 		// look through links to count total columns/modules in advance for formatting and add class for retrieval
 		var columns = 0, itemIndex = 0, rows = 0, thisRowCols = 0, maxRowCols = 0;
-		mapsource.parents("li").nextAll().find("h3.item").each(function(){
-			var thisItem = jQuery(this);
+		mapsource.parents(tweak_bb.row_element).nextAll(tweak_bb.row_element).each(function(){
+			var thisItem = jQuery(this).find("h3:first");
 			// process until Visual Unit Map Tweak
-			if(thisItem.text().indexOf("Tweak")>-1 && thisItem.parents("li").find("div.details:contains(\"map\")").length)
+			if (thisItem.length == 0 || (thisItem.text().indexOf("Tweak")>-1 && thisItem.parents(tweak_bb.row_element).find("div.details:contains(\"map\")").length))
 				return false;
 
-			var itemTitleLink = thisItem.find("span a:first").addClass("mapItemLink"); // add class for retrieval
+			var itemTitleLink = thisItem.find("a:first").addClass("mapItemLink"); // add class for retrieval
 			if (itemTitleLink.length)
 			{
 				itemIndex++;
 				// count if first column or Module in item title link or "column break" in description
-				if (itemIndex == 1 || horizontalLayout || (itemTitleLink.text().indexOf("Module")>-1) || (thisItem.parents("li").find("div.details:contains(\""+columnBreakTXT+"\")").length>0))
+				if (itemIndex == 1 || horizontalLayout || (itemTitleLink.text().indexOf("Module")>-1) || (thisItem.parents(tweak_bb.row_element).find("div.details:contains(\""+columnBreakTXT+"\")").length>0))
 				{
 					itemTitleLink.addClass("columnBreak");
 					// also check if column break bold
-					if (thisItem.parents("li").find("div.details:contains(\""+columnBreakHTXT+"\")").length>0)
+					if (thisItem.parents(tweak_bb.row_element).find("div.details:contains(\""+columnBreakHTXT+"\")").length>0)
 						itemTitleLink.addClass("columnHeader");
 					columns++;
 				}
 				if (horizontalLayout)
 				{
 					//horizontalCols
-					if (thisItem.parents("li").find("div.details:contains(\""+rowBreakTXT+"\")").length>0)
+					if (thisItem.parents(tweak_bb.row_element).find("div.details:contains(\""+rowBreakTXT+"\")").length>0)
 					{
 						itemTitleLink.addClass("rowBreak");
 						rows++;
@@ -104,8 +107,8 @@ function dynamicTextMap() {
 		// hide content items in Edit mode off
 		if(location.href.indexOf("Content.")>0)
 		{
-			jQuery("#pageList .mapItemLink").parents("li").hide();
-			jQuery("#tweakmap").parents("li").show();
+			jQuery(tweak_bb.page_id + ".mapItemLink").parents(tweak_bb.row_element).hide();
+			jQuery("#tweakmap").parents(tweak_bb.row_element).show();
 		}
 		
 		// check if custom style to force load stylesheets
@@ -120,7 +123,7 @@ function dynamicTextMap() {
 		this.applyFormatting = function() {		
 			var lastBase = 0, verticalSpacing = 5; // consider taking from CSS if possible to query before writing map? "#tweakmap div.topic:not(\".moduleHeader\"):eq(0)").css("line-height")
 			var colIndex = 1; // 1 indexed column for css and readability
-			jQuery("#pageList .mapItemLink").each(function(mapItemCount) {
+			jQuery(tweak_bb.page_id + ".mapItemLink").each(function(mapItemCount) {
 				var mapItemLink = jQuery(this);				
 				tweakmap.append("<div id=\"mapitem"+mapItemCount+"\"></div>");
 				var mapItem = jQuery("#mapitem"+mapItemCount);
@@ -140,7 +143,7 @@ function dynamicTextMap() {
 				// todo: make this optional
 				mapItem.filter(":not('.moduleHeader')").find("a").prepend("&diams;&nbsp; ");
 				// make link title description text if available or item text
-				var altText = mapItemLink.parents("li").find("div.details").text();
+				var altText = mapItemLink.parents(tweak_bb.row_element).find("div.details").text();
 				altText = jQuery.trim(altText.replace(columnBreakHTXT, "").replace(columnBreakTXT, "").replace(rowBreakTXT, ""));
 				mapItem.find("a").attr("title", (altText.length) ? altText : mapItem.text());
 									
@@ -221,10 +224,10 @@ if (dynamicTextMapInstance.hasCustomStyle()) {
 	jQuery(function($){
 		//force load stylesheets
 		var styleSheets = new Array();
-		$("#pageList .loadStyle").each(function(){
+		$(tweak_bb.page_id + ".loadStyle").each(function(){
 			styleSheets.push($(this).text());
 		});
-		$("#pageList > li > h3:contains('Stylesheet')").parents("li").hide().each(function(){
+		$(tweak_bb.page_id + "> li > h3:contains('Stylesheet')").parents(tweak_bb.row_element).hide().each(function(){
 			if ($(this).find("div.loadStyle").length == 0) {
 				$(this).find("ul.attachments").find("a").each(function() {
 					var thisLink = $(this).attr("href");
@@ -233,7 +236,7 @@ if (dynamicTextMapInstance.hasCustomStyle()) {
 			}
 		});
 		if ($("body.ineditmode").length) {
-			$("#pageList > li > h3:contains('Stylesheet')").parents("li").show();
+			$(tweak_bb.page_id + "> li > h3:contains('Stylesheet')").parents(tweak_bb.row_element).show();
 		}
 		var numStylesheets = styleSheets.length;
 		if (numStylesheets) {

@@ -15,18 +15,22 @@
    version 2. author Tim Plaisted 2010
 */
 jQuery(function($){
-	$("#pageList > li > h3:contains('Stylesheet')").parents("li").find("ul.attachments").addClass("hidemyrow").find("a").each(function() {
+	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
+		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+
+	$(tweak_bb.page_id+" h3:contains('Stylesheet')").parents(tweak_bb.row_element).find("ul.attachments").addClass("hidemyrow").find("a").each(function() {
 		var thisLink = $(this).attr("href");
-		$(this).after("<div class=\"loadStyle\">"+ thisLink.substr(thisLink.search("/course"))+"</div>");
+		if (thisLink.indexOf("contentWrapper") > 0)
+			thisLink = thisLink.substr(thisLink.search("/course"));
+		$(this).after("<div class=\"loadStyle\">"+ thisLink +"</div>");
 	});
-	$("#pageList .hidemyrow").parents("li").hide();
-	$("body.ineditmode #pageList .hidemyrow").parents("li").show();				
-	$("#pageList .loadStyle").each(function(){
+	$(tweak_bb.page_id+" .loadStyle").each(function(){
 		var URLofCSS = $(this).hide().text();
 		if (URLofCSS && URLofCSS.indexOf("/") == 0) {
 			URLofCSS = URLofCSS.substr(1);
 			$.xLazyLoader('loadRootPath', { css: URLofCSS});
 		}
 	});
-	$("body.ineditmode #pageList .loadStyle").show();
+	$(tweak_bb.page_id+" .hidemyrow").parents(tweak_bb.row_element).hide();
+	$("body.ineditmode "+tweak_bb.page_id+" .loadStyle").show().parents(tweak_bb.row_element).show();
 });

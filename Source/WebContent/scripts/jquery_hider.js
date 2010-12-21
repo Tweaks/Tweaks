@@ -20,8 +20,11 @@ var rowIdentifier = "hidemyrow";	// change for default identifier for rows
 var iconIdentifier = "hidemyicon";	// change for default identifier for icons
 
 jQuery(function($){
-	if(location.href.indexOf("Content.")>0) {
-		$("#pageList ."+rowIdentifier).parents("li").hide();
-		$("#pageList ."+iconIdentifier).parents("li").each(function(){$(this).find(".item_icon").hide();});
-	} 
+	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
+		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+
+	if(jQuery("body.ineditmode").length == 0) {
+		$(tweak_bb.page_id +" ."+rowIdentifier).parents(tweak_bb.row_element).hide();
+		$(tweak_bb.page_id +" ."+iconIdentifier).parents(tweak_bb.element).each(function(){$(this).find(".item_icon").hide();});
+	}
 });

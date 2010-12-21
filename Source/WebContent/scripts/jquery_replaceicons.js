@@ -19,15 +19,19 @@
  * if either of these images are found, it identifies the target icon cells and replaces the old icon
  * author Tim Plaisted 2010
  */
+// tweak default variables
+if (window.tweak_bb == null || window.tweak_bb.page_id == null)
+	window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+	
 // findReplacementIcon looks for id's specified and calls replace functions
 function findReplacementIcons() {
 	// set up ids from item text titles: todo just use cached list instead of lookup
-	var replacementIconH3s = jQuery("#pageList h3.item:contains('Replacement Icon')").addClass("replacementicon");
-	jQuery("#pageList h3.replacementicon:contains('Everything Replacement')").siblings("div.details").find("img:first").attr("id", "replacementIcon");
+	var replacementIconH3s = jQuery(tweak_bb.page_id +" h3:contains('Replacement Icon')").addClass("replacementicon");
+	jQuery(tweak_bb.page_id +" h3.replacementicon:contains('Everything Replacement')").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id", "replacementIcon");
 	
 	var replaceAllIconsImg = jQuery("#replacementIcon");
 	if (replaceAllIconsImg.length > 0)
-		jQuery("#titleicon, #pageList div.item_icon img").attr("src", replaceAllIconsImg.attr("src")).addClass("replaced");
+		jQuery("#titleicon, "+tweak_bb.page_id +" div.item_icon img, "+tweak_bb.page_id +" img.item_icon").attr("src", replaceAllIconsImg.attr("src")).addClass("replaced");
 	else
 	{
 		// look for Item replacement
@@ -46,47 +50,49 @@ function findReplacementIcons() {
 		// row specific icons
 		replaceRowSpecificIcons();
 	}
-	jQuery("#pageList img.item_icon, #titleicon").filter(".replaced").css("max-width", "64px");
+	jQuery(tweak_bb.page_id +" div.item_icon img, "+tweak_bb.page_id +" img.item_icon, #titleicon").filter(".replaced").css("max-width", "64px");
 }
 // content type replace call
 function replaceContentTypeIcon(contentIconSrc, textID, replacementIconID) {
-	jQuery("#pageList h3.replacementicon:contains('"+textID+" Replacement')").siblings("div.details").find("img:first").attr("id", replacementIconID);
+	jQuery(tweak_bb.page_id +" h3.replacementicon:contains('"+textID+" Replacement')").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id", replacementIconID);
 	if (jQuery("#"+replacementIconID).length) {
-		jQuery("#pageList div.item_icon img[src*='"+contentIconSrc+"']").attr("src", jQuery("#"+replacementIconID).addClass("replacementicon").attr("src")).addClass("replaced");
+		jQuery(tweak_bb.page_id +" div.item_icon img[src*='"+contentIconSrc+"'], "+
+			   tweak_bb.page_id +" img.item_icon[src*='"+contentIconSrc+"']").attr("src", jQuery("#"+replacementIconID).addClass("replacementicon").attr("src")).addClass("replaced");
 	}
 }
 // title type replace call
 function replaceTitleIcon(textID, replacementIconID) {
-	jQuery("#pageList h3.replacementicon:contains('"+textID+" Replacement')").siblings("div.details").find("img:first").attr("id", replacementIconID);
+	jQuery(tweak_bb.page_id +" h3.replacementicon:contains('"+textID+" Replacement')").siblings("div.details").find("img:first").attr("id", replacementIconID);
 	if (jQuery("#"+replacementIconID).length)
 		jQuery("#titleicon").attr("src", jQuery("#"+replacementIconID).addClass("replacementicon").attr("src")).addClass("replaced");
 }
 function getRowName(itemTitle, key) {
-	return jQuery.trim(jQuery(itemTitle).clone().find("div, span").remove().end().text().replace(key, ""));
+	//!check return jQuery.trim(jQuery(itemTitle).clone().find("div, span").remove().end().text().replace(key, ""));
+	return jQuery.trim(jQuery(itemTitle).clone().find("div").remove().end().text().replace(key, ""));
 }
 // scan rows for row specific icons
 function replaceRowSpecificIcons() {
 	// title version
-	jQuery("#pageList h3.replacementicon:contains(':')").each(function(){
-		var replacementImage = jQuery(this).siblings("div.details").find("img:first");
-		jQuery("#pageList h3:contains('"+getRowName(this, "Replacement Icon:")+"'):not('.replacementicon')").each(function(){
-			jQuery(this).parents("li").find("img").eq(0).attr("src", replacementImage.attr("src")).addClass("replaced");
+	jQuery(tweak_bb.page_id +" h3.replacementicon:contains(':')").each(function(){
+		var replacementImage = jQuery(this).parents(tweak_bb.row_element).find("div.details").find("img:first");
+		jQuery(tweak_bb.page_id +" h3:contains('"+getRowName(this, "Replacement Icon:")+"'):not('.replacementicon')").each(function(){
+			jQuery(this).parents(tweak_bb.row_element).find("img").eq(0).attr("src", replacementImage.attr("src")).addClass("replaced");
 		});
 	});
 	// class version
 	jQuery("img.replacemyicon").addClass("replacementicon").each(function() {
-		jQuery(this).parents("li").find("img").eq(0).attr("src", jQuery(this).attr("src")).addClass("replaced");
+		jQuery(this).parents(tweak_bb.row_element).find("img").eq(0).attr("src", jQuery(this).attr("src")).addClass("replaced");
 	});
 }
 function hideIcons() {
 	// title version
-	jQuery("#pageList h3.item:contains('Hide Icon:')").addClass("hideicon").each(function(){
-		jQuery("#pageList h3:contains('"+getRowName(this, "Hide Icon:")+"')").each(function(){
-			jQuery(this).parents("li").find("div.item_icon img").hide();
+	jQuery(tweak_bb.page_id +" h3:contains('Hide Icon:')").addClass("hideicon").each(function(){
+		jQuery(tweak_bb.page_id +" h3:contains('"+getRowName(this, "Hide Icon:")+"')").each(function(){
+			jQuery(this).parents(tweak_bb.row_element).find("div.item_icon img, img.item_icon").hide();
 		});
 	});
 	// class version
-	jQuery("#pageList .hidemyicon").parents("li").find("div.item_icon img").hide();
+	jQuery(tweak_bb.page_id +" .hidemyicon").parents(tweak_bb.row_element).find("div.item_icon img, img.item_icon").hide();
 }
 // trigger function on page load
 jQuery(function() {
@@ -96,7 +102,7 @@ jQuery(function() {
 	// clean up
 	if (jQuery("body.ineditmode").length == 0)
 	{
-		jQuery("#pageList h3.replacementicon, #pageList h3.hideicon").parents("li").hide();	
-		jQuery("#pageList img.replacementicon").hide();
+		jQuery(tweak_bb.page_id +" h3.replacementicon, #pageList h3.hideicon").parents(tweak_bb.row_element).hide();	
+		jQuery(tweak_bb.page_id +" img.replacementicon").hide();
 	}
 });
