@@ -1,0 +1,30 @@
+label.tweak_fieldset { padding:5px 10px 5px 5px; }
+fieldset span, span.label { display:block; }
+span.label { width:215px; }
+.usagetext { width: 554px; height: 63px; }
+.usagetitle { width: 554px; height: 21px; }
+#usage_instruction {padding-bottom: 10px; display:none;}
+form fieldset.tweak_fieldset {
+	border: 1px solid #ccc;
+	background-color: #f3f3f8;
+	margin: 6px;
+	position: relative;
+	display: block;
+	padding: 0px 6px 10px 10px;
+	min-width: 136px;
+	float: left;
+}
+form fieldset.tweak_fieldset span {
+	padding: 2px 0 4px 2px;
+}
+form fieldset.tweak_fieldset legend {
+	margin: 0 0 0 -8px;
+	font-weight: bold;
+	background-color: #FFF;
+	border: 1px solid #888;
+	padding: 2px;
+	margin: 0;
+	position:relative;
+	top: -10px;
+	width: 130px;
+}

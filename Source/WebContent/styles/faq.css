@@ -1,0 +1,10 @@
+@charset "UTF-8";
+/* CSS Document */
+.faqQuestion {
+padding-top: 8px;
+display: block;
+cursor: pointer;
+}
+.faqAnswer {
+display: block;
+}

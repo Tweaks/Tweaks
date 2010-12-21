@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<linkprofiler-help>
+  <BB_TARGET_BROKEN value=""/>
+  <HTTPS_PROTOCOL value=""/>
+  <LINK_MALFORMED value=""/>
+  <BB_TARGET_PARENT_UNAVAILABLE value=""/>
+  <BB_TARGET_UNAVAILABLE value=""/>
+  <BB_TARGET_CONTENT_ADAPTIVE_RELEASE_RULE value=""/>
+  <BB_TARGET_DISABLED value=""/>
+  <BB_TARGET_IS_RELATIVE_LINK_PATH_TRAVERSAL value=""/>
+  <generalHelpInfotext value="&amp;amp;nbsp;"/>
+  <org_domain_filters value=""/>
+  <INVALID_PROTOCOL value=""/>
+  <DOMAIN_IS_IP_ADDRESS value=""/>
+  <BB_TARGET_CONTENT_UNAVAILABLE value=""/>
+  <BB_RELATIVE_LINK_IS_INVALID value=""/>
+  <LINK_TO_LOCAL_DRIVE value=""/>
+  <BB_TARGET_INVALID value=""/>
+  <BB_TARGET_SESSION_DIR value=""/>
+  <BB_TARGET_COURSE_IS_FUTURE_VERSION value=""/>
+  <org_domains value=""/>
+  <BB_TARGET_COURSE_IS_PREVIOUS_VERSION value=""/>
+  <BB_TARGET_COURSE_UNAVAILABLE value=""/>
+  <BB_TARGET_COURSE_DISABLED value=""/>
+  <org_path_filters value=""/>
+  <LINK_INVALID value=""/>
+  <BB_TARGET_PARENT_ADAPTIVE_RELEASE_RULE value=""/>
+  <BB_TARGET_IS_ADMIN_LINK value=""/>
+  <BB_TARGET_CONTENT_DOES_NOT_BELONG_TO_COURSE value=""/>
+</linkprofiler-help>
