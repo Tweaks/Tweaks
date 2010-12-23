@@ -24,12 +24,11 @@ todo	.splash page + change menu class
 */
 if (window.tweak_bb == null || window.tweak_bb.page_id == null)
 	window.tweak_bb = { page_id: "#pageList", row_element: "li" };
-
+var debug = (location.href.indexOf("debug")>0);
+var intMenuItems = new Array();
 jQuery(function($) {
  if (location.href.indexOf("listContent.jsp")>0) {
-
   // parse page content into array
-  var intMenuItems = new Array();
   
   // if user not using HTML ID marker: look for "Menu Image" item >> if found: assign it's image an ID marker
   if ($("#menuHTML, #menuImage, #menuHTMLSplash").length == 0) // also #menuImageSplash, but leaving out in case the sub page item doesn't have marker
@@ -93,22 +92,32 @@ jQuery(function($) {
 // build components of menu text version
 function setupMenuLinks(intMenuItems) {
 	var menuHTML = "<div id=\"intmenu\">";
+	var imageMapLinks = jQuery("#menuHTMLSplash area, #menuHTML area");
+if(debug)
+	alert("here setup:"+imageMapLinks.length);
 	for(var i = 0; i < intMenuItems.length; i++) {
 		var altText = (intMenuItems[i].desc.length > 0) ? intMenuItems[i].desc : intMenuItems[i].title;
 		menuHTML+= "<a href='"+ intMenuItems[i].href + "' id='"+ intMenuItems[i].id +"' title='"+ altText +"' target='"+ intMenuItems[i].target +"'>"+ intMenuItems[i].title+"</a> ";
-	}
+		// set any corresponding image map item
+		imageMapLinks.filter("[alt*="+intMenuItems[i].title+"]").attr("id", intMenuItems[i].id);
+		// consider swapping titles from image map alt to menu links to allow for shorter..
+	}	
 	// trim trailing chars and return
 	return menuHTML.replace(/ $/, "</div>");
 }
 
 function addMenuToPage(menuLinksHTML) {
   // is this html, image or plain text menu?
-
+if(debug)
+	alert("here"+menuLinksHTML+ " " + jQuery("#menuHTMLSplash").length);
+	
   // html options: add custom html to page and insert link menu
   if (jQuery("#menuHTMLSplash").length == 1) {
-	jQuery(tweak_bb.page_id +"").before(jQuery("#menuHTMLSplash").clone().remove());
-	jQuery(tweak_bb.page_id +"").before(jQuery("#menuHTML").clone().remove());
+	jQuery(tweak_bb.page_id).before(jQuery("#menuHTMLSplash").clone().remove());
+	jQuery(tweak_bb.page_id).before(jQuery("#menuHTML").clone().remove());
 	jQuery("#menuLinksSplashDiv").html(menuLinksHTML);
+if(debug)
+	alert("here"+menuLinksHTML+ " " + jQuery("#menuHTMLSplash").length);
   } else if (jQuery("#menuHTML").length == 1) {
 	jQuery(tweak_bb.page_id +"").before(jQuery("#menuHTML").clone().remove());
 	jQuery("#menuLinksDiv").html(menuLinksHTML);
@@ -144,10 +153,12 @@ function dynamicPositionImageMenu() {
 
 //-- menu events functionality --
 function setupMenuEvents() {
-  jQuery("#intmenu a").click(function(event) {
-    if(jQuery(this).attr("href").indexOf("#") != (jQuery(this).attr("href").length-1)) { return true; } // use regex: IE fix href includes server
-	displaySection(jQuery(this).attr("id"));
-	updateTitle(jQuery(this).text());
+  jQuery("#intmenu a, #menuHTMLSplash area, #menuHTML area").click(function(event) {
+  	var link = jQuery(this);
+    if(link.attr("href").indexOf("#") != (link.attr("href").length-1)) { return true; } // use regex: IE fix href includes server
+	displaySection(link.attr("id"));
+	var title = (link.filter("[alt]").length==0) ? link.text() : link.attr("alt");
+	updateTitle(title);
 	if (jQuery("#menuHTMLSplash, #menuImageSplash").length)
 		selectSubPage();
     event.preventDefault();
