@@ -50,10 +50,10 @@ jQuery(function($){
   });
   
   // attach description event
-  if ($("#description").length) {
+  if ($("#description, .description").length) {
 	$(tweak_bb.page_id+" map area").mouseover(function(){
 		var desc = jQuery(this).data("desc");
-		if (desc != null) { jQuery("#description").text(desc)+" "; }
+		if (desc != null) { jQuery("#description, .description").text(desc)+" "; }
 	});
   }
 });
