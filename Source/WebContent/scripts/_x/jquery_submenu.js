@@ -93,7 +93,6 @@ jQuery(function($) {
 function setupMenuLinks(intMenuItems) {
 	var menuHTML = "<div id=\"intmenu\">";
 	var imageMapLinks = jQuery("#menuHTMLSplash area, #menuHTML area");
-	setupImageMapMouseover(imageMapLinks, $);
 if(debug)
 	alert("here setup:"+imageMapLinks.length);
 	for(var i = 0; i < intMenuItems.length; i++) {
@@ -168,6 +167,8 @@ function setupMenuEvents() {
 		selectSubPage();
     event.preventDefault();
   });
+  var imageMapLinks = jQuery("#menuHTMLSplash area, #menuHTML area");
+  setupImageMapMouseover(imageMapLinks);
 }
 // set text
 function updateTitle(newTitle) {
@@ -266,18 +267,18 @@ var singleDecodeLink = function(url) {
 };
 
 // image map description integration work: issue was menu was going above page -- but was looking in page to map
-function setupImageMapMouseover(imageMapLinks, $) {
+function setupImageMapMouseover(imageMapLinks) {
   // look for description
   imageMapLinks.each(function(){
-  	  var header = $(tweak_bb.page_id+" h3:contains('"+jQuery(this).attr("alt")+"'):first");
+  	  var header = jQuery(tweak_bb.page_id+" h3:contains('"+jQuery.trim(jQuery(this).attr("alt"))+"'):first");
   	  if (header) {
 		  var desc = header.parents(tweak_bb.row_element).find("div.details > span").html();
-		  if (desc) { $(this).data("desc", desc); }
+		  if (desc) { jQuery(this).data("desc", desc); }
 	  }
   })
   // attach description event
-  if ($("#description, .description").length) {
-	$("#menuHTMLSplash area, #menuHTML area").mouseover(function(){
+  if (jQuery("#description, .description").length) {
+	jQuery("#menuHTMLSplash area, #menuHTML area").mouseover(function(){
 		var desc = jQuery(this).data("desc");
 		if (desc != null) { jQuery("#description, .description").html(desc); }
 	});
