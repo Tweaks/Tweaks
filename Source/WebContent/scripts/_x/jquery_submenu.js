@@ -93,6 +93,7 @@ jQuery(function($) {
 function setupMenuLinks(intMenuItems) {
 	var menuHTML = "<div id=\"intmenu\">";
 	var imageMapLinks = jQuery("#menuHTMLSplash area, #menuHTML area");
+	setupImageMapMouseover(imageMapLinks, $);
 if(debug)
 	alert("here setup:"+imageMapLinks.length);
 	for(var i = 0; i < intMenuItems.length; i++) {
@@ -263,6 +264,22 @@ function localFixLearningObjLink($) {
 var singleDecodeLink = function(url) {
 	return url.replace(/%253D/g, "%3D").replace(/%2526/g, "%26");
 };
+
+// image map description integration work: issue was menu was going above page -- but was looking in page to map
+function setupImageMapMouseover(imageMapLinks, $) {
+  // look for description
+  imageMapLinks.each(function(){
+	  var desc = $(tweak_bb.page_id+" h3:contains('"+jQuery(this).attr("alt")+"'):first").parents(tweak_bb.row_element).find("div.details > span").html();
+	  if (desc) { $(this).data("desc", desc); }
+  })
+  // attach description event
+  if ($("#description, .description").length) {
+	$("#menuHTMLSplash area, #menuHTML area").mouseover(function(){
+		var desc = jQuery(this).data("desc");
+		if (desc != null) { jQuery("#description, .description").html(desc); }
+	});
+  }
+}
 /* end header code script */
 
 // hash / bookmarking code -- implemented when I needed intra section links - now not essential but may be request..
