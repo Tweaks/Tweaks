@@ -269,8 +269,11 @@ var singleDecodeLink = function(url) {
 function setupImageMapMouseover(imageMapLinks, $) {
   // look for description
   imageMapLinks.each(function(){
-	  var desc = $(tweak_bb.page_id+" h3:contains('"+jQuery(this).attr("alt")+"'):first").parents(tweak_bb.row_element).find("div.details > span").html();
-	  if (desc) { $(this).data("desc", desc); }
+  	  var header = $(tweak_bb.page_id+" h3:contains('"+jQuery(this).attr("alt")+"'):first");
+  	  if (header) {
+		  var desc = header.parents(tweak_bb.row_element).find("div.details > span").html();
+		  if (desc) { $(this).data("desc", desc); }
+	  }
   })
   // attach description event
   if ($("#description, .description").length) {
