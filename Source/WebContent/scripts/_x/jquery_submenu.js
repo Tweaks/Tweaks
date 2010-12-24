@@ -167,8 +167,7 @@ function setupMenuEvents() {
 		selectSubPage();
     event.preventDefault();
   });
-  var imageMapLinks = jQuery("#menuHTMLSplash area, #menuHTML area");
-  setupImageMapMouseover(imageMapLinks);
+  setupImageMapMouseover();
 }
 // set text
 function updateTitle(newTitle) {
@@ -267,8 +266,9 @@ var singleDecodeLink = function(url) {
 };
 
 // image map description integration work: issue was menu was going above page -- but was looking in page to map
-function setupImageMapMouseover(imageMapLinks) {
+function setupImageMapMouseover() {
   // look for description
+  var imageMapLinks = jQuery("#menuHTMLSplash area, #menuHTML area");
   imageMapLinks.each(function(){
   	  var header = jQuery(tweak_bb.page_id+" h3:contains('"+jQuery.trim(jQuery(this).attr("alt"))+"'):first");
   	  if (header) {
