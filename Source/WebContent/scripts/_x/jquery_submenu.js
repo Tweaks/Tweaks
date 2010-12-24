@@ -108,18 +108,22 @@ if(debug)
 
 function addMenuToPage(menuLinksHTML) {
   // is this html, image or plain text menu?
-if(debug)
-	alert("here"+menuLinksHTML+ " " + jQuery("#menuHTMLSplash").length);
 	
   // html options: add custom html to page and insert link menu
   if (jQuery("#menuHTMLSplash").length == 1) {
-	jQuery(tweak_bb.page_id).before(jQuery("#menuHTMLSplash").clone().remove());
+if(debug)
+  alert("here"+ jQuery("#menuHTMLSplash").length);
+  	var splash = jQuery("#menuHTMLSplash");
+	jQuery(tweak_bb.page_id).before(splash.clone());
+	splash.remove();
+if(debug)
+  alert("here"+ jQuery("#menuHTMLSplash").length);
 	jQuery(tweak_bb.page_id).before(jQuery("#menuHTML").clone().remove());
 	jQuery("#menuLinksSplashDiv").html(menuLinksHTML);
 if(debug)
-	alert("here"+menuLinksHTML+ " " + jQuery("#menuHTMLSplash").length);
+  alert("here"+menuLinksHTML+ " " + jQuery("#menuHTMLSplash").length);
   } else if (jQuery("#menuHTML").length == 1) {
-	jQuery(tweak_bb.page_id +"").before(jQuery("#menuHTML").clone().remove());
+	jQuery(tweak_bb.page_id).before(jQuery("#menuHTML").clone().remove());
 	jQuery("#menuLinksDiv").html(menuLinksHTML);
   }
   else // image or plain text options: setup html, then add to page
