@@ -89,9 +89,12 @@ jQuery(function($) {
 // todo: see if this can work split back into image map tweak
   setupImageMapMouseover(headers);
   
-  // see if there is an item to display on load (todo: check text 9.x)
-  $("#displayFirst").parents(tweak_bb.row_element).find("h3:first").each(function(){ displaySection($(this).attr("id"), updateTitle(jQuery.trim(jQuery(this).text())); });
- } 
+  // see if there is an item to display on load
+  $("#displayFirst").parents(tweak_bb.row_element).find(".item:first").each(function(){ 
+    var title = $.trim($(this).text()); // todo: check this 9.x
+  	displaySection($(this).attr("id"), updateTitle(title)); 
+  });
+ }
 });
 
 /*** menu structure setup ***/
@@ -297,23 +300,24 @@ function headerID(header) {
 /* rewrite with these optimisations: big savings
 is kind of obvious -- but introduced when trying to abstract over 9 and 9.1.
 these tests on 18 item page go from 19sec to 263 ms to 3 ms
+also switch find to filter for big saving
 var start = (new Date).getTime(); 
 for (var i = 0; i < 1000; i++) {
- $jq(tweak_bb.page_id +" > "+tweak_bb.row_element+":visible").find("h3.item, div.item h3").find(":contains('Dynamic')").length;
+ $jq(tweak_bb.page_id +" > "+tweak_bb.row_element+":visible").find("h3.item, div.item").filter(":contains('Dynamic')").length;
 }
 alert("f"+((new Date).getTime() - start));
 
 var start = (new Date).getTime(); 
 for (var i = 0; i < 1000; i++) {
- $jq(tweak_bb.page_id +" > "+tweak_bb.row_element+":visible").children("h3.item, div.item h3").find(":contains('Dynamic')").length;
+ $jq(tweak_bb.page_id +" > "+tweak_bb.row_element+":visible").children("h3.item, div.item").filter(":contains('Dynamic')").length;
 }
 alert("c"+((new Date).getTime() - start));
 
 // .find(":contains('Dynamic')")
 var start = (new Date).getTime();
-var hs = $jq(tweak_bb.page_id +" > "+tweak_bb.row_element+":visible").children("h3.item, div.item h3");
+var hs = $jq(tweak_bb.page_id +" > "+tweak_bb.row_element+":visible").children("h3.item, div.item");
 for (var i = 0; i < 1000; i++) {
- hs.find(":contains('Dynamic')").length;
+ hs.filter(":contains('Dynamic')").length;
 }
 alert("c+stored lookup:"+((new Date).getTime() - start));
 */
