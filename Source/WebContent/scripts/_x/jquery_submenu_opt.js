@@ -30,7 +30,7 @@ jQuery(function($) {
  if (location.href.indexOf("listContent.jsp")>0) {
 
   // load headers as parsed several times in script
-  var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children("h3.item, div.item h3");
+  var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children("h3.item, div.item");
 
   // if user not using HTML ID marker: look for "Menu Image" item >> if found: assign it's image an ID marker
   if ($("#menuHTML, #menuImage, #menuHTMLSplash").length == 0) // also #menuImageSplash, but leaving out in case the sub page item doesn't have marker
@@ -47,8 +47,8 @@ jQuery(function($) {
   // parse in content items until end of menu
   headers.filter(":visible").each(function() { 
   	// base functionality : folders
-	var title = $.trim($(this).text());
-	var id = headerID($(this));
+	var title = $.trim($(this).text()); /* todo: check this 9.x */
+	var id = $(this).attr("id");
 	var desc = $.trim($(this).parents(tweak_bb.row_element).find("div.details").text().replace("'",""));
 	var href= "#";
 	var target = "self";
@@ -89,16 +89,12 @@ jQuery(function($) {
 // todo: see if this can work split back into image map tweak
   setupImageMapMouseover(headers);
   
-  // see if there is an item to display on load
-  $("#displayFirst").parents(tweak_bb.row_element).find("h3:first").each(function(){ displaySection(headerID($(this)), updateTitle(jQuery.trim(jQuery(this).text())); });
+  // see if there is an item to display on load (todo: check text 9.x)
+  $("#displayFirst").parents(tweak_bb.row_element).find("h3:first").each(function(){ displaySection($(this).attr("id"), updateTitle(jQuery.trim(jQuery(this).text())); });
  } 
 });
 
 /*** menu structure setup ***/
-// 9, 9.x get item ID
-function headerID(header) {
-	return("menu"+(header.hasClass("item") ? header.attr("id") : header.parent().attr("id")));
-}
 // build components of menu text version
 function setupMenuLinks(intMenuItems) {
 	var menuHTML = "<div id=\"intmenu\">";
@@ -291,6 +287,12 @@ function setupImageMapMouseover(headers) {
   }
 }
 /* end header code script */
+
+// 9, 9.x get item ID
+/*
+function headerID(header) {
+	return("menu"+(header.hasClass("item") ? header.attr("id") : header.parent().attr("id")));
+}*/
 
 /* rewrite with these optimisations: big savings
 is kind of obvious -- but introduced when trying to abstract over 9 and 9.1.
