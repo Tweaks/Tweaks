@@ -28,26 +28,27 @@ var debug = (location.href.indexOf("debug")>0);
 var intMenuItems = new Array();
 jQuery(function($) {
  if (location.href.indexOf("listContent.jsp")>0) {
-  // parse page content into array
-  
+
+  // load headers as parsed several times in script
+  var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children("h3.item, div.item h3");
+
   // if user not using HTML ID marker: look for "Menu Image" item >> if found: assign it's image an ID marker
   if ($("#menuHTML, #menuImage, #menuHTMLSplash").length == 0) // also #menuImageSplash, but leaving out in case the sub page item doesn't have marker
-  	$(tweak_bb.page_id +" h3:contains(\"Menu Image\"):eq(0)").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","menuImage");
+  	headers.filter(":contains(\"Menu Image\"):eq(0)").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","menuImage");
   
   // make sure script items, hidden classes and menu constructors not included
-// optimise: can I remove script search or at least search once and store and reuse in 43 - make marker end and then re-search to mark end row
-  $(tweak_bb.page_id+" script.tweak_script, #menuHTML, #menuImage, #menuHTMLSplash, #menuImageSplash").parents(tweak_bb.row_element).hide();
+  var scriptRows = $(tweak_bb.page_id+" script.tweak_script").parents(tweak_bb.row_element).hide();
+  $("#menuHTML, #menuImage, #menuHTMLSplash, #menuImageSplash").parents(tweak_bb.row_element).hide();
   $("#pageTitleDiv").hide(); // required? currently defaults to hiding the page title
 
   // find tweak item on page and mark previous item as end of menu
-  $(tweak_bb.page_id +" script.tweak_script").parents(tweak_bb.row_element+":contains('Submenu')").prev("li:visible").find("h3:first").addClass("endMenu");
+  scriptRows.filter(":contains('Submenu')").prev("li:visible").find("h3:first").addClass("endMenu");
 
-  // parse in content items until end of menu: consider filter or nextUntil ^ I think even speed?
-  headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element+":visible").children("h3.item, div.item h3");
-  headers.each(function() { 
+  // parse in content items until end of menu
+  headers.filter(":visible").each(function() { 
   	// base functionality : folders
 	var title = $.trim($(this).text());
-	var id = "menu"+($(this).hasClass("item") ? $(this).attr("id") : $(this).parent().attr("id"));
+	var id = headerID($(this));
 	var desc = $.trim($(this).parents(tweak_bb.row_element).find("div.details").text().replace("'",""));
 	var href= "#";
 	var target = "self";
@@ -74,6 +75,7 @@ jQuery(function($) {
 		return false;
 	}
   });
+  // hide in menu rows initially
   headers.filter(".inMenu").parents(tweak_bb.row_element).hide();
 
   // generate menu links HTML from array
@@ -84,14 +86,19 @@ jQuery(function($) {
   
   // setup menu event actions
   setupMenuEvents();
+// todo: see if this can work split back into image map tweak
+  setupImageMapMouseover(headers);
   
   // see if there is an item to display on load
-// todo: fix for 9.x
-  $("#displayFirst").parents(tweak_bb.row_element).find("h3").each(function(){ displaySection("menu"+jQuery(this).attr("id")); updateTitle(jQuery.trim(jQuery(this).text())); });
+  $("#displayFirst").parents(tweak_bb.row_element).find("h3:first").each(function(){ displaySection(headerID($(this)), updateTitle(jQuery.trim(jQuery(this).text())); });
  } 
 });
 
 /*** menu structure setup ***/
+// 9, 9.x get item ID
+function headerID(header) {
+	return("menu"+(header.hasClass("item") ? header.attr("id") : header.parent().attr("id")));
+}
 // build components of menu text version
 function setupMenuLinks(intMenuItems) {
 	var menuHTML = "<div id=\"intmenu\">";
@@ -166,7 +173,6 @@ function setupMenuEvents() {
 		selectSubPage();
     event.preventDefault();
   });
-  setupImageMapMouseover();
 }
 // set text
 function updateTitle(newTitle) {
@@ -267,13 +273,9 @@ var singleDecodeLink = function(url) {
 };
 
 // image map description integration work: issue was menu was going above page -- but was looking in page to map
-function setupImageMapMouseover() {
+function setupImageMapMouseover(headers) {
   // look for description
-  var imageMapLinks = jQuery("#menuHTMLSplash, #menuHTML").find("area");
-  // small? optimise -- could reuse first lookup and filter visible first time?
-  var headers = jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).children("h3.item, div.item h3");
-  imageMapLinks.each(function(){
-//!!optimise: reuse header search!
+ jQuery("#menuHTMLSplash, #menuHTML").find("area").each(function(){
   	  var header = headers.filter(":contains('"+jQuery.trim(jQuery(this).attr("alt"))+"')").eq(0);
   	  if (header) {
 		  var desc = header.parents(tweak_bb.row_element).find("div.details > span").html();
