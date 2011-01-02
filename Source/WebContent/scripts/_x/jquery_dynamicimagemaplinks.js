@@ -24,21 +24,25 @@ jQuery(function($){
   if (window.tweak_bb == null || window.tweak_bb.page_id == null)
 	window.tweak_bb = { page_id: "#pageList", row_element: "li" };
 	
+  // load headers as parsed several times in script
+  var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children("h3.item, div.item");
+
   $(tweak_bb.page_id+" map").children().each(function() {
 	var altText = $.trim($(this).attr("alt"));
 	if (altText.length) {
 		// find alt text in page headers
-		var matchingHeader = $(tweak_bb.page_id+" h3:contains('"+altText+"')");
+		var matchingHeader = headers.filter(":contains('"+altText+"')");
 
 		// check header for a link
 		var link = $(matchingHeader).find("a:first:contains('"+altText+"')");
-
+		var details = $(matchingHeader).parents(tweak_bb.row_element).children("div.details");
+		
 		// if no link found in header, look for item's file attachment
 		if (link.length == 0)
-			link = $(matchingHeader).parents(tweak_bb.row_element).find("div.details").find("ul.attachments a:first");
+			link = details.find("ul.attachments a:first");
 		
 		// look for description
-		var desc = $(matchingHeader).parents(tweak_bb.row_element).find("div.details").clone().remove("a").text();
+		var desc = details.clone().remove("a").text();
 		if (desc) { $(this).data("desc", desc); }
 			
 		if (link.length) {
