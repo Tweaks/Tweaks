@@ -21,9 +21,12 @@ jQuery(function($){
 	jQuery.expr[':'].contains = function(a,i,m){
 		return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase())>=0;
 	};
+	// load headers as parsed several times in script
+	var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children("h3.item, div.item");
+	
 	// find id="unitMap" or table in BB item "Unit Map"
 	if ($("#unitMap").length == 0)
-		$(tweak_bb.page_id +" h3:contains(\"Unit Map\")").parents(tweak_bb.row_element).find("div.details table").eq(0).attr("id", "unitMap");
+		headers.filter(":contains(\"Unit Map\")").parents(tweak_bb.row_element).find("div.details table").eq(0).attr("id", "unitMap");
 	var $unitMap = $("#unitMap"),	
 		$firstRow = $unitMap.find("tr").eq(0),
 		numResources = $firstRow.find("td").length-1;
@@ -88,25 +91,28 @@ jQuery(function($){
 			// normal table processing
 			for (var column = 0; column < resourceTypes.length; column++) {
 				if (sectionTitle.length && resourceTypes[column].length) {
-					$(tweak_bb.page_id +" h3:contains('"+sectionTitle+": "+resourceTypes[column]+"')").each(function() {
+					headers.filter(":contains('"+sectionTitle+": "+resourceTypes[column]+"')").each(function(matchingHeader) {
 
 						if(location.href.indexOf("Content.")>0)
-							$(this).parents(tweak_bb.row_element).hide();
+							matchingHeader.parents(tweak_bb.row_element).hide();
 						
 						var thiscell = $unitMap.find("tr:eq("+(row+1)+") td:eq("+(column+columnOffset)+")");
 
 						// set up link (if there is one): consider / is there better way that deals with filtering edit mode links ok
-						var thislink = $(this).find("a:contains('"+sectionTitle+": "+resourceTypes[column]+"')").clone();
+						var thislink = matchingHeader.find("a:contains('"+sectionTitle+": "+resourceTypes[column]+"')").clone();
 						if (thislink.length)
 							thislink = setUpLinkOptions(thislink, thiscell, displayLinkTopicIndexText, displayLinkResourceText, sectionTitle, resourceTypes[column]);
 					
+						// find details item
+						var details = matchingHeader.parents(tweak_bb.row_element).children("div.details");
+						
 						// attachments (reinsert trailing space outside links)
-						var attachments = $(this).parents(tweak_bb.row_element).find("div.details").find("ul.attachments a").clone().each(function() {
+						var attachments = details.find("ul.attachments a").clone().each(function() {
 												$(this).html($.trim($(this).text()));
 										  }).addClass("attachmentLink");
 						
 						// details field
-						var detailsHTML = $.trim($(this).parents(tweak_bb.row_element).find("div.details").find("span").find("script").remove().end().html());
+						var detailsHTML = $.trim(details.find("span").find("script").remove().end().html());
 						if (detailsHTML.length)
 							detailsHTML = "<div class=\"insertDetails\">"+detailsHTML+"</div>";
 							
