@@ -31,24 +31,25 @@ jQuery(function($){
 	var altText = $.trim($(this).attr("alt"));
 	if (altText.length) {
 		// find alt text in page headers
-		var matchingHeader = headers.filter(":contains('"+altText+"')");
-
-		// check header for a link
-		var link = $(matchingHeader).find("a:first:contains('"+altText+"')");
-		var details = $(matchingHeader).parents(tweak_bb.row_element).children("div.details");
-		
-		// if no link found in header, look for item's file attachment
-		if (link.length == 0)
-			link = details.find("ul.attachments a:first");
-		
-		// look for description
-		var desc = details.clone().remove("a").text();
-		if (desc) { $(this).data("desc", desc); }
+		var matchingHeader = headers.filter(":contains('"+altText+"'):first");
+		if (matchingHeader.length) {
+			// check header for a link
+			var link = $(matchingHeader).find("a:first:contains('"+altText+"')");
+			var details = $(matchingHeader).parents(tweak_bb.row_element).children("div.details");
 			
-		if (link.length) {
-			$(this).attr("href", link.attr("href"));
-			if ($("body.ineditmode").length == 0)
-				$(matchingHeader).parents(tweak_bb.row_element).hide();
+			// if no link found in header, look for item's file attachment
+			if (link.length == 0)
+				link = details.find("ul.attachments a:first");
+			
+			// look for description
+			var desc = details.clone().remove("a").text();
+			if (desc) { $(this).data("desc", desc); }
+				
+			if (link.length) {
+				$(this).attr("href", link.attr("href"));
+				if ($("body.ineditmode").length == 0)
+					$(matchingHeader).parents(tweak_bb.row_element).hide();
+			}
 		}
 	}
   });
