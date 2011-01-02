@@ -94,17 +94,17 @@ jQuery(function($){
 					headers.filter(":contains('"+sectionTitle+": "+resourceTypes[column]+"')").each(function(matchingHeader) {
 
 						if(location.href.indexOf("Content.")>0)
-							matchingHeader.parents(tweak_bb.row_element).hide();
+							$(matchingHeader).parents(tweak_bb.row_element).hide();
 						
 						var thiscell = $unitMap.find("tr:eq("+(row+1)+") td:eq("+(column+columnOffset)+")");
 
 						// set up link (if there is one): consider / is there better way that deals with filtering edit mode links ok
-						var thislink = matchingHeader.find("a:contains('"+sectionTitle+": "+resourceTypes[column]+"')").clone();
+						var thislink = $(matchingHeader).find("a:contains('"+sectionTitle+": "+resourceTypes[column]+"')").clone();
 						if (thislink.length)
 							thislink = setUpLinkOptions(thislink, thiscell, displayLinkTopicIndexText, displayLinkResourceText, sectionTitle, resourceTypes[column]);
 					
 						// find details item
-						var details = matchingHeader.parents(tweak_bb.row_element).children("div.details");
+						var details = $(matchingHeader).parents(tweak_bb.row_element).children("div.details");
 						
 						// attachments (reinsert trailing space outside links)
 						var attachments = details.find("ul.attachments a").clone().each(function() {
