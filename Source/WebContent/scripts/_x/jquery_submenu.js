@@ -28,24 +28,27 @@ var debug = (location.href.indexOf("debug")>0);
 var intMenuItems = new Array();
 jQuery(function($) {
  if (location.href.indexOf("listContent.jsp")>0) {
-  // parse page content into array
-  
+
+  // load headers as parsed several times in script
+  var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children("h3.item, div.item");
+
   // if user not using HTML ID marker: look for "Menu Image" item >> if found: assign it's image an ID marker
   if ($("#menuHTML, #menuImage, #menuHTMLSplash").length == 0) // also #menuImageSplash, but leaving out in case the sub page item doesn't have marker
-  	$(tweak_bb.page_id +" h3:contains(\"Menu Image\"):eq(0)").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","menuImage");
+  	headers.filter(":contains(\"Menu Image\"):eq(0)").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","menuImage");
   
   // make sure script items, hidden classes and menu constructors not included
-  $(tweak_bb.page_id +" .hidemyrow, "+tweak_bb.page_id+" script.tweak_script, #menuHTML, #menuImage, #menuHTMLSplash, #menuImageSplash").parents(tweak_bb.row_element).hide();
+  var scriptRows = $(tweak_bb.page_id+" script.tweak_script").parents(tweak_bb.row_element).hide();
+  $("#menuHTML, #menuImage, #menuHTMLSplash, #menuImageSplash").parents(tweak_bb.row_element).hide();
   $("#pageTitleDiv").hide(); // required? currently defaults to hiding the page title
 
   // find tweak item on page and mark previous item as end of menu
-  $(tweak_bb.page_id +" script.tweak_script").parents(tweak_bb.row_element+":contains('Submenu')").prev("li:visible").find("h3:first").addClass("endMenu");
+  scriptRows.filter(":contains('Submenu')").prev("li:visible").find("h3:first").addClass("endMenu");
 
-  // parse in content items until end of menu: consider filter or nextUntil ^ I think even speed?
-  $(tweak_bb.page_id +" > "+tweak_bb.row_element+":visible").find("h3.item, div.item h3").each(function() { 
+  // parse in content items until end of menu
+  headers.filter(":visible").each(function() { 
   	// base functionality : folders
-	var title = $.trim($(this).text());
-	var id = "menu"+($(this).hasClass("item") ? $(this).attr("id") : $(this).parent().attr("id"));
+	var title = $.trim($(this).text()); /* todo: check this 9.x */
+	var id = $(this).attr("id");
 	var desc = $.trim($(this).parents(tweak_bb.row_element).find("div.details").text().replace("'",""));
 	var href= "#";
 	var target = "self";
@@ -72,7 +75,8 @@ jQuery(function($) {
 		return false;
 	}
   });
-  $("h3.inMenu").parents(tweak_bb.row_element).hide();
+  // hide in menu rows initially
+  headers.filter(".inMenu").parents(tweak_bb.row_element).hide();
 
   // generate menu links HTML from array
   var menuLinksHTML = setupMenuLinks(intMenuItems);
@@ -82,23 +86,28 @@ jQuery(function($) {
   
   // setup menu event actions
   setupMenuEvents();
+// todo: see if this can work split back into image map tweak
+  setupImageMapMouseover(headers);
   
   // see if there is an item to display on load
-  $("#displayFirst").parents(tweak_bb.row_element).find("h3").each(function(){ displaySection("menu"+jQuery(this).attr("id")); updateTitle(jQuery.trim(jQuery(this).text())); });
- } 
+  $("#displayFirst").parents(tweak_bb.row_element).find(".item:first").each(function(){ 
+    var title = $.trim($(this).text()); // todo: check this 9.x
+  	displaySection($(this).attr("id"), updateTitle(title)); 
+  });
+ }
 });
 
 /*** menu structure setup ***/
 // build components of menu text version
 function setupMenuLinks(intMenuItems) {
 	var menuHTML = "<div id=\"intmenu\">";
-	var imageMapLinks = jQuery("#menuHTMLSplash area, #menuHTML area");
+	var imageMapLinks = jQuery("#menuHTMLSplash, #menuHTML").find("area");
 if(debug)
 	alert("here setup:"+imageMapLinks.length);
 	for(var i = 0; i < intMenuItems.length; i++) {
 		var altText = (intMenuItems[i].desc.length > 0) ? intMenuItems[i].desc : intMenuItems[i].title;
 		menuHTML+= "<a href='"+ intMenuItems[i].href + "' id='"+ intMenuItems[i].id +"' title='"+ altText +"' target='"+ intMenuItems[i].target +"'>"+ intMenuItems[i].title+"</a> ";
-		// set any corresponding image map item
+		// set any corresponding image map item. benchmark new image map changes
 		imageMapLinks.filter("[alt*="+intMenuItems[i].title+"]").attr("id", intMenuItems[i].id);
 		// consider swapping titles from image map alt to menu links to allow for shorter..
 	}	
@@ -109,21 +118,16 @@ if(debug)
 function addMenuToPage(menuLinksHTML) {
   // is this html, image or plain text menu?
 	
+  // benchmark previous clone remove attempts
   // html options: add custom html to page and insert link menu
   if (jQuery("#menuHTMLSplash").length == 1) {
-if(debug)
-  alert("here"+ jQuery("#menuHTMLSplash").length);
-  	var splash = jQuery("#menuHTMLSplash");
-	jQuery(tweak_bb.page_id).before(splash.clone());
-	splash.remove();
-if(debug)
-  alert("here"+ jQuery("#menuHTMLSplash").length);
-	jQuery(tweak_bb.page_id).before(jQuery("#menuHTML").clone().remove());
+	jQuery(tweak_bb.page_id).before(jQuery("#menuHTMLSplash"));
+	jQuery(tweak_bb.page_id).before(jQuery("#menuHTML"));
 	jQuery("#menuLinksSplashDiv").html(menuLinksHTML);
 if(debug)
   alert("here"+menuLinksHTML+ " " + jQuery("#menuHTMLSplash").length);
   } else if (jQuery("#menuHTML").length == 1) {
-	jQuery(tweak_bb.page_id).before(jQuery("#menuHTML").clone().remove());
+	jQuery(tweak_bb.page_id).before(jQuery("#menuHTML"));
 	jQuery("#menuLinksDiv").html(menuLinksHTML);
   }
   else // image or plain text options: setup html, then add to page
@@ -157,7 +161,7 @@ function dynamicPositionImageMenu() {
 
 //-- menu events functionality --
 function setupMenuEvents() {
-  jQuery("#intmenu a, #menuHTMLSplash area, #menuHTML area").click(function(event) {
+  jQuery("#intmenu, #menuHTMLSplash, #menuHTML").find("a, area").click(function(event) {
   	var link = jQuery(this);
     if(link.attr("href").indexOf("#") != (link.attr("href").length-1)) { return true; } // use regex: IE fix href includes server
 	displaySection(link.attr("id"));
@@ -167,7 +171,6 @@ function setupMenuEvents() {
 		selectSubPage();
     event.preventDefault();
   });
-  setupImageMapMouseover();
 }
 // set text
 function updateTitle(newTitle) {
@@ -194,9 +197,11 @@ function selectSubPage() {
 
 /*** menu > content display and page loading code ***/
 function displaySection(menuid) {
+	// check minimal optimise: tweak_bb.page_id+">"+tweak_bb.row_element+".menuitem"
 	jQuery(".menuitem").hide();
 	if(jQuery(tweak_bb.page_id +" ."+menuid).length == 0)
 		loadMenuPage(menuid);
+	// check minimal optimise: tweak_bb.page_id+">"+tweak_bb.row_element+"."+menuid
 	jQuery(tweak_bb.page_id +" ."+menuid).show();
 	// consider: set class of menu container and selected item to be selected
 }
@@ -266,11 +271,10 @@ var singleDecodeLink = function(url) {
 };
 
 // image map description integration work: issue was menu was going above page -- but was looking in page to map
-function setupImageMapMouseover() {
+function setupImageMapMouseover(headers) {
   // look for description
-  var imageMapLinks = jQuery("#menuHTMLSplash area, #menuHTML area");
-  imageMapLinks.each(function(){
-  	  var header = jQuery(tweak_bb.page_id+" h3:contains('"+jQuery.trim(jQuery(this).attr("alt"))+"'):first");
+ jQuery("#menuHTMLSplash, #menuHTML").find("area").each(function(){
+  	  var header = headers.filter(":contains('"+jQuery.trim(jQuery(this).attr("alt"))+"')").eq(0);
   	  if (header) {
 		  var desc = header.parents(tweak_bb.row_element).find("div.details > span").html();
 		  if (desc) { jQuery(this).data("desc", desc); }
@@ -278,22 +282,9 @@ function setupImageMapMouseover() {
   })
   // attach description event
   if (jQuery("#description, .description").length) {
-	jQuery("#menuHTMLSplash area, #menuHTML area").mouseover(function(){
+	jQuery("#menuHTMLSplash, #menuHTML").find("area").mouseover(function(){
 		var desc = jQuery(this).data("desc");
 		if (desc != null) { jQuery("#description, .description").html(desc); }
 	});
   }
 }
-/* end header code script */
-
-// hash / bookmarking code -- implemented when I needed intra section links - now not essential but may be request..
-  // url hash = id for linking / bookmarking / lookup > display first
-  /* TODO - consider smarts
-  if (document.location.hash.length) {
-	updateTitle($(document.location.hash.replace(/^\#/, "#menu")).text());
-  	$(document.location.hash.replace(/^\#/, ".menu")).show();
-  	window.scroll(0,0);
-  } else { // show first
-	updateTitle(intMenuItems[0].title);
-	$("."+intMenuItems[0].id).show();
-  }*/
