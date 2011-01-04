@@ -301,25 +301,123 @@ function headerID(header) {
 is kind of obvious -- but introduced when trying to abstract over 9 and 9.1.
 these tests on 18 item page go from 19sec to 263 ms to 3 ms
 also switch find to filter for big saving
+
+var d="";
 var start = (new Date).getTime(); 
 for (var i = 0; i < 1000; i++) {
- $jq(tweak_bb.page_id +" > "+tweak_bb.row_element+":visible").find("h3.item, div.item").filter(":contains('Dynamic')").length;
+ jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).find(".item:contains('Dynamic"+i+"')").length;
 }
-alert("f"+((new Date).getTime() - start));
+d+="\n"+("fcf:"+((new Date).getTime() - start));
 
 var start = (new Date).getTime(); 
 for (var i = 0; i < 1000; i++) {
- $jq(tweak_bb.page_id +" > "+tweak_bb.row_element+":visible").children("h3.item, div.item").filter(":contains('Dynamic')").length;
+ jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:contains('Dynamic"+i+"')").length;
 }
-alert("c"+((new Date).getTime() - start));
+d+="\n"+("*ccf:"+((new Date).getTime() - start));
+
+var start = (new Date).getTime(); 
+for (var i = 0; i < 1000; i++) {
+ jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).find("h3.item, div.item").filter(":contains('Dynamic"+i+"')").length;
+}
+d+="\n"+("*fT.f"+((new Date).getTime() - start));
+
+var start = (new Date).getTime(); 
+for (var i = 0; i < 1000; i++) {
+ jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).children("h3.item, div.item").filter(":contains('Dynamic"+i+"')").length;
+}
+d+="\n"+("*cT.f"+((new Date).getTime() - start));
 
 // .find(":contains('Dynamic')")
 var start = (new Date).getTime();
-var hs = $jq(tweak_bb.page_id +" > "+tweak_bb.row_element+":visible").children("h3.item, div.item");
+var hs = jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).find(".item");
 for (var i = 0; i < 1000; i++) {
- hs.filter(":contains('Dynamic')").length;
+ hs.filter(":contains('Dynamic"+i+"')").length;
 }
-alert("c+stored lookup:"+((new Date).getTime() - start));
+d+="\n"+("c+stored lookup:"+((new Date).getTime() - start));
+alert(d);
+
+// not optimal unless post filtering
+var start = (new Date).getTime(); 
+for (var i = 0; i < 1000; i++) {
+ jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).find(".item").filter(":contains('Dynamic"+i+"')").length;
+}
+d+="\n"+("fc.f:"+((new Date).getTime() - start));
+
+var start = (new Date).getTime(); 
+for (var i = 0; i < 1000; i++) {
+ jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item").filter(":contains('Dynamic"+i+"')").length;
+}
+d+="\n"+("cc.f:"+((new Date).getTime() - start));
+
+
+// inaccurate
+var start = (new Date).getTime(); 
+for (var i = 0; i < 1000; i++) {
+ jQuery(tweak_bb.page_id +" h3.item:contains(\"Dynamic"+i+"\")")
+}
+d+="\n"+("o"+((new Date).getTime() - start));
+
+var start = (new Date).getTime(); 
+for (var i = 0; i < 1000; i++) {
+ jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).find("h3:contains('Dynamic"+i+"')").length;
+}
+d+="\n"+("fhc:"+((new Date).getTime() - start));
+
+var start = (new Date).getTime(); 
+for (var i = 0; i < 1000; i++) {
+ jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).find("h3").filter(":contains('Dynamic"+i+"')").length;
+}
+d+="\n"+("fh.fc:"+((new Date).getTime() - start));
+
+chrome:
+o3608
+fhc:185
+fh.fc:194
+c.c.f:218
+c.cf:199
+c.f210
+f.f193
+fc.f:196
+
+chrome1
+fcf:112
+*ccf:120
+*fT.f125
+*cT.f130
+c+stored lookup:10
+
+fcf:111
+*ccf:120
+*fT.f117
+*cT.f136
+c+stored lookup:10
+
+fcf:112
+*ccf:120
+*fT.f118
+*cT.f130
+c+stored lookup:15
+
+chrome2
+fcf:187
+*ccf:199
+*fT.f194
+*cT.f216
+c+stored lookup:10
+
+fcf:193
+*ccf:207
+*fT.f200
+*cT.f212
+c+stored lookup:9
+
+fcf:191
+*ccf:199
+*fT.f201
+*cT.f225
+c+stored lookup:11
+
+try in a full course site in all browsers
 */
 // hash / bookmarking code -- implemented when I needed intra section links - now not essential but may be request..
   // url hash = id for linking / bookmarking / lookup > display first
