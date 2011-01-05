@@ -26,14 +26,15 @@ function dynamicTextMap() {
 	jQuery.expr[':'].contains = function(a,i,m){
 		return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase())>=0;
 	};
+	
 	// find image map image source
 	var mapsource = jQuery("#dynamicmap");
 	// if no item with ID, search for item titled Unit Map or Unit Navigation (horizontal layout)
 	if (mapsource.length == 0)
-		mapsource = jQuery(tweak_bb.page_id).find("h3:contains(\"Unit Map\"), h3:contains(\"Unit Navigation\")").parents(tweak_bb.row_element).find("div.details").find("img:first");
+		mapsource = jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item").filter(":contains(\"Unit Map\"), :contains(\"Unit Navigation\")").parents(tweak_bb.row_element).find("div.details").find("img:first");
 
 	// horizontal layout - text to be confirmed
-	if (mapsource.parents(tweak_bb.row_element).find("h3:contains(\"Unit Navigation\")").length)
+	if (mapsource.parents(tweak_bb.row_element).children(".item:contains(\"Unit Navigation\")").length)
 		mapsource.addClass("horizontal");
 		
 	// set up container div for dynamic map
@@ -118,6 +119,8 @@ function dynamicTextMap() {
 				tweakmap.addClass("noCustomStyle");
 			return customStyled;
 		};
+		
+		// lookup headers once
 		
 		// append links to map: set up in closure to allow for delayed calling after CSS has loaded
 		this.applyFormatting = function() {		
@@ -224,10 +227,10 @@ if (dynamicTextMapInstance.hasCustomStyle()) {
 	jQuery(function($){
 		//force load stylesheets
 		var styleSheets = new Array();
-		$(tweak_bb.page_id + ".loadStyle").each(function(){
-			styleSheets.push($(this).text());
-		});
-		$(tweak_bb.page_id + "> li > h3:contains('Stylesheet')").parents(tweak_bb.row_element).hide().each(function(){
+		$(tweak_bb.page_id + ".loadStyle").each(function(){ styleSheets.push($(this).text()); });
+		var styleSheetHeaders = jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:contains('Stylesheet')");
+		alert("styleSheetHeaders"+styleSheetHeaders.length);
+		styleSheetHeaders.each(function(){
 			if ($(this).find("div.loadStyle").length == 0) {
 				$(this).find("ul.attachments").find("a").each(function() {
 					var thisLink = $(this).attr("href");
@@ -235,14 +238,15 @@ if (dynamicTextMapInstance.hasCustomStyle()) {
 				});
 			}
 		});
-		if ($("body.ineditmode").length) {
-			$(tweak_bb.page_id + "> li > h3:contains('Stylesheet')").parents(tweak_bb.row_element).show();
-		}
+		
+		if ($("body.ineditmode").length == 0)
+			styleSheetHeaders.parents(tweak_bb.row_element).hide();
+
 		var numStylesheets = styleSheets.length;
 		if (numStylesheets) {
 			var $head = $("head");
 			for (var i = 0; i < numStylesheets; i++) {
-				if (jQuery("link[href*='"+styleSheets[i]+"']").length == 0) {
+				if ($head.find("link[href*='"+styleSheets[i]+"']").length == 0) {
 					var cssNode = document.createElement('link');
 					cssNode.type = 'text/css';
 					cssNode.rel = 'stylesheet';
