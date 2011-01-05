@@ -27,7 +27,7 @@ jQuery(function($) {
 			$("#content").replaceWith($("iframe:eq(0)").get());
 		else
 		{ // look for item called web package
-			var webPackageLink = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children("h3.item, div.item").filter(":cicontains(\"Web Package\")").parents(tweak_bb.row_element).find("a:first");
+			var webPackageLink = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:cicontains(\"Web Package\")").parents(tweak_bb.row_element).find("a:first");
 			if(webPackageLink.length)
 				$("#content").html("<iframe src=\""+webPackageLink.attr("href")+"\" width=\"100%\" height=\"950\" frameBorder=\"0\"></iframe>");
 		} 

@@ -107,8 +107,7 @@ if(debug)
 	for(var i = 0; i < intMenuItems.length; i++) {
 		var altText = (intMenuItems[i].desc.length > 0) ? intMenuItems[i].desc : intMenuItems[i].title;
 		menuHTML+= "<a href='"+ intMenuItems[i].href + "' id='"+ intMenuItems[i].id +"' title='"+ altText +"' target='"+ intMenuItems[i].target +"'>"+ intMenuItems[i].title+"</a> ";
-		// set any corresponding image map item
-// optimise: benchmark new image map changes and compare against old - it seems to be much slower
+		// set any corresponding image map item. benchmark new image map changes
 		imageMapLinks.filter("[alt*="+intMenuItems[i].title+"]").attr("id", intMenuItems[i].id);
 		// consider swapping titles from image map alt to menu links to allow for shorter..
 	}	
@@ -119,7 +118,7 @@ if(debug)
 function addMenuToPage(menuLinksHTML) {
   // is this html, image or plain text menu?
 	
-// !!optimise point -- check clone remove attempts
+  // benchmark previous clone remove attempts
   // html options: add custom html to page and insert link menu
   if (jQuery("#menuHTMLSplash").length == 1) {
 	jQuery(tweak_bb.page_id).before(jQuery("#menuHTMLSplash"));
@@ -198,11 +197,11 @@ function selectSubPage() {
 
 /*** menu > content display and page loading code ***/
 function displaySection(menuid) {
-// optimise: tweak_bb.page_id+">"+tweak_bb.row_element+".menuitem"
+	// check minimal optimise: tweak_bb.page_id+">"+tweak_bb.row_element+".menuitem"
 	jQuery(".menuitem").hide();
 	if(jQuery(tweak_bb.page_id +" ."+menuid).length == 0)
 		loadMenuPage(menuid);
-// optimise: tweak_bb.page_id+">"+tweak_bb.row_element+"."+menuid
+	// check minimal optimise: tweak_bb.page_id+">"+tweak_bb.row_element+"."+menuid
 	jQuery(tweak_bb.page_id +" ."+menuid).show();
 	// consider: set class of menu container and selected item to be selected
 }

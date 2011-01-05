@@ -27,7 +27,8 @@ var replacementIconHeaders; // store global to save lookups
 // findReplacementIcon looks for id's specified and calls replace functions
 function findReplacementIcons() {
 	// set up ids from item text titles: todo just use cached list instead of lookup
-	replacementIconHeaders = jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).children("h3.item, div.item").filter(":contains('Replacement Icon')").addClass("replacementicon");
+	var headers = jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item");
+	replacementIconHeaders = headers.filter(":contains('Replacement Icon')").addClass("replacementicon");
 	replacementIconHeaders.filter(":contains('Everything Replacement')").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id", "replacementIcon");
 	
 	var replaceAllIconsImg = jQuery("#replacementIcon");
@@ -49,7 +50,7 @@ function findReplacementIcons() {
 		// look for teamsIcon_50x50.gif
 		replaceContentTypeIcon("teams","Wiki","replacementWikiIcon");
 		// row specific icons
-		replaceRowSpecificIcons();
+		replaceRowSpecificIcons(headers);
 	}
 	jQuery(tweak_bb.page_id +" div.item_icon img, "+tweak_bb.page_id +" img.item_icon, #titleicon").filter(".replaced").css("max-width", "64px");
 }
@@ -72,11 +73,10 @@ function getRowName(itemTitle, key) {
 	return jQuery.trim(jQuery(itemTitle).clone().find("div").remove().end().text().replace(key, ""));
 }
 // scan rows for row specific icons
-function replaceRowSpecificIcons() {
-	// title version
+function replaceRowSpecificIcons(headers) {
 	replacementIconHeaders.filter(":contains(':')").each(function(){
 		var replacementImage = jQuery(this).parents(tweak_bb.row_element).children("div.details").find("img:first");
-		jQuery(tweak_bb.page_id +" h3:contains('"+getRowName(this, "Replacement Icon:")+"'):not('.replacementicon')").each(function(){
+		headers.filter(":contains('"+getRowName(this, "Replacement Icon:")+"'):not('.replacementicon')").each(function(){
 			jQuery(this).parents(tweak_bb.row_element).find("img").eq(0).attr("src", replacementImage.attr("src")).addClass("replaced");
 		});
 	});

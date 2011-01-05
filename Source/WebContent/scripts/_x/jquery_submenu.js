@@ -30,7 +30,7 @@ jQuery(function($) {
  if (location.href.indexOf("listContent.jsp")>0) {
 
   // load headers as parsed several times in script
-  var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children("h3.item, div.item");
+  var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item");
 
   // if user not using HTML ID marker: look for "Menu Image" item >> if found: assign it's image an ID marker
   if ($("#menuHTML, #menuImage, #menuHTMLSplash").length == 0) // also #menuImageSplash, but leaving out in case the sub page item doesn't have marker
@@ -42,7 +42,7 @@ jQuery(function($) {
   $("#pageTitleDiv").hide(); // required? currently defaults to hiding the page title
 
   // find tweak item on page and mark previous item as end of menu
-  scriptRows.filter(":contains('Submenu')").prev("li:visible").find("h3:first").addClass("endMenu");
+  scriptRows.filter(":contains('Submenu')").prev("li:visible").find(".item:first").addClass("endMenu");
 
   // parse in content items until end of menu
   headers.filter(":visible").each(function() { 
@@ -241,7 +241,7 @@ function retriggerReplaceIcons() {
 		findReplacementIcons();
 		hideIcons();
 		// clean up
-		jQuery(tweak_bb.page_id +" h3.replacementicon, "+tweak_bb.page_id +" h3.hideicon").parents(tweak_bb.row_element).hide();	
+		jQuery(tweak_bb.page_id +" h3.replacementicon, "+tweak_bb.page_id +" div.replacementicon, "+tweak_bb.page_id +" h3.hideicon").parents(tweak_bb.row_element).hide();	
 		jQuery(tweak_bb.page_id +" img.replacementicon").hide();
 	}
 }

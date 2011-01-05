@@ -25,7 +25,7 @@ jQuery(function($){
 	window.tweak_bb = { page_id: "#pageList", row_element: "li" };
 	
   // load headers as parsed several times in script
-  var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children("h3.item, div.item");
+  var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item");
 
   $(tweak_bb.page_id+" map").children().each(function() {
 	var altText = $.trim($(this).attr("alt"));

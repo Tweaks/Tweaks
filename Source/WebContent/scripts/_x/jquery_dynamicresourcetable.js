@@ -22,7 +22,7 @@ jQuery(function($){
 		return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase())>=0;
 	};
 	// load headers as parsed several times in script
-	var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children("h3.item, div.item");
+	var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item");
 	
 	// find id="unitMap" or table in BB item "Unit Map"
 	if ($("#unitMap").length == 0)
