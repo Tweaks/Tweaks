@@ -33,9 +33,25 @@ jQuery(function($) {
 				node = node.parent();
 			node.addClass("faqQuestion").find(".faqQuestion").removeClass("faqQuestion");
 		});
+		// wrap text nodes
+		faqRows.each(function(){
+			var container = jQuery(this).find(".faqQuestion:first").parent();
+			container.contents().each(function(){
+				if (this.nodeType == 3)
+				{	
+					var thisText = jQuery.trim(this.data);
+					if (thisText) {
+						this.data = thisText;
+						jQuery(this).wrap("<span></span>")
+					}
+				}
+			});
+		});
+		
 		// fix this cross browser / deal with text nodes
 		faqRows.find(".faqQuestion").each(function(){
-			//jQuery(this).nextUntil(".faqQuestion, *:has(.faqQuestion)").wrap("<div class=\"faqAnswer\"><div>");
+			jQuery(this).nextUntil(".faqQuestion, *:has(.faqQuestion)").wrap("<div class=\"faqAnswer\"><div>");
+			/*
 			var $set = jQuery();
 			var nxt = this.nextSibling;
 			while(nxt) {
@@ -44,7 +60,7 @@ jQuery(function($) {
 					nxt = nxt.nextSibling;
 				} else break;
 			} 
-			$set.wrapAll('<div class="faqAnswer"/>');		
+			$set.wrapAll('<div class="faqAnswer"/>');		*/
 		}).click(function(){ // attach faq functionality
 			var faqShowing = (jQuery(this).next(".faqAnswer:visible").length > 0);
 			jQuery(".faqAnswer").hide();
