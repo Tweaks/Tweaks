@@ -151,6 +151,7 @@ function dynamicTextMap() {
 							mapItemLink.text(mapItemLink.text().replace("Module: ", ""));
 					}
 				}
+				if (!useBlackboardItemColours) { mapItemLink.html(mapItemLink.text()); }
 				mapItem.append(mapItemLink.clone()).addClass("topic").addClass("module"+colIndex);
 				// todo: make this optional
 				mapItem.filter(":not('.moduleHeader')").find("a").prepend("&diams;&nbsp; ");
@@ -158,7 +159,6 @@ function dynamicTextMap() {
 				var altText = mapItemLink.parents(tweak_bb.row_element).find("div.details").text();
 				altText = jQuery.trim(altText.replace(columnBreakHTXT, "").replace(columnBreakTXT, "").replace(rowBreakTXT, ""));
 				mapItem.find("a").attr("title", (altText.length) ? altText : mapItem.text());
-				if (!useBlackboardItemColours) { mapItem.find("a").html(mapItem.text()); }
 				// offset links
 				if (lastBase > 0)
 					mapItem.css("top", lastBase + verticalSpacing);
