@@ -182,7 +182,7 @@ function dynamicTextMap() {
 				}
 				var spacer = Math.round((imageWidth - totalColWidth) / (actualColumns + 1));
 
-				alert("spacer "+spacer+" actualColums "+actualColumns+" checkMaxWidth "+checkMaxWidth+" totalColWidth "+totalColWidth+" colWidth "+colWidth+" imageWidth "+imageWidth);	
+				// alert("spacer "+spacer+" actualColums "+actualColumns+" checkMaxWidth "+checkMaxWidth+" totalColWidth "+totalColWidth+" colWidth "+colWidth+" imageWidth "+imageWidth);	
 				if (columns == 2 || (columns == 4 && !horizontalLayout)) {
 					tweakmap.find(".module1, .module3").css("left", spacer +"px");
 					tweakmap.find(".module2, .module4").css("left", (2*spacer+colWidth)+"px");
@@ -272,7 +272,7 @@ if (dynamicTextMapInstance.hasCustomStyle()) {
 				delayedApply(waitToApply);
 			});
 		} else
-			delayedApply(101); // dynamicTextMapInstance.applyFormatting();
+			delayedApply(101);
 	});
 } else
-	delayedApply(100); // dynamicTextMapInstance.applyFormatting();
+	delayedApply(100); // if no delay applied, positioning out
