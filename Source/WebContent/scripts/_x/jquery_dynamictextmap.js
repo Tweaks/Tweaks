@@ -52,6 +52,7 @@ function dynamicTextMap() {
 			
 		// read in settings
 		var removeModuleText = !mapsource.hasClass("keepModuleText");
+		var useBlackboardItemColours = mapsource.hasClass("useBlackboardItemColours");
 		var staticPositioning = mapsource.hasClass("staticPositioning");
 		var horizontalLayout = mapsource.hasClass("horizontal");
 		if (!horizontalLayout) { tweakmap.addClass("linear"); }
@@ -150,7 +151,8 @@ function dynamicTextMap() {
 				var altText = mapItemLink.parents(tweak_bb.row_element).find("div.details").text();
 				altText = jQuery.trim(altText.replace(columnBreakHTXT, "").replace(columnBreakTXT, "").replace(rowBreakTXT, ""));
 				mapItem.find("a").attr("title", (altText.length) ? altText : mapItem.text());
-									
+				if (!useBlackboardItemColours) { mapItem.html(mapItem.text()); }
+				
 				// offset links
 				if (lastBase > 0)
 					mapItem.css("top", lastBase + verticalSpacing);
