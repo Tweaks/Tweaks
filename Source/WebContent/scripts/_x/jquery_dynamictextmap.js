@@ -15,6 +15,13 @@
 
 	* dynamic text map
 	* created/in development for BFLI project and Business Faculty
+	* settings -- add as class="" to image
+		customStyle: use custom style sheet (forces loading before laying out map)
+	  	keepModuleText: keep "Module" text in Module items
+		useBlackboardItemColours: use Blackboard Item colours
+		staticPositioning: position items in CSS
+		horizontal: horizontal layout
+
 	* todo:	MSIE CSS override load check
 	*			Dynamically shift down rows based on preceding row's position
 	*/
@@ -151,8 +158,7 @@ function dynamicTextMap() {
 				var altText = mapItemLink.parents(tweak_bb.row_element).find("div.details").text();
 				altText = jQuery.trim(altText.replace(columnBreakHTXT, "").replace(columnBreakTXT, "").replace(rowBreakTXT, ""));
 				mapItem.find("a").attr("title", (altText.length) ? altText : mapItem.text());
-				if (!useBlackboardItemColours) { mapItem.html(mapItem.text()); }
-				
+				if (!useBlackboardItemColours) { mapItem.find("a").html(mapItem.text()); }
 				// offset links
 				if (lastBase > 0)
 					mapItem.css("top", lastBase + verticalSpacing);
