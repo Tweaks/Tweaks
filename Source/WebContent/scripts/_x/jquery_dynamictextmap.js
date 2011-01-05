@@ -264,7 +264,7 @@ if (dynamicTextMapInstance.hasCustomStyle()) {
 				delayedApply(waitToApply);
 			});
 		} else
-			delayedApply(101);
+			dynamicTextMapInstance.applyFormatting();
 	});
 } else
-	delayedApply(10);
+	dynamicTextMapInstance.applyFormatting();
