@@ -24,7 +24,6 @@ todo	.splash page + change menu class
 */
 if (window.tweak_bb == null || window.tweak_bb.page_id == null)
 	window.tweak_bb = { page_id: "#pageList", row_element: "li" };
-var debug = (location.href.indexOf("debug")>0);
 var intMenuItems = new Array();
 jQuery(function($) {
  if (location.href.indexOf("listContent.jsp")>0) {
@@ -102,13 +101,15 @@ jQuery(function($) {
 function setupMenuLinks(intMenuItems) {
 	var menuHTML = "<div id=\"intmenu\">";
 	var imageMapLinks = jQuery("#menuHTMLSplash, #menuHTML").find("area");
-if(debug)
-	alert("here setup:"+imageMapLinks.length);
-	for(var i = 0; i < intMenuItems.length; i++) {
+	var imageMapLinksExist = (imageMapLinks.length > 0);
+	
+	var intMenuItemsLength = intMenuItems.length;
+	for(var i = 0; i < intMenuItemsLength; i++) {
 		var altText = (intMenuItems[i].desc.length > 0) ? intMenuItems[i].desc : intMenuItems[i].title;
 		menuHTML+= "<a href='"+ intMenuItems[i].href + "' id='"+ intMenuItems[i].id +"' title='"+ altText +"' target='"+ intMenuItems[i].target +"'>"+ intMenuItems[i].title+"</a> ";
 		// set any corresponding image map item. benchmark new image map changes
-		imageMapLinks.filter("[alt*="+intMenuItems[i].title+"]").attr("id", intMenuItems[i].id);
+		if (imageMapLinksExist)
+			imageMapLinks.filter("[alt*="+intMenuItems[i].title+"]").attr("id", intMenuItems[i].id);
 		// consider swapping titles from image map alt to menu links to allow for shorter..
 	}	
 	// trim trailing chars and return
@@ -124,8 +125,6 @@ function addMenuToPage(menuLinksHTML) {
 	jQuery(tweak_bb.page_id).before(jQuery("#menuHTMLSplash"));
 	jQuery(tweak_bb.page_id).before(jQuery("#menuHTML"));
 	jQuery("#menuLinksSplashDiv").html(menuLinksHTML);
-if(debug)
-  alert("here"+menuLinksHTML+ " " + jQuery("#menuHTMLSplash").length);
   } else if (jQuery("#menuHTML").length == 1) {
 	jQuery(tweak_bb.page_id).before(jQuery("#menuHTML"));
 	jQuery("#menuLinksDiv").html(menuLinksHTML);
@@ -273,18 +272,16 @@ var singleDecodeLink = function(url) {
 // image map description integration work: issue was menu was going above page -- but was looking in page to map
 function setupImageMapMouseover(headers) {
   // look for description
- jQuery("#menuHTMLSplash, #menuHTML").find("area").each(function(){
-  	  var header = headers.filter(":contains('"+jQuery.trim(jQuery(this).attr("alt"))+"')").eq(0);
-  	  if (header) {
-		  var desc = header.parents(tweak_bb.row_element).find("div.details > span").html();
+  if (jQuery("#description").length) {
+	jQuery("#menuHTMLSplash, #menuHTML").find("area").each(function(){
+	  var matchingHeader = headers.filter(":contains('"+jQuery.trim(jQuery(this).attr("alt"))+"')").eq(0);
+	  if (matchingHeader.length) {
+		  var desc = matchingHeader.parents(tweak_bb.row_element).find("div.details > span").html();
 		  if (desc) { jQuery(this).data("desc", desc); }
 	  }
-  })
-  // attach description event
-  if (jQuery("#description, .description").length) {
-	jQuery("#menuHTMLSplash, #menuHTML").find("area").mouseover(function(){
-		var desc = jQuery(this).data("desc");
-		if (desc != null) { jQuery("#description, .description").html(desc); }
+	}).mouseover(function(){
+	  var desc = jQuery(this).data("desc");
+	  if (desc != null) { jQuery("#description").html(desc); }
 	});
   }
 }
