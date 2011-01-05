@@ -49,7 +49,9 @@ jQuery(function($) {
 			var faqShowing = (jQuery(this).next(".faqAnswer:visible").length > 0);
 			jQuery(".faqAnswer").hide();
 			jQuery(this).nextUntil(".faqQuestion, *:has(.faqQuestion)").toggle(!faqShowing);
-		}).find(".faqAnswer").hide(); // hide on init
+		});
+		// hide on init
+		faqRows.find(".faqAnswer").hide();
 	}
 });
 		//jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq *[style*='bold']").addClass("faqQuestion").each(function(){
