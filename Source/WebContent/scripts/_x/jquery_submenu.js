@@ -13,14 +13,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
    
-ajax version of submenu 0.2. author Tim Plaisted 2010
+ajax version of submenu 1.0. author Tim Plaisted 2010-2011
 generates a text overlay menu for the page's items
 looks for "Menu Image" item,  #menuImage, #menuImageSplash > generates Image menu
 		  #menuHTML,#menuHTMLSplash > generates HTML menu
-		  or generates a text menu
-		  
-todo	.splash page + change menu class
-		selected
+		  or generates a text menu		  
 */
 if (window.tweak_bb == null || window.tweak_bb.page_id == null)
 	window.tweak_bb = { page_id: "#pageList", row_element: "li" };
@@ -162,10 +159,15 @@ function dynamicPositionImageMenu() {
 function setupMenuEvents() {
   jQuery("#intmenu, #menuHTMLSplash, #menuHTML").find("a, area").click(function(event) {
   	var link = jQuery(this);
+  	// load content if submenu link or return if normal link
     if(link.attr("href").indexOf("#") != (link.attr("href").length-1)) { return true; } // use regex: IE fix href includes server
 	displaySection(link.attr("id"));
+	// update Title
 	var title = (link.filter("[alt]").length==0) ? link.text() : link.attr("alt");
 	updateTitle(title);
+	// mark Selection
+	jQuery("#intmenu a").removeClass("selected");
+	link.addClass("selected");
 	if (jQuery("#menuHTMLSplash, #menuImageSplash").length)
 		selectSubPage();
     event.preventDefault();
@@ -271,7 +273,6 @@ var singleDecodeLink = function(url) {
 
 // image map description integration work: issue was menu was going above page -- but was looking in page to map
 function setupImageMapMouseover(headers) {
-  // look for description
   if (jQuery("#description").length) {
 	jQuery("#menuHTMLSplash, #menuHTML").find("area").each(function(){
 	  var matchingHeader = headers.filter(":contains('"+jQuery.trim(jQuery(this).attr("alt"))+"')").eq(0);
