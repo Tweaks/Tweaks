@@ -18,20 +18,23 @@
 /* nextUntil Including TextNodes adapted from StackOverflow: http://stackoverflow.com/questions/3276133/jquery-wrapping-text-and-elements-between-hr-tags */
 jQuery(function($) {
 	// find faqs
-	var faqRows = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:contains('FAQ')").parents(tweak_bb.row_element).addClass("faq");
+	var faqRows = jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:contains('FAQ')").parents(tweak_bb.row_element).addClass("faq");
 	if (faqRows) {
 		// find questions and answers
+
 		// jQuery 1.4.2 bug: faqRows.children("div.details").find("b, strong, *[style*='bold']").addClass("faqQuestion").each(function(){
+
 		// set up questions and make sure parent is at top level of content
-		jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq div[style*=bold], #pageList .faq span[style*=bold]").addClass("faqQuestion").each(function(){
+		faqRows.find("div.details").find("b, strong, div[style*=bold], span[style*=bold]").addClass("faqQuestion").each(function(){
+			//jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq div[style*=bold], #pageList .faq span[style*=bold]").addClass("faqQuestion").each(function(){
 			var node = jQuery(this);
 			// test while / if
-			while(node.parents("div.details").length && !node.parent().is("span.fnt0"))
+			while(node.parents("div.details").length && !node.parent().is("span.fnt0") && !node.parent().is("div.vtbegenerated"))
 				node = node.parent();
 			node.addClass("faqQuestion").find(".faqQuestion").removeClass("faqQuestion");
 		});
 		// fix this cross browser / deal with text nodes
-		jQuery("#pageList .faqQuestion").each(function(){
+		faqRows.find(".faqQuestion").each(function(){
 			//jQuery(this).nextUntil(".faqQuestion, *:has(.faqQuestion)").wrap("<div class=\"faqAnswer\"><div>");
 			var $set = jQuery();
 			var nxt = this.nextSibling;
@@ -42,15 +45,11 @@ jQuery(function($) {
 				} else break;
 			} 
 			$set.wrapAll('<div class="faqAnswer"/>');		
-		});
-		// attach faq functionality
-		faqRows.find(".faqQuestion").click(function(){
+		}).click(function(){ // attach faq functionality
 			var faqShowing = (jQuery(this).next(".faqAnswer:visible").length > 0);
 			jQuery(".faqAnswer").hide();
 			jQuery(this).nextUntil(".faqQuestion, *:has(.faqQuestion)").toggle(!faqShowing);
-		});
-		// hide on init
-		jQuery(".faqAnswer").hide();
+		}).find(".faqAnswer").hide(); // hide on init
 	}
 });
 		//jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq *[style*='bold']").addClass("faqQuestion").each(function(){
