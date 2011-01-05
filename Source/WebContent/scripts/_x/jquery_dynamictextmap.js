@@ -66,10 +66,10 @@ function dynamicTextMap() {
 			
 		// look through links to count total columns/modules in advance for formatting and add class for retrieval
 		var columns = 0, itemIndex = 0, rows = 0, thisRowCols = 0, maxRowCols = 0;
-		mapsource.parents(tweak_bb.row_element).nextAll(tweak_bb.row_element).each(function(){
+		tweakmap.parents(tweak_bb.row_element).nextAll(tweak_bb.row_element).each(function(){
 			var thisItem = jQuery(this).find("h3:first");
 			// process until Visual Unit Map Tweak
-			if (thisItem.length == 0 || (thisItem.text().indexOf("Tweak")>-1 && thisItem.parents(tweak_bb.row_element).find("div.details:contains(\"map\")").length))
+			if (thisItem.length == 0 || (thisItem.text().indexOf("Tweak")>-1)) // && thisItem.parents(tweak_bb.row_element).find("div.details:contains(\"map\")").length))
 				return false;
 
 			var itemTitleLink = thisItem.find("a:first").addClass("mapItemLink"); // add class for retrieval
@@ -100,6 +100,7 @@ function dynamicTextMap() {
 				}
 			}
 		});
+		
 		var imageWidth = tweakmap.width();
 		var actualColumns = (columns < 4) ? columns : ((columns == 4) ? 2 : 3);
 		if (horizontalLayout)
@@ -108,7 +109,7 @@ function dynamicTextMap() {
 		// hide content items in Edit mode off
 		if(location.href.indexOf("Content.")>0)
 		{
-			jQuery(tweak_bb.page_id + ".mapItemLink").parents(tweak_bb.row_element).hide();
+			jQuery(tweak_bb.page_id + " .mapItemLink").parents(tweak_bb.row_element).hide();
 			jQuery("#tweakmap").parents(tweak_bb.row_element).show();
 		}
 		
@@ -126,7 +127,7 @@ function dynamicTextMap() {
 		this.applyFormatting = function() {		
 			var lastBase = 0, verticalSpacing = 5; // consider taking from CSS if possible to query before writing map? "#tweakmap div.topic:not(\".moduleHeader\"):eq(0)").css("line-height")
 			var colIndex = 1; // 1 indexed column for css and readability
-			jQuery(tweak_bb.page_id + ".mapItemLink").each(function(mapItemCount) {
+			jQuery(tweak_bb.page_id + " .mapItemLink").each(function(mapItemCount) {
 				var mapItemLink = jQuery(this);				
 				tweakmap.append("<div id=\"mapitem"+mapItemCount+"\"></div>");
 				var mapItem = jQuery("#mapitem"+mapItemCount);
@@ -229,7 +230,7 @@ if (dynamicTextMapInstance.hasCustomStyle()) {
 		var styleSheets = new Array();
 		$(tweak_bb.page_id + ".loadStyle").each(function(){ styleSheets.push($(this).text()); });
 		var styleSheetHeaders = jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:contains('Stylesheet')");
-		alert("styleSheetHeaders"+styleSheetHeaders.length);
+		//alert("styleSheetHeaders"+styleSheetHeaders.length);
 		styleSheetHeaders.each(function(){
 			if ($(this).find("div.loadStyle").length == 0) {
 				$(this).find("ul.attachments").find("a").each(function() {
@@ -266,4 +267,4 @@ if (dynamicTextMapInstance.hasCustomStyle()) {
 			delayedApply(101);
 	});
 } else
-	delayedApply(100);
+	delayedApply(10);
