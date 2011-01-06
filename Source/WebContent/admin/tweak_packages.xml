@@ -243,7 +243,9 @@ IE 7, IE 8</description>
 <available>true</available>
 <description>Tested:&#13;
 Firefox 3.6&#13;
-Chrome B10</description>
+Safari 5 Mac&#13;
+Chrome B10&#13;
+IE 7, IE 8</description>
 <instruction>This tweak dynamically overlays an image with any Blackboard folders, site links or external links on the page. It positions and styles the links based on predesigned stylesheet options.&lt;br/&gt;&lt;br/&gt;1. Add a Blackboard item named 'Unit Map'. Add an image for the unit map to this item.&lt;br/&gt;2. Position this item on your Blackboard page above the items you wish to be added to the image map.&lt;br/&gt;3. Position the Tweak below the last folder you wise to be added to the unit image menu.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_dynamictextmap.js',
 css: 'styles/dynamictextmap.css']]></embed>
@@ -334,8 +336,10 @@ IE 7, IE 8</description>
 <visible>true</visible>
 <available>true</available>
 <description>Tested:&#13;
+Firefox 3.6&#13;
+Safari 5 Mac&#13;
 Chrome B10&#13;
-</description>
+IE 7, IE 8</description>
 <instruction>This tweak creates a clickable FAQ section.&lt;br/&gt;&lt;br/&gt;1. Create a new item on your Blackboard page with 'FAQ' included somewhere in the title. &lt;br/&gt;2. *Type* your Questions and Answers into the text editor ensuring all Questions and Answers start on a new line. &lt;br/&gt;3. Highlight the text of each Question and make it bold using the Bold text formatting button in the rich text editor toolbar.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_faq.js',
 css: 'styles/faq.css']]></embed>
