@@ -15,7 +15,6 @@
 
  * jquery_faq
  */
-/* nextUntil Including TextNodes adapted from StackOverflow: http://stackoverflow.com/questions/3276133/jquery-wrapping-text-and-elements-between-hr-tags */
 jQuery(function($) {
 	// find faqs
 	var faqRows = jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:contains('FAQ')").parents(tweak_bb.row_element).addClass("faq");
@@ -39,7 +38,7 @@ jQuery(function($) {
 				node = node.parent();
 			node.addClass("faqQuestion").find(".faqQuestion").removeClass("faqQuestion");
 		});
-		// wrap text nodes
+		// wrap any text nodes
 		faqRows.each(function(){
 			var container = jQuery(this).find(".faqQuestion:first").parent();
 			container.contents().each(function(){
@@ -57,16 +56,6 @@ jQuery(function($) {
 		// fix this cross browser / deal with text nodes
 		faqRows.find(".faqQuestion").each(function(){
 			jQuery(this).nextUntil(".faqQuestion, *:has(.faqQuestion)").wrap("<div class=\"faqAnswer\"><div>");
-			/*
-			var $set = jQuery();
-			var nxt = this.nextSibling;
-			while(nxt) {
-				if(!jQuery(nxt).is('.faqQuestion, *:has(.faqQuestion)')) {
-					$set.push(nxt);
-					nxt = nxt.nextSibling;
-				} else break;
-			} 
-			$set.wrapAll('<div class="faqAnswer"/>');		*/
 		}).click(function(){ // attach faq functionality
 			var faqShowing = (jQuery(this).next(".faqAnswer:visible").length > 0);
 			jQuery(".faqAnswer").hide();
@@ -76,44 +65,3 @@ jQuery(function($) {
 		faqRows.find(".faqAnswer").hide();
 	}
 });
-		//jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq *[style*='bold']").addClass("faqQuestion").each(function(){
-		//alert(faqRows.find("div.details").find("b, strong, *[style*=bold]").length);
-		//alert(faqRows.find("div.details").find("b, strong, span[style*=bold], div[style*=bold]").length);
-		//alert(jQuery("#pageList .faq span[style*=bold]").length);
-
-		/*
-		var questionsFound = 0;
-		jQuery("#tq").each(function(){
-			//var startElem = jQuery("#tq").get();
-			questionsFound++;
-			jQuery(this).addClass("faqQuestionStart"+questionsFound);
-			var foundBegin = false;
-			var foundEnd = false;
-			//var $set = jQuery();
-			jQuery("#tq").parents("div.details").children().contents().each(function() {
-				if(jQuery(this).is('.faqQuestionStart, *:has(.faqQuestionStart)')) { foundBegin = true; alert("hereB"); } // '.faqQuestionStart, *:has(.faqQuestionStart)'
-				if(jQuery(this).is('.faqQuestion, *:has(.faqQuestion)')) { foundEnd = true;	alert("hereE");}
-				if (foundBegin && !foundEnd)
-					alert("hereX"); // $set.push(jQuery(this).get());
-			}); //.wrapAll('<div class="faqAnswer"/>');​
-		});*/
-			//jQuery(this).removeClass("faqQuestionStart").addClass("faqQuestion");
-		
-		//jQuery(this).nextUntil(".faqQuestion, *:has(.faqQuestion)").wrap("<div class=\"faqAnswer\"><div>");
-		/*
-		var $set = $();
-		var nxt = this.nextSibling;
-		if 
-		while(nxt) {
-			if(!$(nxt).is('.faqQuestion, *:has(.faqQuestion)')) {
-				$set.push(nxt);
-				nxt = nxt.nextSibling;
-			} else break;
-		} 
-		
-		$set.wrapAll('<div class="faqAnswer"/>');
-		*/
-		/* old style 
-		jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq *[style*='bold']").addClass("faqQuestion").each(function(){
-			var jQuery(this).nextUntil(".faqQuestion, *:has(.faqQuestion)").addClass("
-			*/
