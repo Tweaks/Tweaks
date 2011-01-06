@@ -25,7 +25,13 @@ jQuery(function($) {
 		// jQuery 1.4.2 bug: faqRows.children("div.details").find("b, strong, *[style*='bold']").addClass("faqQuestion").each(function(){
 
 		// set up questions and make sure parent is at top level of content
-		faqRows.find("div.details").find("b, strong, div[style*=bold], span[style*=bold]").addClass("faqQuestion").each(function(){
+		faqRows.find("div.details").find("b, strong").addClass("faqQuestion");
+		// ie7 workaround
+		faqRows.find("div.details").find("div, span").filter(function(){
+				return (jQuery(this).attr("style") && jQuery(this).attr("style").indexOf("bold")>0);
+			}).addClass("faqQuestion");
+		
+		faqRows.find(".faqQuestion").each(function(){
 			//jQuery("#pageList .faq b, #pageList .faq strong, #pageList .faq div[style*=bold], #pageList .faq span[style*=bold]").addClass("faqQuestion").each(function(){
 			var node = jQuery(this);
 			// test while / if
