@@ -25,10 +25,10 @@ jQuery(function($) {
 			$("#content").replaceWith($("iframe:eq(0)").get());
 		else
 		{ // look for item called web package
-			var webPackageLink = $(tweak_bb.page_id +" h3:cicontains(\"Site Link\")").parents(tweak_bb.row_element).find("a:first");
-			unWrapLink(webPackageLink);
-			if(webPackageLink.length)
+			var webPackageLink = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:cicontains(\"Site Link\")").parents(tweak_bb.row_element).find("a:first");
+			if (webPackageLink.length)
 			{
+				unWrapLink(webPackageLink);
 				$("#content").hide();
 				$("#content").html("<iframe src=\""+webPackageLink.attr("href")+"\" width=\"100%\" height=\"2950\" frameBorder=\"0\"></iframe>");
 				$("#content iframe").load(restyleFrame).ready(restyleFrame);
@@ -46,6 +46,7 @@ function restyleFrame() {
 		frame.find("body").css("padding","0");
 		frame.find("div.locationPane").css("margin-top", "0");
 		frame.find("#contentPane, div.contentPane").css("margin","0px 4px 0px 0px");
+		frame.find("script.tweak_script").parents(tweak_bb.row_element).hide();
 		frame.find("a").click(function(){
 			// filtering better here as only occurs on click?
 			if (jQuery(this).attr("href") == "#" ||

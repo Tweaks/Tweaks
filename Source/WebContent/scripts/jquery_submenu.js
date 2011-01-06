@@ -13,40 +13,38 @@
    See the License for the specific language governing permissions and
    limitations under the License.
    
-ajax version of submenu 0.2. author Tim Plaisted 2010
+ajax version of submenu 1.0. author Tim Plaisted 2010-2011
 generates a text overlay menu for the page's items
 looks for "Menu Image" item,  #menuImage, #menuImageSplash > generates Image menu
 		  #menuHTML,#menuHTMLSplash > generates HTML menu
-		  or generates a text menu
-		  
-todo	.splash page + change menu class
-		selected
+		  or generates a text menu		  
 */
 if (window.tweak_bb == null || window.tweak_bb.page_id == null)
 	window.tweak_bb = { page_id: "#pageList", row_element: "li" };
-
+var intMenuItems = new Array();
 jQuery(function($) {
  if (location.href.indexOf("listContent.jsp")>0) {
 
-  // parse page content into array
-  var intMenuItems = new Array();
-  
+  // load headers as parsed several times in script
+  var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item");
+
   // if user not using HTML ID marker: look for "Menu Image" item >> if found: assign it's image an ID marker
   if ($("#menuHTML, #menuImage, #menuHTMLSplash").length == 0) // also #menuImageSplash, but leaving out in case the sub page item doesn't have marker
-  	$(tweak_bb.page_id +" h3:contains(\"Menu Image\"):eq(0)").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","menuImage");
+  	headers.filter(":contains(\"Menu Image\"):eq(0)").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","menuImage");
   
   // make sure script items, hidden classes and menu constructors not included
-  $(tweak_bb.page_id +" .hidemyrow, "+tweak_bb.page_id+" script.tweak_script, #menuHTML, #menuImage, #menuHTMLSplash, #menuImageSplash").parents(tweak_bb.row_element).hide();
+  var scriptRows = $(tweak_bb.page_id+" script.tweak_script").parents(tweak_bb.row_element).hide();
+  $("#menuHTML, #menuImage, #menuHTMLSplash, #menuImageSplash").parents(tweak_bb.row_element).hide();
   $("#pageTitleDiv").hide(); // required? currently defaults to hiding the page title
 
   // find tweak item on page and mark previous item as end of menu
-  $(tweak_bb.page_id +" script.tweak_script").parents(tweak_bb.row_element+":contains('Submenu')").prev("li:visible").find("h3:first").addClass("endMenu");
+  scriptRows.filter(":contains('Submenu')").prev("li:visible").find(".item:first").addClass("endMenu");
 
-  // parse in content items until end of menu: consider filter or nextUntil ^ I think even speed?
-  $(tweak_bb.page_id +" > "+tweak_bb.row_element+":visible").find("h3.item, div.item h3").each(function() { 
+  // parse in content items until end of menu
+  headers.filter(":visible").each(function() { 
   	// base functionality : folders
-	var title = $.trim($(this).text());
-	var id = "menu"+($(this).hasClass("item") ? $(this).attr("id") : $(this).parent().attr("id"));
+	var title = $.trim($(this).text()); /* todo: check this 9.x */
+	var id = $(this).attr("id");
 	var desc = $.trim($(this).parents(tweak_bb.row_element).find("div.details").text().replace("'",""));
 	var href= "#";
 	var target = "self";
@@ -73,7 +71,8 @@ jQuery(function($) {
 		return false;
 	}
   });
-  $("h3.inMenu").parents(tweak_bb.row_element).hide();
+  // hide in menu rows initially
+  headers.filter(".inMenu").parents(tweak_bb.row_element).hide();
 
   // generate menu links HTML from array
   var menuLinksHTML = setupMenuLinks(intMenuItems);
@@ -83,34 +82,48 @@ jQuery(function($) {
   
   // setup menu event actions
   setupMenuEvents();
+// todo: see if this can work split back into image map tweak
+  setupImageMapMouseover(headers);
   
   // see if there is an item to display on load
-  $("#displayFirst").parents(tweak_bb.row_element).find("h3").each(function(){ displaySection("menu"+jQuery(this).attr("id")); updateTitle(jQuery.trim(jQuery(this).text())); });
- } 
+  $("#displayFirst").parents(tweak_bb.row_element).find(".item:first").each(function(){ 
+    var title = $.trim($(this).text()); // todo: check this 9.x
+  	displaySection($(this).attr("id"), updateTitle(title)); 
+  });
+ }
 });
 
 /*** menu structure setup ***/
 // build components of menu text version
 function setupMenuLinks(intMenuItems) {
 	var menuHTML = "<div id=\"intmenu\">";
-	for(var i = 0; i < intMenuItems.length; i++) {
+	var imageMapLinks = jQuery("#menuHTMLSplash, #menuHTML").find("area");
+	var imageMapLinksExist = (imageMapLinks.length > 0);
+	
+	var intMenuItemsLength = intMenuItems.length;
+	for(var i = 0; i < intMenuItemsLength; i++) {
 		var altText = (intMenuItems[i].desc.length > 0) ? intMenuItems[i].desc : intMenuItems[i].title;
 		menuHTML+= "<a href='"+ intMenuItems[i].href + "' id='"+ intMenuItems[i].id +"' title='"+ altText +"' target='"+ intMenuItems[i].target +"'>"+ intMenuItems[i].title+"</a> ";
-	}
+		// set any corresponding image map item. benchmark new image map changes
+		if (imageMapLinksExist)
+			imageMapLinks.filter("[alt*="+intMenuItems[i].title+"]").attr("id", intMenuItems[i].id);
+		// consider swapping titles from image map alt to menu links to allow for shorter..
+	}	
 	// trim trailing chars and return
 	return menuHTML.replace(/ $/, "</div>");
 }
 
 function addMenuToPage(menuLinksHTML) {
   // is this html, image or plain text menu?
-
+	
+  // benchmark previous clone remove attempts
   // html options: add custom html to page and insert link menu
   if (jQuery("#menuHTMLSplash").length == 1) {
-	jQuery(tweak_bb.page_id +"").before(jQuery("#menuHTMLSplash").clone().remove());
-	jQuery(tweak_bb.page_id +"").before(jQuery("#menuHTML").clone().remove());
+	jQuery(tweak_bb.page_id).before(jQuery("#menuHTMLSplash"));
+	jQuery(tweak_bb.page_id).before(jQuery("#menuHTML"));
 	jQuery("#menuLinksSplashDiv").html(menuLinksHTML);
   } else if (jQuery("#menuHTML").length == 1) {
-	jQuery(tweak_bb.page_id +"").before(jQuery("#menuHTML").clone().remove());
+	jQuery(tweak_bb.page_id).before(jQuery("#menuHTML"));
 	jQuery("#menuLinksDiv").html(menuLinksHTML);
   }
   else // image or plain text options: setup html, then add to page
@@ -144,10 +157,17 @@ function dynamicPositionImageMenu() {
 
 //-- menu events functionality --
 function setupMenuEvents() {
-  jQuery("#intmenu a").click(function(event) {
-    if(jQuery(this).attr("href").indexOf("#") != (jQuery(this).attr("href").length-1)) { return true; } // use regex: IE fix href includes server
-	displaySection(jQuery(this).attr("id"));
-	updateTitle(jQuery(this).text());
+  jQuery("#intmenu, #menuHTMLSplash, #menuHTML").find("a, area").click(function(event) {
+  	var link = jQuery(this);
+  	// load content if submenu link or return if normal link
+    if(link.attr("href").indexOf("#") != (link.attr("href").length-1)) { return true; } // use regex: IE fix href includes server
+	displaySection(link.attr("id"));
+	// update Title
+	var title = (link.filter("[alt]").length==0) ? link.text() : link.attr("alt");
+	updateTitle(title);
+	// mark Selection
+	jQuery("#intmenu a").removeClass("selected");
+	link.addClass("selected");
 	if (jQuery("#menuHTMLSplash, #menuImageSplash").length)
 		selectSubPage();
     event.preventDefault();
@@ -178,9 +198,11 @@ function selectSubPage() {
 
 /*** menu > content display and page loading code ***/
 function displaySection(menuid) {
+	// check minimal optimise: tweak_bb.page_id+">"+tweak_bb.row_element+".menuitem"
 	jQuery(".menuitem").hide();
 	if(jQuery(tweak_bb.page_id +" ."+menuid).length == 0)
 		loadMenuPage(menuid);
+	// check minimal optimise: tweak_bb.page_id+">"+tweak_bb.row_element+"."+menuid
 	jQuery(tweak_bb.page_id +" ."+menuid).show();
 	// consider: set class of menu container and selected item to be selected
 }
@@ -220,7 +242,7 @@ function retriggerReplaceIcons() {
 		findReplacementIcons();
 		hideIcons();
 		// clean up
-		jQuery(tweak_bb.page_id +" h3.replacementicon, "+tweak_bb.page_id +" h3.hideicon").parents(tweak_bb.row_element).hide();	
+		jQuery(tweak_bb.page_id +" h3.replacementicon, "+tweak_bb.page_id +" div.replacementicon, "+tweak_bb.page_id +" h3.hideicon").parents(tweak_bb.row_element).hide();	
 		jQuery(tweak_bb.page_id +" img.replacementicon").hide();
 	}
 }
@@ -248,16 +270,19 @@ function localFixLearningObjLink($) {
 var singleDecodeLink = function(url) {
 	return url.replace(/%253D/g, "%3D").replace(/%2526/g, "%26");
 };
-/* end header code script */
 
-// hash / bookmarking code -- implemented when I needed intra section links - now not essential but may be request..
-  // url hash = id for linking / bookmarking / lookup > display first
-  /* TODO - consider smarts
-  if (document.location.hash.length) {
-	updateTitle($(document.location.hash.replace(/^\#/, "#menu")).text());
-  	$(document.location.hash.replace(/^\#/, ".menu")).show();
-  	window.scroll(0,0);
-  } else { // show first
-	updateTitle(intMenuItems[0].title);
-	$("."+intMenuItems[0].id).show();
-  }*/
+// image map description integration work: issue was menu was going above page -- but was looking in page to map
+function setupImageMapMouseover(headers) {
+  if (jQuery("#description").length) {
+	jQuery("#menuHTMLSplash, #menuHTML").find("area").each(function(){
+	  var matchingHeader = headers.filter(":contains('"+jQuery.trim(jQuery(this).attr("alt"))+"')").eq(0);
+	  if (matchingHeader.length) {
+		  var desc = matchingHeader.parents(tweak_bb.row_element).find("div.details > span").html();
+		  if (desc) { jQuery(this).data("desc", desc); }
+	  }
+	}).mouseover(function(){
+	  var desc = jQuery(this).data("desc");
+	  if (desc != null) { jQuery("#description").html(desc); }
+	});
+  }
+}

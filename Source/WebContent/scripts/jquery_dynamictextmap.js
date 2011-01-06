@@ -15,6 +15,13 @@
 
 	* dynamic text map
 	* created/in development for BFLI project and Business Faculty
+	* settings -- add as class="" to image
+		customStyle: use custom style sheet (forces loading before laying out map)
+	  	keepModuleText: keep "Module" text in Module items
+		useBlackboardItemColours: use Blackboard Item colours
+		staticPositioning: position items in CSS
+		horizontal: horizontal layout
+
 	* todo:	MSIE CSS override load check
 	*			Dynamically shift down rows based on preceding row's position
 	*/
@@ -26,14 +33,15 @@ function dynamicTextMap() {
 	jQuery.expr[':'].contains = function(a,i,m){
 		return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase())>=0;
 	};
+	
 	// find image map image source
 	var mapsource = jQuery("#dynamicmap");
 	// if no item with ID, search for item titled Unit Map or Unit Navigation (horizontal layout)
 	if (mapsource.length == 0)
-		mapsource = jQuery(tweak_bb.page_id).find("h3:contains(\"Unit Map\"), h3:contains(\"Unit Navigation\")").parents(tweak_bb.row_element).find("div.details").find("img:first");
+		mapsource = jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item").filter(":contains(\"Unit Map\"), :contains(\"Unit Navigation\")").parents(tweak_bb.row_element).find("div.details").find("img:first");
 
 	// horizontal layout - text to be confirmed
-	if (mapsource.parents(tweak_bb.row_element).find("h3:contains(\"Unit Navigation\")").length)
+	if (mapsource.parents(tweak_bb.row_element).children(".item:contains(\"Unit Navigation\")").length)
 		mapsource.addClass("horizontal");
 		
 	// set up container div for dynamic map
@@ -51,6 +59,7 @@ function dynamicTextMap() {
 			
 		// read in settings
 		var removeModuleText = !mapsource.hasClass("keepModuleText");
+		var useBlackboardItemColours = mapsource.hasClass("useBlackboardItemColours");
 		var staticPositioning = mapsource.hasClass("staticPositioning");
 		var horizontalLayout = mapsource.hasClass("horizontal");
 		if (!horizontalLayout) { tweakmap.addClass("linear"); }
@@ -65,10 +74,10 @@ function dynamicTextMap() {
 			
 		// look through links to count total columns/modules in advance for formatting and add class for retrieval
 		var columns = 0, itemIndex = 0, rows = 0, thisRowCols = 0, maxRowCols = 0;
-		mapsource.parents(tweak_bb.row_element).nextAll(tweak_bb.row_element).each(function(){
+		tweakmap.parents(tweak_bb.row_element).nextAll(tweak_bb.row_element).each(function(){
 			var thisItem = jQuery(this).find("h3:first");
 			// process until Visual Unit Map Tweak
-			if (thisItem.length == 0 || (thisItem.text().indexOf("Tweak")>-1 && thisItem.parents(tweak_bb.row_element).find("div.details:contains(\"map\")").length))
+			if (thisItem.length == 0 || (thisItem.text().indexOf("Tweak")>-1)) // && thisItem.parents(tweak_bb.row_element).find("div.details:contains(\"map\")").length))
 				return false;
 
 			var itemTitleLink = thisItem.find("a:first").addClass("mapItemLink"); // add class for retrieval
@@ -99,6 +108,7 @@ function dynamicTextMap() {
 				}
 			}
 		});
+		
 		var imageWidth = tweakmap.width();
 		var actualColumns = (columns < 4) ? columns : ((columns == 4) ? 2 : 3);
 		if (horizontalLayout)
@@ -107,7 +117,7 @@ function dynamicTextMap() {
 		// hide content items in Edit mode off
 		if(location.href.indexOf("Content.")>0)
 		{
-			jQuery(tweak_bb.page_id + ".mapItemLink").parents(tweak_bb.row_element).hide();
+			jQuery(tweak_bb.page_id + " .mapItemLink").parents(tweak_bb.row_element).hide();
 			jQuery("#tweakmap").parents(tweak_bb.row_element).show();
 		}
 		
@@ -119,11 +129,13 @@ function dynamicTextMap() {
 			return customStyled;
 		};
 		
+		// lookup headers once
+		
 		// append links to map: set up in closure to allow for delayed calling after CSS has loaded
 		this.applyFormatting = function() {		
 			var lastBase = 0, verticalSpacing = 5; // consider taking from CSS if possible to query before writing map? "#tweakmap div.topic:not(\".moduleHeader\"):eq(0)").css("line-height")
 			var colIndex = 1; // 1 indexed column for css and readability
-			jQuery(tweak_bb.page_id + ".mapItemLink").each(function(mapItemCount) {
+			jQuery(tweak_bb.page_id + " .mapItemLink").each(function(mapItemCount) {
 				var mapItemLink = jQuery(this);				
 				tweakmap.append("<div id=\"mapitem"+mapItemCount+"\"></div>");
 				var mapItem = jQuery("#mapitem"+mapItemCount);
@@ -139,6 +151,7 @@ function dynamicTextMap() {
 							mapItemLink.text(mapItemLink.text().replace("Module: ", ""));
 					}
 				}
+				if (!useBlackboardItemColours) { mapItemLink.html(mapItemLink.text()); }
 				mapItem.append(mapItemLink.clone()).addClass("topic").addClass("module"+colIndex);
 				// todo: make this optional
 				mapItem.filter(":not('.moduleHeader')").find("a").prepend("&diams;&nbsp; ");
@@ -146,7 +159,6 @@ function dynamicTextMap() {
 				var altText = mapItemLink.parents(tweak_bb.row_element).find("div.details").text();
 				altText = jQuery.trim(altText.replace(columnBreakHTXT, "").replace(columnBreakTXT, "").replace(rowBreakTXT, ""));
 				mapItem.find("a").attr("title", (altText.length) ? altText : mapItem.text());
-									
 				// offset links
 				if (lastBase > 0)
 					mapItem.css("top", lastBase + verticalSpacing);
@@ -170,7 +182,7 @@ function dynamicTextMap() {
 				}
 				var spacer = Math.round((imageWidth - totalColWidth) / (actualColumns + 1));
 
-				//alert("spacer "+spacer+" actualColums "+actualColumns+" checkMaxWidth "+checkMaxWidth+" totalColWidth "+b+" "+totalColWidth+" colWidth "+colWidth+" imageWidth "+imageWidth+" 0"+imageWidth0+" 1"+imageWidth1);	
+				// alert("spacer "+spacer+" actualColums "+actualColumns+" checkMaxWidth "+checkMaxWidth+" totalColWidth "+totalColWidth+" colWidth "+colWidth+" imageWidth "+imageWidth);	
 				if (columns == 2 || (columns == 4 && !horizontalLayout)) {
 					tweakmap.find(".module1, .module3").css("left", spacer +"px");
 					tweakmap.find(".module2, .module4").css("left", (2*spacer+colWidth)+"px");
@@ -224,10 +236,10 @@ if (dynamicTextMapInstance.hasCustomStyle()) {
 	jQuery(function($){
 		//force load stylesheets
 		var styleSheets = new Array();
-		$(tweak_bb.page_id + ".loadStyle").each(function(){
-			styleSheets.push($(this).text());
-		});
-		$(tweak_bb.page_id + "> li > h3:contains('Stylesheet')").parents(tweak_bb.row_element).hide().each(function(){
+		$(tweak_bb.page_id + ".loadStyle").each(function(){ styleSheets.push($(this).text()); });
+		var styleSheetHeaders = jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:contains('Stylesheet')");
+		//alert("styleSheetHeaders"+styleSheetHeaders.length);
+		styleSheetHeaders.each(function(){
 			if ($(this).find("div.loadStyle").length == 0) {
 				$(this).find("ul.attachments").find("a").each(function() {
 					var thisLink = $(this).attr("href");
@@ -235,14 +247,15 @@ if (dynamicTextMapInstance.hasCustomStyle()) {
 				});
 			}
 		});
-		if ($("body.ineditmode").length) {
-			$(tweak_bb.page_id + "> li > h3:contains('Stylesheet')").parents(tweak_bb.row_element).show();
-		}
+		
+		if ($("body.ineditmode").length == 0)
+			styleSheetHeaders.parents(tweak_bb.row_element).hide();
+
 		var numStylesheets = styleSheets.length;
 		if (numStylesheets) {
 			var $head = $("head");
 			for (var i = 0; i < numStylesheets; i++) {
-				if (jQuery("link[href*='"+styleSheets[i]+"']").length == 0) {
+				if ($head.find("link[href*='"+styleSheets[i]+"']").length == 0) {
 					var cssNode = document.createElement('link');
 					cssNode.type = 'text/css';
 					cssNode.rel = 'stylesheet';
@@ -262,4 +275,4 @@ if (dynamicTextMapInstance.hasCustomStyle()) {
 			delayedApply(101);
 	});
 } else
-	delayedApply(100);
+	delayedApply(100); // if no delay applied, positioning out

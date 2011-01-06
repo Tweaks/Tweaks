@@ -18,7 +18,7 @@ jQuery(function($){
 	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
 		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
 
-	$(tweak_bb.page_id+" h3:contains('Stylesheet')").parents(tweak_bb.row_element).find("ul.attachments").addClass("hidemyrow").find("a").each(function() {
+	$(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:contains('Stylesheet')").parents(tweak_bb.row_element).find("ul.attachments").addClass("hidemyrow").find("a").each(function() {
 		var thisLink = $(this).attr("href");
 		if (thisLink.indexOf("contentWrapper") > 0)
 			thisLink = thisLink.substr(thisLink.search("/course"));

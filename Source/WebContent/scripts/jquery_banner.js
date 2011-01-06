@@ -21,11 +21,11 @@ jQuery(function($){
 
 	// find banner and append
 	if ($("#banner").length == 0)
-		$(tweak_bb.page_id+" h3:contains(\"Banner\"):eq(0)").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","banner");
+		$(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:contains(\"Banner\"):eq(0)").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","banner");
 	$("#banner").css("display", "block").parents(tweak_bb.row_element).addClass("banner").hide().end().prependTo("#pageTitleDiv");
 	// style
 	$("#titleicon").hide();
 	$("#pageTitleDiv h1").css({"padding-top": "8px", "float": "none"});
 	// edit mode
-	$("body.ineditmode "+tweak_bb.page_id+" "+tweak_bb.row_element+".banner").show();
+	$("body.ineditmode "+tweak_bb.page_id+" > "+tweak_bb.row_element+".banner").show();
 });

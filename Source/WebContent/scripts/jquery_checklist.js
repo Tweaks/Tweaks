@@ -35,10 +35,11 @@ function callCheckList() {;
 			});
 			checkListCode += "</div>";
 			// output
-			var target = jQuery(tweak_bb.page_id +" h3:contains(\"Checklist\")").parents(tweak_bb.row_element).find("div.details");
+			var target = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:contains(\"Checklist\")").parents(tweak_bb.row_element).find("div.details").css("overflow", "visible");
 			if (target.find("span").length)
 				target = target.find("span:first");
 			target.append(checkListCode);
+			
 			// attach functionality
 			jQuery(tweak_bb.page_id +" .checklist input:checkbox").live("click", function() {
 				var thisID = jQuery(this).attr("id").substr(2);
