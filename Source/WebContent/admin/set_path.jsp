@@ -82,7 +82,7 @@ try {
 </bbNG:pageHeader>
 <bbNG:jsFile href="tweak_validation.js"/>
 <bbNG:cssBlock>
-	<link type="text/css" href="admin.css" rel="stylesheet">
+	<link type="text/css" href="../styles/tweakAdminSetPath.css" rel="stylesheet">
 </bbNG:cssBlock>
 
 

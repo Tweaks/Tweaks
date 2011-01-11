@@ -1,0 +1,8 @@
+div.label {
+	margin:0 15px 3px 0;
+	width:243px;
+}
+div.field, div.noLabelField {
+	margin:0 0 3px;
+	width:400px;
+}
