@@ -2,59 +2,38 @@
 <manifest>
   <!-- core extension information -->
   <plugin>
-    <name value= "Tweak "/>
-    <handle value= "tweakbb"></handle>
-    <description value= "To make Tweaks easy for academics to embed in their Blackboard pages."></description>
-    <version value= "3.1.4"></version>
+    <name value="Tweak "/>
+    <handle value="tweakbb"></handle>
+    <description value="To make Tweaks easy for academics to embed in their Blackboard pages."></description>
+    <version value="3.1.5"></version>
     <requires>
     	<bbversion value="9.0.0.0"/>
     </requires>
     <vendor>
       <id value="qut"/>
       <name value="Queensland University of Technology"></name>
-      <url value="http://www.qut.edu.au/" ></url>
-      <description value="Queensland University Of Technology" />
+      <url value="http://www.qut.edu.au/"></url>
+      <description value="Queensland University Of Technology"/>
     </vendor>
     <http-actions>
 	  <config value="admin/config.jsp"/>
       <remove value="admin/remove.jsp"/>
     </http-actions>
     <content-handlers>
-			<content-handler>
-				<name value="Tweak"/>
-				<handle value= "resource/x-qut-tweak"></handle>
-				<http-actions>
-        		   <create value="files/create.jsp?action=create"></create>
-	     		   <modify value="files/modify.jsp"></modify>
-    	 	   	   <remove value="files/remove.jsp"></remove>
-				</http-actions>
-        		<icons>
-					<toolbar value="images/tweakbb-icon2.gif"/>
-					<listitem value="images/tweakbb-icon2.gif"/>
-				</icons>
-     		</content-handler>
-     	</content-handlers> 
-     	 
-    		
-    <!-- <application-defs>
-      <application handle="qut-tweak" type="course" use-ssl="false" name="Tweak" can-allow-guest="true"
-       small-icon="tweakbb-icon2_big.gif" large-icon="tweakbb-icon2_big.gif">
-        <description lang="en_US"></description>
-        <links>
-          <link>
-            <name value="Tweak"></name>
-            <url value="files/index.jsp" ></url>
-            <description value="Tweak." ></description>
-            <icons>
-              <listitem value="images/tweak_icon.jpg"></listitem>
-            </icons>
-          </link>
-        </links>
-      </application>
-    </application-defs> -->
-    
-    
-    
+		<content-handler>
+			<name value="Tweak"/>
+			<handle value="resource/x-qut-tweak"></handle>
+			<http-actions>
+			   <create value="files/create.jsp?action=create"></create>
+			   <modify value="files/modify.jsp"></modify>
+			   <remove value="files/remove.jsp"></remove>
+			</http-actions>
+			<icons>
+				<toolbar value="images/tweakbb-icon2.gif"/>
+				<listitem value="images/tweakbb-icon2.gif"/>
+			</icons>
+		</content-handler>
+	</content-handlers> 
     <!-- code permissions required for proper operation -->
     <permissions>
       <permission type="attribute" name="user.authinfo" actions="get"/>
@@ -62,5 +41,4 @@
       <permission type="java.io.FilePermission" name="&amp;lt;&amp;lt;ALL FILES&amp;gt;&amp;gt;" actions="read,write,delete"/>	
     </permissions>
   </plugin>
-
 </manifest>
