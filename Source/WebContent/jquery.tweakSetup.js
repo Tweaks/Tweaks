@@ -18,7 +18,7 @@ Status: rewriting and testing for online trial deployment across BB8, BB9 and BB
 */ 
 // paths: configured via bb admin
 var tweak_path = ""; // local: /webapps/qut-tweakbb-bb_bb60/"; 
-var tweak_live_help = "http://blackboard.qut.edu.au/webapps/portal/frameset.jsp?tab_tab_group_id=_5_1&url=/webapps/blackboard/execute/courseMain?course_id=_59724_1"; 
+var tweak_live_help = "http://tweaks.github.com/Tweaks/description.html";
 var tweak_bb_active_url_pattern = "listContent.jsp";
 // static code: tweak currently compatible with 8, 9 and 9.1
 function BBVersionSetup() {
