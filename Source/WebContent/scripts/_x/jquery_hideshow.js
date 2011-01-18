@@ -30,7 +30,7 @@ jQuery(function($) {
 	window.tweak_bb = { page_id: "#pageList", row_element: "li" };
 	
  instText = ($("#showHideInstruction").length) ? $("#showHideInstruction").text() : defaultInstruction;
- $("<a href='#' class='hideShowLink'>"+instText+"</a>").insertBefore(tweak_bb.page_id+" div."+hideClass).css("display", "block");
+ $("<a href='#' class='hideShowLink'>"+instText+"</a>").insertBefore(tweak_bb.page_id+" div."+hideClass);
  $(tweak_bb.page_id+" a.hideShowLink").click(function(e){ $(this).next().toggleClass("hidden"); e.preventDefault();});
  if($("body.ineditmode").length == 0){
 	 $(tweak_bb.page_id+" .hidemyrow").parents(tweak_bb.row_element).hide();
