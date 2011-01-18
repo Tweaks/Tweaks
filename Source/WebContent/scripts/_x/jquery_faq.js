@@ -20,12 +20,10 @@ jQuery(function($) {
 	var faqRows = jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:contains('FAQ')").parents(tweak_bb.row_element).addClass("faq");
 	if (faqRows) {
 		// find questions and answers
-
-		// jQuery 1.4.2 bug: faqRows.children("div.details").find("b, strong, *[style*='bold']").addClass("faqQuestion").each(function(){
-
+		// jQuery 1.4.2>4 bug: faqRows.children("div.details").find("b, strong, *[style*='bold']").addClass("faqQuestion").each(function(){
 		// set up questions and make sure parent is at top level of content
 		faqRows.find("div.details").find("b, strong").addClass("faqQuestion");
-		// ie7 workaround
+		// ie7 workaround: retest in jQuery 1.5.x
 		faqRows.find("div.details").find("div, span").filter(function(){
 				return (jQuery(this).attr("style") && jQuery(this).attr("style").indexOf("bold")>0);
 			}).addClass("faqQuestion");
@@ -38,7 +36,7 @@ jQuery(function($) {
 				node = node.parent();
 			node.addClass("faqQuestion").find(".faqQuestion").removeClass("faqQuestion");
 		});
-		// wrap any text nodes
+		// wrap any text nodes: note justice blog also has last child text node wrapping based on specific content
 		faqRows.each(function(){
 			var container = jQuery(this).find(".faqQuestion:first").parent();
 			container.contents().each(function(){
