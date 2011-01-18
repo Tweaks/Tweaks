@@ -331,7 +331,7 @@ IE 7, IE 8</description>
 <embed><![CDATA[js: 'scripts/jquery_banner.js']]></embed>
 </package>
 <package id="faq">
-<title>FAQ (BETA)</title>
+<title>FAQ</title>
 <type>Learning Activities</type>
 <visible>true</visible>
 <available>true</available>
