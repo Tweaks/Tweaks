@@ -34,6 +34,7 @@
 <%@ taglib uri="/bbUI" prefix="bbUI"%>
 <%@ taglib uri="/bbData" prefix="bbData"%>
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
+<%@ include file="/admin/genConfigPath.jsp"%>
 
 <bbNG:genericPage authentication="Y"  ctxId="ctx" bodyClass='bbDefault' >
 
@@ -49,7 +50,7 @@ int intDel = 0;
 
 DocumentBuilderFactory dbf2 = DocumentBuilderFactory.newInstance();
 DocumentBuilder db2 = dbf2.newDocumentBuilder();
-Document doc = db2.parse("/usr/local/blackboard/content/vi/bb_bb60/plugins/qut-tweakbb/webapp/admin/tweak_packages.xml");
+Document doc = db2.parse(configFilePath);
 NodeList nTweak= doc.getElementsByTagName("package");
 
 int totalPackages =nTweak.getLength();
@@ -72,7 +73,7 @@ Transformer transformer = TransformerFactory.newInstance().newTransformer();
 transformer.setOutputProperty(OutputKeys.INDENT, "yes");
  
 DOMSource source = new DOMSource(doc); 
-transformer.transform(source, new StreamResult(new FileOutputStream("/usr/local/blackboard/content/vi/bb_bb60/plugins/qut-tweakbb/webapp/admin/tweak_packages.xml")));
+transformer.transform(source, new StreamResult(new FileOutputStream(configFilePath)));
 %>
 
 <bbNG:pageHeader>

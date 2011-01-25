@@ -32,6 +32,7 @@
 <%@ taglib uri="/bbUI" prefix="bbUI"%>
 <%@ taglib uri="/bbData" prefix="bbData"%>
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
+<%@ include file="/admin/genConfigPath.jsp"%>
 
 <bbNG:genericPage authentication="Y"  ctxId="ctx" bodyClass='bbDefault' >
 
@@ -42,8 +43,10 @@ if (!PlugInUtil.authorizeForSystemAdmin(request, response))
 String thisPluginUriStem = PlugInUtil.getUriStem("qut", "tweakbb");
 String thisPluginImageUrlPath = thisPluginUriStem + "images/tweakbb-icon2.gif";
 String InsructionRep ="";
-String JSfilePath = "/usr/local/blackboard/content/vi/bb_bb60/plugins/qut-tweakbb/webapp/jquery.tweakSetup.js";
+String JSfilePath = b2AbsoluteFilePath("/webapp/jquery.tweakSetup.js");
+
 String jsLocationStart ="tweak_path = \"";
+
 String jsHelpStart ="tweak_live_help = \"";
 String jsPatternStart ="tweak_bb_active_url_pattern = \"";
 
@@ -56,15 +59,26 @@ TextRep.TweakPathSet(inputPath2);
 String[] inputPath3 = {JSfilePath,jsPatternStart + request.getParameter("jsPattern_cur"), jsPatternStart + request.getParameter("jsPattern")};
 TextRep.TweakPathSet(inputPath3);
 
+
 %>
 
+
+
 <bbNG:pageHeader>
+
 <bbNG:breadcrumbBar environment="SYS_ADMIN" navItem="admin_plugin_manage" >
+
 <bbNG:breadcrumb href="config.jsp" >Tweak Properties</bbNG:breadcrumb>
+
 <bbNG:breadcrumb>Set path to Tweak packages</bbNG:breadcrumb>
+
 </bbNG:breadcrumbBar>
+
 <bbNG:pageTitleBar iconUrl="../images/tweakbb-icon2_big.gif" title="Set path to Tweak packages"></bbNG:pageTitleBar>	
+
 </bbNG:pageHeader>
+
+
 
 
  <bbNG:receipt type="SUCCESS" title="Tweak Updated" recallUrl="config.jsp" iconUrl="../images/tweakbb-icon2_big.gif">

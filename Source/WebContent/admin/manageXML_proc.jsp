@@ -46,21 +46,7 @@ if (!PlugInUtil.authorizeForSystemAdmin(request, response))
 String thisPluginUriStem = PlugInUtil.getUriStem("qut", "tweakbb");
 String thisPluginImageUrlPath = thisPluginUriStem + "images/tweakbb-icon2.gif";
 
-%>
-<%
-//displaying text of xml
-//DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-//DocumentBuilder db = dbf.newDocumentBuilder();
-//Document doc = db.parse("/usr/local/blackboard/content/vi/bb_bb60/plugins/qut-tweakbb/webapp/admin/tweak_packages.xml");
-
-//Transformer transformer = TransformerFactory.newInstance().newTransformer();
-//transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-//StreamResult result = new StreamResult(new StringWriter());
-//DOMSource sourceM = new DOMSource(doc);
-//transformer.transform(sourceM, result);
-//String xmlString = result.getWriter().toString();
-//System.out.println(xmlString);
-
+// Check function of file
 %>
 <bbNG:pageHeader>
 <bbNG:breadcrumbBar environment="SYS_ADMIN" navItem="admin_plugin_manage" >

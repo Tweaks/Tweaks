@@ -46,6 +46,7 @@
 <%@ taglib uri="/bbUI" prefix="bbUI"%>
 <%@ taglib uri="/bbData" prefix="bbData"%>
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
+<%@ include file="/admin/genConfigPath.jsp"%>
 
 <bbNG:genericPage authentication="Y"  ctxId="ctx" bodyClass='bbDefault' >
 <%
@@ -58,10 +59,11 @@ String InsructionRep ="";
 Date today = Calendar.getInstance().getTime();
 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss");
 String folderName = formatter.format(today);
+String backupConfigFilePath = b2AbsoluteFilePath("/config/tweak_packages_backup"  + folderName + ".xml");
 
 //create copy just in case called   tweak_packages_backup.xml
-File source = new File("/usr/local/blackboard/content/vi/bb_bb60/plugins/qut-tweakbb/webapp/admin/tweak_packages.xml");
-File target = new File("/usr/local/blackboard/content/vi/bb_bb60/plugins/qut-tweakbb/config/tweak_packages_backup"  + folderName + ".xml");
+File source = new File(configFilePath);
+File target = new File(backupConfigFilePath);
 File targetDir = new File(System.getProperty("java.io.tmpdir"));
 try
 {
@@ -92,7 +94,7 @@ boolean saveSettingFile = true;
 if (saveSettingFile){
 try
 {
-String thisFile = new String("/usr/local/blackboard/content/vi/bb_bb60/plugins/qut-tweakbb/webapp/admin/tweak_packages.xml");
+String thisFile = new String(configFilePath);
 OutputStreamWriter oos = new OutputStreamWriter (new FileOutputStream(thisFile));
 oos.write (xmlString);
 oos.close();

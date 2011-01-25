@@ -29,6 +29,7 @@
 <%@ taglib uri="/bbUI" prefix="bbUI"%>
 <%@ taglib uri="/bbData" prefix="bbData"%>
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
+<%@ include file="/admin/genConfigPath.jsp"%>
 
 <bbNG:genericPage authentication="Y"  ctxId="ctx" bodyClass='bbDefault' >
 <%
@@ -42,7 +43,7 @@ String InsructionRep ="";
 
 DocumentBuilderFactory dbf2 = DocumentBuilderFactory.newInstance();
 DocumentBuilder db2 = dbf2.newDocumentBuilder();
-Document doc = db2.parse("/usr/local/blackboard/content/vi/bb_bb60/plugins/qut-tweakbb/webapp/admin/tweak_packages.xml");
+Document doc = db2.parse(configFilePath);
 
 Element packages = doc.getDocumentElement();
 Element packageT = doc.createElement("package");
@@ -89,7 +90,7 @@ transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 //initialize StreamResult with File object to save to file 
 StreamResult result = new StreamResult(new StringWriter()); 
 DOMSource source = new DOMSource(doc); 
-transformer.transform(source, new StreamResult(new FileOutputStream("/usr/local/blackboard/content/vi/bb_bb60/plugins/qut-tweakbb/webapp/admin/tweak_packages.xml")));
+transformer.transform(source, new StreamResult(new FileOutputStream(configFilePath)));
 
 
 %>

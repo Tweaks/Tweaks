@@ -21,7 +21,7 @@ if (!PlugInUtil.authorizeForCourse(request, response))
   return;
 
 String thisPluginUriStem = PlugInUtil.getUriStem("qut", "tweakbb");
-String thisPluginImageUrlPath = thisPluginUriStem + "images/tweak_fuzz-sm.jpg";
+String thisPluginImageUrlPath = thisPluginUriStem + "images/becareful.png";
 %>
 
 <bbData:context id="ctx">
@@ -35,7 +35,7 @@ String thisPluginImageUrlPath = thisPluginUriStem + "images/tweak_fuzz-sm.jpg";
 	<br>
 	<bbUI:titleBar iconUrl="<%=thisPluginImageUrlPath %>">Tweak
 	<br>
-	<div ALIGN="right" STYLE="font-size:9">Check NT: REDUNDANT FILE?</div>
+	<div ALIGN="right" STYLE="font-size:9">REDUNDANT FILE</div>
 	</bbUI:titleBar>
 </bbUI:docTemplateBody>
 </bbData:context>

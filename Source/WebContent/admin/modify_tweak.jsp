@@ -39,6 +39,7 @@ if (!PlugInUtil.authorizeForSystemAdmin(request, response))
 String thisPluginUriStem = PlugInUtil.getUriStem("qut", "tweakbb");
 String thisPluginImageUrlPath = thisPluginUriStem + "images/tweakbb-icon2.gif";
 %>
+<%@ include file="/admin/genConfigPath.jsp"%>
 <%@ include file ="/files/XMLData.jsp"%>
  
 <bbNG:pageHeader>

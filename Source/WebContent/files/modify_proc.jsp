@@ -34,8 +34,8 @@
 		errorPage="/error.jsp"
 %>
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
-
 <bbNG:learningSystemPage ctxId="ctx">
+<%@ include file="/admin/genConfigPath.jsp"%>
 <%@ include file="XMLData.jsp"%>
 <% 
 Course thisCourse = ctx.getCourse();
@@ -54,7 +54,7 @@ Id contentId = bbPm.generateId(Content.DATA_TYPE,request.getParameter("content_i
 courseDoc = cLoader.loadById(contentId);
 Id parentId = courseDoc.getParentId();
 
-String strReturnUrl = PlugInUtil.getEditableContentReturnURL(courseDoc.getParentId());
+String strReturnUrl = PlugInUtil.getEditableContentReturnURL(parentId, courseId);
 String uriStem = PlugInUtil.getUriStem("qut", "tweakbb");
 
 String isTracked = 		RequestUtil.getStringParameter(request, "isTracked","false");

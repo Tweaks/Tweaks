@@ -1,7 +1,7 @@
 <% 
 DocumentBuilderFactory dbf2 = DocumentBuilderFactory.newInstance();
 DocumentBuilder db2 = dbf2.newDocumentBuilder();
-Document doc2 = db2.parse("/usr/local/blackboard/content/vi/bb_bb60/plugins/qut-tweakbb/webapp/admin/tweak_packages.xml");
+Document doc2 = db2.parse(configFilePath);
 doc2.getDocumentElement().normalize();
 
 ArrayList<String[]> tweakItems = new ArrayList<String[]>();

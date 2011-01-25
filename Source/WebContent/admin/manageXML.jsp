@@ -37,7 +37,6 @@
 <%@ taglib uri="/bbData" prefix="bbData"%>
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
 
-
 <bbNG:genericPage authentication="Y"  ctxId="ctx" bodyClass='bbDefault' >
 <%
 if (!PlugInUtil.authorizeForSystemAdmin(request, response))
@@ -46,7 +45,6 @@ if (!PlugInUtil.authorizeForSystemAdmin(request, response))
 String thisPluginUriStem = PlugInUtil.getUriStem("qut", "tweakbb");
 String thisPluginImageUrlPath = thisPluginUriStem + "images/tweakbb-icon2.gif";
 
-String JSfilePath = "/usr/local/blackboard/content/vi/bb_bb60/plugins/qut-tweakbb/webapp/jquery.tweakSetup.js";
 String jsLocation ="";
 String jsHelp ="";
 String jsPattern ="";

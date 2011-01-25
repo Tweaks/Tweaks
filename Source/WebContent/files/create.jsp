@@ -29,7 +29,6 @@
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
 <%@ taglib uri="/bbUI" prefix="bbUI"%>
 
-
 <bbNG:learningSystemPage ctxId="ctx">
 <%
 if (!PlugInUtil.authorizeForCourseControlPanel(request, response))
@@ -94,6 +93,7 @@ if (action.equals("create"))
 </bbNG:breadcrumbBar>
 <bbNG:pageTitleBar iconUrl="<%=thisPluginImageUrlPath %>" title="Add Tweak"></bbNG:pageTitleBar>	
 </bbNG:pageHeader>
+<%@ include file="/admin/genConfigPath.jsp"%>
 <%@ include file="XMLData.jsp"%>
 
 

@@ -34,8 +34,8 @@
 		errorPage="/error.jsp"
 %>
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
-
 <bbNG:learningSystemPage ctxId="ctx">
+<%@ include file="/admin/genConfigPath.jsp"%>
 <%@ include file="XMLData.jsp"%>
 <% 
 Course thisCourse = ctx.getCourse();
@@ -54,7 +54,6 @@ Id contentId = null;
 Id parentId = null;
 
 int numChildren = 0;
-String strReturnUrl = "";
 String uriStem = PlugInUtil.getUriStem("qut", "tweakbb");
 
 String isTracked = 		RequestUtil.getStringParameter(request, "isTracked","false");
@@ -89,8 +88,8 @@ else if (action.equals("modify"))
 	courseDoc = cLoader.loadById(contentId);
 	parentId = courseDoc.getParentId();
 }
-        
-strReturnUrl = PlugInUtil.getEditableContentReturnURL(courseDoc.getParentId());
+
+String strReturnUrl = PlugInUtil.getEditableContentReturnURL(parentId,courseId);
 
 String tweakName = "";
 Boolean success = true;

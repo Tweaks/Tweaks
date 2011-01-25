@@ -81,6 +81,7 @@ labelForAction = "Modify";
 </bbNG:breadcrumbBar>
 <bbNG:pageTitleBar iconUrl="<%=thisPluginImageUrlPath %>" title="Modify Tweak"></bbNG:pageTitleBar>
 </bbNG:pageHeader>
+<%@ include file="/admin/genConfigPath.jsp"%>
 <%@ include file="XMLData.jsp"%>
 <bbNG:jsFile href="jquery.js"/>
 <bbNG:jsFile href="jquery.tweakSetup.js"/>

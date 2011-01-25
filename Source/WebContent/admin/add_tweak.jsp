@@ -23,10 +23,8 @@
 <%@ taglib uri="/bbUI" prefix="bbUI"%>
 <%@ taglib uri="/bbData" prefix="bbData"%>
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
+
 <bbNG:genericPage authentication="Y"  ctxId="ctx" bodyClass='bbDefault' >
-
-
-<%@ include file="/files/XMLData.jsp"%>
 <bbNG:cssBlock>
 	<link type="text/css" href="/styles/adminTweak.css" rel="stylesheet">
 </bbNG:cssBlock>
@@ -37,9 +35,9 @@ if (!PlugInUtil.authorizeForSystemAdmin(request, response))
 
 String thisPluginUriStem = PlugInUtil.getUriStem("qut", "tweakbb");
 String thisPluginImageUrlPath = thisPluginUriStem + "images/tweakbb-icon2.gif";
-
-
 %>
+<%@ include file="/admin/genConfigPath.jsp"%>
+<%@ include file="/files/XMLData.jsp"%>
 
 <bbNG:pageHeader>
 <bbNG:breadcrumbBar environment="SYS_ADMIN" navItem="admin_plugin_manage" >

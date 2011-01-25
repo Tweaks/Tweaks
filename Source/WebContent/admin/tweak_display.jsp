@@ -33,6 +33,7 @@
 %>
 <%@ taglib uri="/bbUI" prefix="bbUI"%>
 <%@ taglib uri="/bbData" prefix="bbData"%>
+<%@ include file="/admin/genConfigPath.jsp"%>
 
 <bbData:context id="ctx">
 
@@ -57,7 +58,7 @@ if ((request.getParameter("disp_value") != null)||(request.getParameter("disp_va
 
 DocumentBuilderFactory dbf2 = DocumentBuilderFactory.newInstance();
 DocumentBuilder db2 = dbf2.newDocumentBuilder();
-Document doc = db2.parse("/usr/local/blackboard/content/vi/bb_bb60/plugins/qut-tweakbb/webapp/admin/tweak_packages.xml");
+Document doc = db2.parse(configFilePath);
 NodeList nTweak= doc.getElementsByTagName("package");
 int totalPackages =nTweak.getLength();
 
@@ -79,7 +80,7 @@ doc.normalize();
 Transformer transformer = TransformerFactory.newInstance().newTransformer(); 
 transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 DOMSource source = new DOMSource(doc); 
-transformer.transform(source, new StreamResult(new FileOutputStream("/usr/local/blackboard/content/vi/bb_bb60/plugins/qut-tweakbb/webapp/admin/tweak_packages.xml")));
+transformer.transform(source, new StreamResult(new FileOutputStream(configFilePath)));
 
 //out.print("tweak id  " +  thisTweakID +"<hr>");
 //out.print("avail_value  " +  avail_value +"<hr>");

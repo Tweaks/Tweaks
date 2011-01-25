@@ -34,7 +34,6 @@
 <%@ taglib uri="/bbData" prefix="bbData"%>
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
 
-
 <bbNG:genericPage authentication="Y"  ctxId="ctx" bodyClass='bbDefault' >
 <%
 if (!PlugInUtil.authorizeForSystemAdmin(request, response))
@@ -43,6 +42,7 @@ if (!PlugInUtil.authorizeForSystemAdmin(request, response))
 String thisPluginUriStem = PlugInUtil.getUriStem("qut", "tweakbb");
 String thisPluginImageUrlPath = thisPluginUriStem + "images/tweakbb-icon2.gif";
 %>
+<%@ include file="/admin/genConfigPath.jsp"%>
 <%@ include file="/files/XMLData.jsp"%>
 <bbNG:jsFile href="jquery.js"/>
 <bbNG:jsFile href="jquery.tweakSetup.js"/>
