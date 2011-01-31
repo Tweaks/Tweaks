@@ -25,7 +25,7 @@ jQuery(function($){
 		$(this).after("<div class=\"loadStyle\">"+ thisLink +"</div>");
 	});
 	$(tweak_bb.page_id+" .loadStyle").each(function(){
-		var URLofCSS = $(this).hide().text();
+		var URLofCSS = $.trim($(this).hide().text());
 		if (URLofCSS && URLofCSS.indexOf("/") == 0) {
 			URLofCSS = URLofCSS.substr(1);
 			$.xLazyLoader('loadRootPath', { css: URLofCSS});
