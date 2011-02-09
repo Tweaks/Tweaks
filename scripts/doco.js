@@ -10,8 +10,7 @@ jQuery.ajax({
 		// set up packages container
 		var packages = {}; jQuery("#output ul").each(function(){ packages[jQuery(this).attr("id")]=new Array(); });
  		// set up template
-		var markup = "<li><input type=\"radio\" name=\"tweak_script\" id=\"${id}\"/><label for=\"${id}\">${title}</label>"+
-					 "{% if has_video %} <img src=\"images/videoicon.png\" width=\"18\" height=\"18\" alt=\"Video Documentation\">{% endif %}</li>";
+		var markup = "<li><input type=\"radio\" name=\"tweak_script\" id=\"${id}\"/><label for=\"${id}\">${title}</label></li>"; //{% if has_video %} <img src=\"images/videoicon.png\" width=\"18\" height=\"18\" alt=\"Video Documentation\">{% endif %}</li>";
 		jQuery.template( "docoTemplate", markup);
 		jQuery("#loading").remove();
 		// read packages in
