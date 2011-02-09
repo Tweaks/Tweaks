@@ -15,6 +15,7 @@ input { margin: 3px 1ex; }
 	min-width: 240px;
 	padding-right: 6px;
 }
+#output img { vertical-align: top; padding-left: 5px; }
 p, #doco, #code { clear: both; }
 #expand, #code { display:none; }
 .pagehead { width: 800px; }
