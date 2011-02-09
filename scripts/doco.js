@@ -36,7 +36,7 @@ jQuery.ajax({
  			buildCode(tweakData.find("title").text(), thisID, tweakData.find("embed").text());
  			inlineFormatInstructions("#doco");
  			inlineFormatInstructions("#code");
- 			jQuery("#example").show().find("img").attr("src", "images/"+thisID+".png");
+ 			jQuery("#example").show().find("img").attr("src", "images/"+thisID+".png").addClass("maxheight");
  			// video
  			var videoEmbed = tweakData.find("video").text();
  			if (videoEmbed.length > 0) {
