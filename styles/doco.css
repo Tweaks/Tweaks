@@ -21,8 +21,9 @@ p, #doco, #code { clear: both; }
 #doco { max-width: 1016px; }
 .base { float: left; padding: 5px 10px 5px 0; display: none; }
 .base strong { font-size: 13px; display: block; }
-.base img { border: 1px solid #DDD; padding: 8px; margin-top: 5px; }
-#example iframe { margin-top: 5px; }
+.base img { border: 1px solid #DDD; padding: 8px; margin-top: 5px; cursor: pointer; }
+#example .maxheight { max-height: 80px; }
+#video iframe { margin-top: 5px; }
 #code {
 	padding: 3px;
 	background: #FFD;

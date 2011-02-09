@@ -48,6 +48,7 @@ jQuery.ajax({
  			} else
  				jQuery("#video").hide();
 		});
+		jQuery("#example img").click(function(){ jQuery(this).toggleClass("maxheight"); });
 		// presentation
 		jQuery("#output ul").css({"min-height": jQuery("#output ul:first").height()+"px"});
 		jQuery("#expand a:last").click(function(){
