@@ -1,9 +1,9 @@
 @charset "UTF-8";
-#doco, ul, li, p { 
-	font-family: Calibri, "Trebuchet MS", Helvetica; 
+#doco, ul, li, p {
+	font-family: Calibri, "Trebuchet MS", Helvetica;
 }
 body { padding: 10px;  font-size: 15px; }
-input { margin: 3px 1ex; } 
+input { margin: 3px 1ex; }
 #output li { margin-left: 0; padding-left: 0; }
 #output li:first-child { font-weight: bold; }
 #output ul {
@@ -19,8 +19,11 @@ p, #doco, #code { clear: both; }
 #expand, #code { display:none; }
 .pagehead { width: 800px; }
 #doco { max-width: 1016px; }
-#doco img { border: 1px solid #DDD; padding: 8px; margin-top: 5px;} 
-#code { 
+.base { float: left; padding: 5px 10px 5px 0; display: none; }
+.base strong { font-size: 13px; display: block; }
+.base img { border: 1px solid #DDD; padding: 8px; margin-top: 5px; }
+#example iframe { margin-top: 5px; }
+#code {
 	padding: 3px;
 	background: #FFD;
 	border: 1px solid #332;

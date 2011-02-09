@@ -36,7 +36,17 @@ jQuery.ajax({
  			buildCode(tweakData.find("title").text(), thisID, tweakData.find("embed").text());
  			inlineFormatInstructions("#doco");
  			inlineFormatInstructions("#code");
- 			jQuery("#doco").append("<br/><img src=\"images/"+thisID+".png\"/>");
+ 			jQuery("#example").show().find("img").attr("src", "images/"+thisID+".png");
+ 			// video
+ 			var videoEmbed = tweakData.find("video").text();
+ 			if (videoEmbed.length > 0) {
+ 				jQuery("#video iframe").remove();
+ 				jQuery("#video").show().find("img").show().unbind("click").click(function(){
+ 					jQuery(this).hide();
+ 					jQuery(this).after(videoEmbed);
+ 				});
+ 			} else
+ 				jQuery("#video").hide();
 		});
 		// presentation
 		jQuery("#output ul").css({"min-height": jQuery("#output ul:first").height()+"px"});
