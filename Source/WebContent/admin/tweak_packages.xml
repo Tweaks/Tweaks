@@ -92,7 +92,7 @@
       Chrome B7&#13;
       IE 7, IE 8</sysinfo>
     <instruction>This tweak inserts a print frame link in the top right hand corner of the page frame.</instruction>
-    <video></video>
+    <video><![CDATA[<iframe title="YouTube video player" width="853" height="510" src="http://www.youtube.com/embed/HIZcErbcyEo?rel=0" frameborder="0" allowfullscreen></iframe>]]></video>
     <embed>
       <![CDATA[js: 'scripts/jquery_printframe.js',
         css: 'styles/blackboardprint.css']]>
