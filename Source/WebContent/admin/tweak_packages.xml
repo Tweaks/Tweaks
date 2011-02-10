@@ -352,7 +352,7 @@
       Chrome B7&#13;
       IE 7, IE 8</sysinfo>
     <instruction>This tweak adds a banner image to a Blackboard page above the page title.&lt;br/&gt;&lt;br/&gt;1. Create a new item on your Blackboard page called 'Banner'. &lt;br/&gt;2. Insert your banner image into the content of this item using the 'Attach Image' button in rich text editor.</instruction>
-    <video></video>
+    <video><![CDATA[<iframe title="YouTube video player" width="853" height="510" src="http://www.youtube.com/embed/mtZIVAQjTOs?rel=0" frameborder="0" allowfullscreen></iframe>]]></video>
     <embed>
       <![CDATA[js: 'scripts/jquery_banner.js']]>
     </embed>
@@ -368,7 +368,7 @@
       Chrome B10&#13;
       IE 7, IE 8</sysinfo>
     <instruction>This tweak creates a clickable FAQ section.&lt;br/&gt;&lt;br/&gt;1. Create a new item on your Blackboard page with 'FAQ' included somewhere in the title. &lt;br/&gt;2. *Type* your Questions and Answers into the text editor ensuring all Questions and Answers start on a new line. &lt;br/&gt;3. Highlight the text of each Question and make it bold using the Bold text formatting button in the rich text editor toolbar.</instruction>
-    <video><![CDATA[<iframe title="YouTube video player" width="480" height="390" src="http://www.youtube.com/embed/EjAoBKagWQA?rel=0" frameborder="0" allowfullscreen></iframe>]]></video>
+    <video><![CDATA[<iframe title="YouTube video player" width="853" height="510" src="http://www.youtube.com/embed/MkZlBUqurbw?rel=0" frameborder="0" allowfullscreen></iframe>]]></video>
     <embed>
       <![CDATA[js: 'scripts/jquery_faq.js',
         css: 'styles/faq.css']]>
