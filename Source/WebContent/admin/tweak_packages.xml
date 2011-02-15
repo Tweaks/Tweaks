@@ -214,8 +214,8 @@
   <package id="selfenrol">
     <title>Self Enrol Link</title>
     <type>Tools</type>
-    <visible>false</visible>
-    <available>false</available>
+    <visible>true</visible>
+    <available>true</available>
     <sysinfo>Tested:&#13;
       Firefox 3.5 Mac&#13;
       Safari 4 Mac&#13;
