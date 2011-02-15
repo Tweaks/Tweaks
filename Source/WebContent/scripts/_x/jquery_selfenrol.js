@@ -385,7 +385,7 @@ jQuery(function($){
 	  var comname = $("#breadcrumbs .courseName").text();
 	  var enrolMessage = "Self Enrol in ("+comname+") Organization/Community Site</a></h3>You will need to self enrol in this site in order to participate. Click Close after you have enrolled to return to this page.<br><br>";
 	  $(tweak_bb.page_id).before("<div><h3><a href=\"#\" class=\"thickbox\">"+enrolMessage+"</div>");
-	  $("a.thickbox").attr("title", "Click close after enrolling in site or to cancel enrolment");
+	  $("a.thickbox").attr("title", "Click close after enrolling in site or to cancel enrolment").click(function(){ $("body.ineditmode #addCmItem").hide(); });
 	  // set up enrol link
 	  var bb_course_id = location.href.replace(/.*course_id=([^&]+).*/, "$1");
 	  var fixedEnrolURL = "/webapps/blackboard/execute/enrollCourse?context=Org&course_id=" + bb_course_id +"&KeepThis=true&TB_iframe=true&height=410&width=795";
