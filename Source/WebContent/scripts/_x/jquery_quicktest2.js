@@ -21,7 +21,7 @@ jQuery(function($){
 		$(this).attr("id", "quiz"+q).wrapInner("<span class=\"question\"></span>").addClass("quicktest");
 		
 		// answers
-		var answers = $(this).nextAll("table:eq(0)").hide().find("tr");
+		var answers = $(this).nextAll("table,*:has(table)").eq(0).hide().find("tr");
 		var formattedanswers = "";
 		for (var a = 0; a < answers.length; a++) {
 			var answerid = "quiz" + q +"_"+ a;
