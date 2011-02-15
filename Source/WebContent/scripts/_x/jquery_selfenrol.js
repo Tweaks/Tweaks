@@ -324,7 +324,7 @@ function setupThickboxFrame() {
 
 // iframe code
 function styleIframe() {
- jQuery("#" + iframeID).contents().find("a:last").hide();
+ jQuery("#" + iframeID).contents().find("a:last, #breadcrumbs .root").hide();
  jQuery("#" + iframeID).contents().find("b:eq(12)").text("Close").css({'background-color' : '#eb0',
 																	  	'padding' : '2px',
 																		'cursor' : 'pointer',
