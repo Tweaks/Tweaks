@@ -220,7 +220,7 @@
       Firefox 3.5 Mac&#13;
       Safari 4 Mac&#13;
       IE 7, IE 8</sysinfo>
-    <instruction>This tweak adds a Community Self Enrol link to the top of a page. Note: Self Enrol Tweak will only work if your Community Site is set up with 'Self Enrolment' option on. &lt;br/&gt; &lt;br/&gt; Optional: To make the Enrol link disappear after enrolment, set Review Status to Enabled for the Tweak.</instruction>
+    <instruction>This tweak adds a Self Enrol link to the top of a page. Note: Self Enrol Tweak will only work if your Organization/Community Site is set up with 'Self Enrolment' option on. &lt;br/&gt; &lt;br/&gt; Optional: To make the Enrol link disappear after enrolment, set Review Status to Enabled for the Tweak.</instruction>
     <video></video>
     <embed>
       <![CDATA[js: 'scripts/jquery_selfenrol.js',
