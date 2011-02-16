@@ -42,8 +42,8 @@
       Safari 5 Mac&#13;
       Chrome B7&#13;
       IE 7, IE 8</sysinfo>
-    <instruction>This tweak allows you to replace or hide standard blackboard icons.&lt;br/&gt;&lt;br/&gt;Replacing&lt;br/&gt;1. Add a Blackboard item with one of the following names to replace the corresponding icons.&lt;br/&gt;2. Upload a picture to the item using the picture button and hit submit.&lt;br/&gt;&lt;br/&gt;Replacing Icon types&lt;br/&gt;Everything Replacement Icon&lt;br/&gt;Item Replacement Icon&lt;br/&gt;Folder&lt;br/&gt;Replacement Icon&lt;br/&gt;Blog Replacement Icon&lt;br/&gt;Wiki Replacement Icon&lt;br/&gt;Title Replacement Icon&lt;br/&gt;&lt;br/&gt;Replacing specific row/s icons&lt;br/&gt;Replacement Icon: Name of Row (Must match row name)&lt;br/&gt;OR&lt;br/&gt;Replacement Icon: Row Set e.g.  Replacement Icon: Tutorial replaces all 'Tutorial ...'  icons&lt;br/&gt;&lt;br/&gt;Hiding specific row/s icons&lt;br/&gt;Hide Icon: Name of Row OR Hide Icon: Row Set (as above)</instruction>
-    <video></video>
+    <instruction>This tweak allows you to replace or hide standard blackboard icons.&lt;br/&gt;&lt;br/&gt;Replacing&lt;br/&gt;1. Add a Blackboard item with one of the following names to replace the corresponding icons.&lt;br/&gt;2. Upload a picture to the item using the picture button and hit submit.&lt;br/&gt;&lt;br/&gt;Replacing Icon types&lt;br/&gt;Everything Replacement Icon&lt;br/&gt;Item Replacement Icon&lt;br/&gt;Folder Replacement Icon&lt;br/&gt;Blog Replacement Icon&lt;br/&gt;Wiki Replacement Icon&lt;br/&gt;Title Replacement Icon&lt;br/&gt;&lt;br/&gt;Replacing specific row/s icons&lt;br/&gt;Replacement Icon: Name of Row (Must match row name)&lt;br/&gt;OR&lt;br/&gt;Replacement Icon: Row Set e.g.  Replacement Icon: Tutorial replaces all 'Tutorial ...'  icons&lt;br/&gt;&lt;br/&gt;Hiding specific row/s icons&lt;br/&gt;Hide Icon: Name of Row OR Hide Icon: Row Set (as above)</instruction>
+    <video><![CDATA[<iframe title="YouTube video player" width="853" height="510" src="http://www.youtube.com/embed/oxEyQ0o94vA?rel=0" frameborder="0" allowfullscreen></iframe>]]></video>
     <embed>
       <![CDATA[js: 'scripts/jquery_replaceicons.js']]>
     </embed>
@@ -109,7 +109,7 @@
       Chrome B7&#13;
       IE 7, IE 8</sysinfo>
     <instruction>You can use this tweak as a quick way to give feedback embedded in content. (Requires some HTML).&lt;br/&gt;&lt;br/&gt;1. In a new item, type in your question text.&lt;br/&gt;2. Add a table with 2 columns and a row for each answer. Place an answer and its corresponding feedback in adjacent columns.&lt;br/&gt;3. Hit the HTML Source button and add &lt;div class='quiz'&gt;&lt;/div&gt; around the question text. e.g. &lt;div class='quiz'&gt;Your question here.&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;See Examples of Tweak Packages Site below for example quiz and code.</instruction>
-    <video></video>
+    <video><![CDATA[<iframe title="YouTube video player" width="853" height="510" src="http://www.youtube.com/embed/znhsMEALVJA?rel=0" frameborder="0" allowfullscreen></iframe>]]></video>
     <embed>
       <![CDATA[js: 'scripts/jquery_quicktest2.js',
         css: 'styles/quicktest.css']]>
