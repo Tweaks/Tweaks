@@ -24,8 +24,9 @@ jQuery(function($){
   if (window.tweak_bb == null || window.tweak_bb.page_id == null)
 	window.tweak_bb = { page_id: "#pageList", row_element: "li" };
 	
-  // load headers as parsed several times in script
+  // load headers and description as parsed several times in script
   var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item");
+  var descItem = $("#description, .description");
 
   $(tweak_bb.page_id+" map").children().each(function() {
 	var altText = $.trim($(this).attr("alt"));
@@ -41,10 +42,13 @@ jQuery(function($){
 			if (link.length == 0)
 				link = details.find("ul.attachments a:first");
 			
-			// look for description
-			var desc = details.clone().remove("a").text();
-			if (desc) { $(this).data("desc", desc); }
-				
+			// look for description: store html or text with map item
+			if (descItem.length) {
+				var desc = (descItem.hasClass("html")) ? details.clone().html() : $.trim(details.clone().remove("a").text());
+				if (desc) { $(this).data("desc", desc); }
+			}
+			
+			// if link found
 			if (link.length) {
 				$(this).attr("href", link.attr("href"));
 				if ($("body.ineditmode").length == 0)
@@ -55,10 +59,15 @@ jQuery(function($){
   });
   
   // attach description event
-  if ($("#description, .description").length) {
+  if (descItem.length) {
 	$(tweak_bb.page_id+" map area").mouseover(function(){
 		var desc = jQuery(this).data("desc");
-		if (desc != null) { jQuery("#description, .description").text(desc)+" "; }
+		if (desc != null) { 
+			if (descItem.hasClass("html"))
+				descItem.html(desc+" ");
+			else
+				descItem.text(desc+" ");
+		}
 	});
   }
 });
