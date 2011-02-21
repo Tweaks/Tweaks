@@ -27,7 +27,7 @@ jQuery(function($) {
 
   // load headers as parsed several times in script
   var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item");
-  
+
   // filter menu image + submenu image // look for ID markers: then look for "Menu Image" item >> if found: assign their images ID markers
   if ($("#menuHTML, #menuImage, #menuHTMLSplash").length == 0) { // also #menuImageSplash, but leaving out in case the sub page item doesn't have marker
   	var menuImagesHeaders = headers.filter(":contains(\"Menu Image\")");
@@ -68,7 +68,7 @@ jQuery(function($) {
 		href = itemLink.attr("href");
 		target = itemLink.attr("target");
 	}
-	
+
 	// push to array
 	intMenuItems.push({"id":id,"title":title,"desc":desc,"href":href,"target":target});
 
@@ -107,7 +107,7 @@ function setupMenuLinks(intMenuItems) {
 	var menuHTML = "<div id=\"intmenu\">";
 	var imageMapLinks = jQuery("#menuHTMLSplash, #menuHTML").find("area");
 	var imageMapLinksExist = (imageMapLinks.length > 0);
-	
+
 	var intMenuItemsLength = intMenuItems.length;
 	for(var i = 0; i < intMenuItemsLength; i++) {
 		var altText = (intMenuItems[i].desc.length > 0) ? intMenuItems[i].desc : intMenuItems[i].title;
@@ -127,7 +127,7 @@ function setupMenuLinks(intMenuItems) {
 
 function addMenuToPage(menuLinksHTML) {
   // is this html, image or plain text menu?
-	
+
   // benchmark previous clone remove attempts
   // html options: add custom html to page and insert link menu
   if (jQuery("#menuHTMLSplash").length == 1) {
@@ -227,11 +227,11 @@ function loadMenuPage(menuid) {
 		jQuery("#loading li").remove();
 	if (jQuery("#loadingGraphic").length == 0)
 	    jQuery(tweak_bb.page_id +"").before("<div id=\"loadingGraphic\"></div>");
-	
+
 	jQuery("#loadingGraphic").show();
-	
+
 	var menupageURL = document.location.href.replace(/(.*content_id=)[^&]*(.*)/, "$1"+menuid+"$2");;
-	
+
 	// load content and append to page
 	jQuery("#loading ul").load(menupageURL+" "+tweak_bb.page_id+">"+tweak_bb.row_element, function() {
 		jQuery("#loadingGraphic").hide();
