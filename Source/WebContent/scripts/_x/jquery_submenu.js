@@ -27,11 +27,19 @@ jQuery(function($) {
 
   // load headers as parsed several times in script
   var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item");
-
-  // if user not using HTML ID marker: look for "Menu Image" item >> if found: assign it's image an ID marker
-  if ($("#menuHTML, #menuImage, #menuHTMLSplash").length == 0) // also #menuImageSplash, but leaving out in case the sub page item doesn't have marker
-  	headers.filter(":contains(\"Menu Image\"):eq(0)").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","menuImage");
   
+  // filter menu image + submenu image // look for ID markers: then look for "Menu Image" item >> if found: assign their images ID markers
+  if ($("#menuHTML, #menuImage, #menuHTMLSplash").length == 0) { // also #menuImageSplash, but leaving out in case the sub page item doesn't have marker
+  	var menuImagesHeaders = headers.filter(":contains(\"Menu Image\")");
+  	// sub page image and splash page image
+  	if (menuImagesHeaders.filter(":contains(\"Sub\")").length > 0) {
+  		menuImagesHeaders.filter(":contains(\"Sub\")").eq(0).parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","menuImage");
+	  	menuImagesHeaders.not(":contains(\"Sub\")").eq(0).parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","menuImageSplash");
+	} else {
+		// just single menu image
+  		menuImagesHeaders.eq(0).parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","menuImage");
+	}
+  }
   // make sure script items, hidden classes and menu constructors not included
   var scriptRows = $(tweak_bb.page_id+" script.tweak_script").parents(tweak_bb.row_element).hide();
   $("#menuHTML, #menuImage, #menuHTMLSplash, #menuImageSplash").parents(tweak_bb.row_element).hide();
