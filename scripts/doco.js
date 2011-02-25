@@ -79,7 +79,7 @@ function buildCode(title, id, embedCode) {
 	// transition testing 9_x release of code
 	if (jQuery("#BB9_x_message:visible").length)
 		embedCode = embedCode.replace("/scripts/", "/scripts/_x/");	
-	var scriptBlock = "<"+"script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js\" type=\"text/javascript\"></"+"script><br/>"+
+	var scriptBlock = "<"+"script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js\" type=\"text/javascript\"></"+"script><br/>"+
 		"<"+"script src=\""+sourceRepositoryURL+"jquery.tweakSetup.js\" type=\"text/javascript\"><"+"/script><br/>"+
 		"<"+"script type=\"text/javascript\" class=\"tweak_script\">"+
 		"jQuery(function($) {$.xLazyLoader({"+embedCode+"});});<"+
