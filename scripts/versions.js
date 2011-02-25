@@ -1,9 +1,6 @@
 var tweakVersions = {
 	BB8   : ["hider", "replaceicon", "showhidetext", "imagemapper", "printframe", "quicktest", "icons", "unitmap", "checklist", "Submenu"],
-	BB9_x : ["hider", "addcolourstripe", "replaceicon", "showhidetext", "imagemapper", "printframe", "quicktest", "deeplink", "iframecontent", "addstyle", "colourpage", "icons", "unitmap", "selfenrol", "visualunitmap", "backtotoplink", "checklist",					 "Submenu", "subsite", "banner", "faq"]};
-
-/* v9 only:
-	BB9   : ["hider", "addcolourstripe", "replaceicon", "showhidetext", "imagemapper", "printframe", "quicktest", "deeplink", "iframecontent", "addstyle", "colourpage", "icons", "unitmap", "selfenrol", "visualunitmap", "backtotoplink", "checklist", "noContentWrapper", "Submenu", "subsite", "banner", "faq"], */
+	BB9_x : ["hider", "addcolourstripe", "replaceicon", "showhidetext", "imagemapper", "printframe", "quicktest", "deeplink", "iframecontent", "addstyle", "colourpage", "icons", "unitmap", "selfenrol", "visualunitmap", "backtotoplink", "checklist", "noContentWrapper", "Submenu", "subsite", "banner", "faq"]};
 
 // build selector: template is too much work!
 jQuery.each(tweakVersions, function(key, value) {
