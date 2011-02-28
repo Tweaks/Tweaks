@@ -28,10 +28,18 @@ jQuery(function($) {
   // load headers as parsed several times in script
   var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item");
 
-  // if user not using HTML ID marker: look for "Menu Image" item >> if found: assign it's image an ID marker
-  if ($("#menuHTML, #menuImage, #menuHTMLSplash").length == 0) // also #menuImageSplash, but leaving out in case the sub page item doesn't have marker
-  	headers.filter(":contains(\"Menu Image\"):eq(0)").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","menuImage");
-  
+  // filter menu image + submenu image // look for ID markers: then look for "Menu Image" item >> if found: assign their images ID markers
+  if ($("#menuHTML, #menuImage, #menuHTMLSplash").length == 0) { // also #menuImageSplash, but leaving out in case the sub page item doesn't have marker
+  	var menuImagesHeaders = headers.filter(":contains(\"Menu Image\")");
+  	// sub page image and splash page image
+  	if (menuImagesHeaders.filter(":contains(\"Sub\")").length > 0) {
+  		menuImagesHeaders.filter(":contains(\"Sub\")").eq(0).parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","menuImage");
+	  	menuImagesHeaders.not(":contains(\"Sub\")").eq(0).parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","menuImageSplash");
+	} else {
+		// just single menu image
+  		menuImagesHeaders.eq(0).parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","menuImage");
+	}
+  }
   // make sure script items, hidden classes and menu constructors not included
   var scriptRows = $(tweak_bb.page_id+" script.tweak_script").parents(tweak_bb.row_element).hide();
   $("#menuHTML, #menuImage, #menuHTMLSplash, #menuImageSplash").parents(tweak_bb.row_element).hide();
@@ -60,7 +68,7 @@ jQuery(function($) {
 		href = itemLink.attr("href");
 		target = itemLink.attr("target");
 	}
-	
+
 	// push to array
 	intMenuItems.push({"id":id,"title":title,"desc":desc,"href":href,"target":target});
 
@@ -99,14 +107,18 @@ function setupMenuLinks(intMenuItems) {
 	var menuHTML = "<div id=\"intmenu\">";
 	var imageMapLinks = jQuery("#menuHTMLSplash, #menuHTML").find("area");
 	var imageMapLinksExist = (imageMapLinks.length > 0);
-	
+
 	var intMenuItemsLength = intMenuItems.length;
 	for(var i = 0; i < intMenuItemsLength; i++) {
 		var altText = (intMenuItems[i].desc.length > 0) ? intMenuItems[i].desc : intMenuItems[i].title;
 		menuHTML+= "<a href='"+ intMenuItems[i].href + "' id='"+ intMenuItems[i].id +"' title='"+ altText +"' target='"+ intMenuItems[i].target +"'>"+ intMenuItems[i].title+"</a> ";
 		// set any corresponding image map item. benchmark new image map changes
 		if (imageMapLinksExist)
-			imageMapLinks.filter("[alt*="+intMenuItems[i].title+"]").attr("id", intMenuItems[i].id);
+			imageMapLinks.filter("[alt*="+intMenuItems[i].title+"]").attr({
+				id: intMenuItems[i].id,
+				href: intMenuItems[i].href,
+				target: intMenuItems[i].target
+			});
 		// consider swapping titles from image map alt to menu links to allow for shorter..
 	}	
 	// trim trailing chars and return
@@ -115,7 +127,7 @@ function setupMenuLinks(intMenuItems) {
 
 function addMenuToPage(menuLinksHTML) {
   // is this html, image or plain text menu?
-	
+
   // benchmark previous clone remove attempts
   // html options: add custom html to page and insert link menu
   if (jQuery("#menuHTMLSplash").length == 1) {
@@ -215,11 +227,11 @@ function loadMenuPage(menuid) {
 		jQuery("#loading li").remove();
 	if (jQuery("#loadingGraphic").length == 0)
 	    jQuery(tweak_bb.page_id +"").before("<div id=\"loadingGraphic\"></div>");
-	
+
 	jQuery("#loadingGraphic").show();
-	
+
 	var menupageURL = document.location.href.replace(/(.*content_id=)[^&]*(.*)/, "$1"+menuid+"$2");;
-	
+
 	// load content and append to page
 	jQuery("#loading ul").load(menupageURL+" "+tweak_bb.page_id+">"+tweak_bb.row_element, function() {
 		jQuery("#loadingGraphic").hide();

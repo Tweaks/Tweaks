@@ -44,7 +44,7 @@ Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
-<instruction>This tweak allows you to replace or hide standard blackboard icons.&lt;br/&gt;&lt;br/&gt;Replacing&lt;br/&gt;1. Add a Blackboard item with one of the following names to replace the corresponding icons.&lt;br/&gt;2. Upload a picture to the item using the picture button and hit submit.&lt;br/&gt;&lt;br/&gt;Replacing Icon types&lt;br/&gt;Everything Replacement Icon&lt;br/&gt;Item Replacement Icon&lt;br/&gt;Folder&lt;br/&gt;Replacement Icon&lt;br/&gt;Blog Replacement Icon&lt;br/&gt;Wiki Replacement Icon&lt;br/&gt;Title Replacement Icon&lt;br/&gt;&lt;br/&gt;Replacing specific row/s icons&lt;br/&gt;Replacement Icon: Name of Row (Must match row name)&lt;br/&gt;OR&lt;br/&gt;Replacement Icon: Row Set e.g.  Replacement Icon: Tutorial replaces all 'Tutorial ...'  icons&lt;br/&gt;&lt;br/&gt;Hiding specific row/s icons&lt;br/&gt;Hide Icon: Name of Row OR Hide Icon: Row Set (as above)</instruction>
+<instruction>This tweak allows you to replace or hide standard blackboard icons.&lt;br/&gt;&lt;br/&gt;Replacing&lt;br/&gt;1. Add a Blackboard item with one of the following names to replace the corresponding icons.&lt;br/&gt;2. Upload a picture to the item using the picture button and hit submit.&lt;br/&gt;&lt;br/&gt;Replacing Icon types&lt;br/&gt;Everything Replacement Icon&lt;br/&gt;Item Replacement Icon&lt;br/&gt;Folder Replacement Icon&lt;br/&gt;Blog Replacement Icon&lt;br/&gt;Wiki Replacement Icon&lt;br/&gt;Title Replacement Icon&lt;br/&gt;&lt;br/&gt;Replacing specific row/s icons&lt;br/&gt;Replacement Icon: Name of Row (Must match row name)&lt;br/&gt;OR&lt;br/&gt;Replacement Icon: Row Set e.g.  Replacement Icon: Tutorial replaces all 'Tutorial ...'  icons&lt;br/&gt;&lt;br/&gt;Hiding specific row/s icons&lt;br/&gt;Hide Icon: Name of Row OR Hide Icon: Row Set (as above)</instruction>
 <embed><![CDATA[js: 'scripts/jquery_replaceicons.js']]></embed>
 </package>
 
@@ -163,18 +163,6 @@ IE 7, IE 8</description>
 <instruction>This tweak changes the background colour of the page. (Requires some HTML).&lt;br/&gt;&lt;br/&gt;1. Add the following HTML to a Blackboard item &lt;span id='colourPage'&gt;colourcode&lt;/span&gt; where 'colourcode' is a valid HTML hex colour (e.g. #003399) you want for the background of the page. Note, this will override any one background styles.&lt;br/&gt;&lt;br/&gt;Please see http://www.webmonkey.com/reference/Color_Charts for example colours.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_colourpage.js']]></embed>
 </package>
-<package id="rightPod">
-<title>Right-click to save podcasts</title>
-<type>Tools</type>
-<visible>true</visible>
-<available>false</available>
-<description>Firefox 3.0.11&#13;
-Chrome 2.0.172&#13;
-IE 8</description>
-<instruction>Allow users to right-click and save podcasts by adding this to pages containing podcasts.</instruction>
-<embed><![CDATA[js: scripts/fixpodcastplay.js]]></embed>
-</package>
-
 <package id="quickpoll">
 <title>Quick Poll</title>
 <type>Learning Activities</type>
@@ -214,13 +202,13 @@ css: 'styles/dynamicresourcetable.css']]></embed>
 <package id="selfenrol">
 <title>Self Enrol Link</title>
 <type>Tools</type>
-<visible>false</visible>
-<available>false</available>
+<visible>true</visible>
+<available>true</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
 Safari 4 Mac&#13;
 IE 7, IE 8</description>
-<instruction>This tweak adds a Community Self Enrol link to the top of a page. Note: Self Enrol Tweak will only work if your Community Site is set up with 'Self Enrolment' option on.</instruction>
+<instruction>This tweak adds a Self Enrol link to the top of a page. Note: Self Enrol Tweak will only work if your Organization/Community Site is set up with 'Self Enrolment' option on. &lt;br/&gt; &lt;br/&gt; Optional: To make the Enrol link disappear after enrolment, set Review Status to Enabled for the Tweak.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_selfenrol.js',
 css: 'styles/selfenrol_thickbox.css']]></embed>
 </package>
@@ -280,14 +268,14 @@ css: 'styles/checklist.css']]></embed>
 <package id="noContentWrapper">
 <title>No Content Wrapper</title>
 <type>Tools</type>
-<visible>false</visible>
-<available>false</available>
+<visible>true</visible>
+<available>true</available>
 <description>Tested:&#13;
-Firefox 3.5, 3.6&#13;
+Firefox 3.6&#13;
 Safari 5 Mac&#13;
-Chrome B7&#13;
+Chrome B10&#13;
 IE 7, IE 8</description>
-<instruction>ADVANCED: This tweak unwraps hard coded Blackboard links in text so that the link goes to the normal page without doubling the breadcrumb trail. (Requires some HTML)&lt;br/&gt;&lt;br/&gt;1. Add the following HTML around item content to unwrap links:&lt;br/&gt;&lt;div class='noContentWrapper'&gt;YOUR CONTENT&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;Note: we strongly recommend using normal Blackboard Unit / Community links over hard coded text links as any link modifications or Unit Copies will require maintenance of the in text links.</instruction>
+<instruction>ADVANCED: This tweak unwraps hard coded Blackboard links in text so that the link goes to the normal page without doubling the breadcrumb trail. (Requires some HTML)&lt;br/&gt;&lt;br/&gt;1. Add the following HTML around item content to unwrap links:&lt;br/&gt;&lt;div class='noContentWrapper'&gt;YOUR CONTENT&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;Note: we strongly recommend using normal Blackboard Unit / Course / Community / Organization links over hard coded text links as any link modifications or site copies will require maintenance of the in text links.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_nocontentwrapper.js']]></embed>
 </package>
 <package id="Submenu">

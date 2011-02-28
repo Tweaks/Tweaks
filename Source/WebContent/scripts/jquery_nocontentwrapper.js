@@ -15,9 +15,15 @@
 */
 function unWrapLink(link) { 
 	var this_href=jQuery(link).attr("href"); 
-	jQuery(link).attr("href", unescape(this_href.substr(this_href.search("href=")+5, this_href.length)).replace("amp;", "")); 
+	if (this_href.search("href=") > -1)
+		jQuery(link).attr("href", unescape(this_href.substr(this_href.search("href=")+5, this_href.length)).replace("amp;", "")); 
+	else
+		jQuery(link).unbind().removeAttr("onclick");		
 }
 
 jQuery(function() {
-	jQuery("#pageList div.noContentWrapper a").each(function() { unWrapLink(this); });
+	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
+		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+
+	jQuery(tweak_bb.page_id +" div.noContentWrapper a").each(function() { unWrapLink(this); });
 });
