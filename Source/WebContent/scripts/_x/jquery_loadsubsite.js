@@ -24,13 +24,13 @@ jQuery(function($) {
 		if($("iframe").length) // look for iframe
 			$("#content").replaceWith($("iframe:eq(0)").get());
 		else
-		{ // look for item called web package
-			var webPackageLink = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:cicontains(\"Site Link\")").parents(tweak_bb.row_element).find("a:first");
-			if (webPackageLink.length)
+		{ // look for item called site link
+			var siteLink = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:cicontains(\"Site Link\")").parents(tweak_bb.row_element).find("a:first");
+			if (siteLink.length)
 			{
-				unWrapLink(webPackageLink);
+				unWrapLink(siteLink);
 				$("#content").hide();
-				$("#content").html("<iframe src=\""+webPackageLink.attr("href")+"\" width=\"100%\" height=\"2950\" frameBorder=\"0\"></iframe>");
+				$("#content").html("<iframe src=\""+siteLink.attr("href")+"\" width=\"100%\" height=\"2950\" frameBorder=\"0\"></iframe>");
 				$("#content iframe").load(restyleFrame).ready(restyleFrame);
 			}
 		}
