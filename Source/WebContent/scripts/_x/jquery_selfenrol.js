@@ -4,9 +4,9 @@
  * Copyright (c) 2007 cody lindley
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
 */
-// use relative path for remote hosting + server relative path for building block
+// use server path for github hosting or server relative path for building block
 var remoteHost = (jQuery("script.tweak_script").parents("div.details:contains(\"Self Enrol\")").filter(":contains(\"github\")").length>0);
-var tb_pathToImage = (remoteHost ? ".." : "/webapps/qut-tweakbb-bb_bb60") + "/images/loadingAnimation.gif";
+var tb_pathToImage = (remoteHost ? "http://tweaks.github.com/Tweaks/Source/WebContent" : "/webapps/qut-tweakbb-bb_bb60") + "/images/loadingAnimation.gif";
 /*!!!!!!!!!!!!!!!!! edit below this line at your own risk !!!!!!!!!!!!!!!!!!!!!!!*/
 //on page load call tb_init :: customised with functions at end
 //add thickbox to href & area elements that have a class of .thickbox
