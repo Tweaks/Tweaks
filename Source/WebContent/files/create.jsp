@@ -144,19 +144,20 @@ else
 		<bbNG:jsBlock>
 		<script language="javascript" type="text/javascript">
 			jQuery(function($) { 
-			jQuery("#addModify input:submit").click(function(e){   
-				if ($("#addModify li.required:first input:checked").length == 0) {
-					alert("Please select Tweak type and press Add button");
-					e.preventDefault();
-				}
-			});
+				jQuery("#addModify input:submit").click(function(e){   
+					if ($("#addModify li.required:first input:checked").length == 0) {
+						alert("Please select Tweak type and press Add button");
+						e.preventDefault();
+					}
+				});
 			 <% 
 			 	for (int i=0; i < tweakItems.size(); i++) { 
 				  if (tweakItems.get(i)[3].equals("true")) { %>
 				$("#<%=tweakItems.get(i)[7]%>").click(function(){$("#usage_instruction").text("<%=tweakItems.get(i)[5]%>").show();inlineFormatInstructions();});
  		  	 <%   } 
 				} %>
-			   jQuery(".tweak_fieldset").css("min-height",jQuery(".tweak_fieldset:first").height())
+				var padding = 24;
+				jQuery(".tweak_fieldset").css("min-height",jQuery(".tweak_fieldset").parent().height()-padding);
 			});
 			function inlineFormatInstructions() {
 				jQuery("#usage_instruction").html(jQuery("#usage_instruction").html().replace(/&lt;br[\/]?&gt;/g, "<br/>").replace(/'/g, "\""));

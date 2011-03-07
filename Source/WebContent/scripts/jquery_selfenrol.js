@@ -4,8 +4,9 @@
  * Copyright (c) 2007 cody lindley
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
 */
-      
-var tb_pathToImage = "../images/loadingAnimation.gif";
+// use server path for github hosting or server relative path for building block
+var tweak_imagePath = (window.tweak_path == null) ? "../" : ((tweak_path == "") ? "http://tweaks.github.com/Tweaks/Source/WebContent/" : tweak_path) + "images/";
+var tb_pathToImage = tweak_imagePath + "loadingAnimation.gif";
 /*!!!!!!!!!!!!!!!!! edit below this line at your own risk !!!!!!!!!!!!!!!!!!!!!!!*/
 //on page load call tb_init :: customised with functions at end
 //add thickbox to href & area elements that have a class of .thickbox

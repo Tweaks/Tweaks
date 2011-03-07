@@ -173,11 +173,11 @@ else
 			  %>
 			  	$("#usage_instruction").text("<%=tweakItems.get(i)[5]%>").show();
 				inlineFormatInstructions();
-			 <%
-				  }
+			 <%	  }
 				}
 				%>
-				jQuery(".tweak_fieldset").css("min-height",jQuery(".tweak_fieldset:first").height())		   
+				var padding = 24;
+				jQuery(".tweak_fieldset").css("min-height",jQuery(".tweak_fieldset").parent().height()-padding);
 			});
 			function inlineFormatInstructions() {
 				jQuery("#usage_instruction").html(jQuery("#usage_instruction").html().replace(/&lt;br[\/]?&gt;/g, "<br/>").replace(/'/g, "\""));
