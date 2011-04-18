@@ -103,7 +103,7 @@ jQuery(function($){
 						var thiscell = $unitMap.find("tr:eq("+(row+1)+") td:eq("+(column+columnOffset)+")");
 
 						// set up link (if there is one): consider / is there better way that deals with filtering edit mode links ok
-						var thislink = $(this).find("a:startsWith('"+sectionTitle+": "+resourceTypes[column]+"')").clone();
+						var thislink = $(this).find("a:contains('"+sectionTitle+": "+resourceTypes[column]+"')").clone();
 						if (thislink.length)
 							thislink = setUpLinkOptions(thislink, thiscell, displayLinkTopicIndexText, displayLinkResourceText, sectionTitle, resourceTypes[column]);
 					
