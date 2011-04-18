@@ -12,15 +12,19 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-   version 1.8. author Tim Plaisted 2010 */
+   version 1.9. author Tim Plaisted 2010, 2011 */
 jQuery(function($){
 	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
 		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
 
-	// utility extension: case insensitive contains
+	// utility extensions: case insensitive contains and case and leading whitespace insensitive startsWith using regexp
 	jQuery.expr[':'].contains = function(a,i,m){
 		return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase())>=0;
 	};
+	jQuery.expr[':'].startsWith = function(a,i,m){
+		var startsWithRegExp = new RegExp('^\\s*'+trim(m[3])+'\\s*', 'i');
+		return jQuery(a).text().match(startsWithRegExp);
+	};	
 	// load headers as parsed several times in script
 	var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item");
 	
@@ -91,7 +95,7 @@ jQuery(function($){
 			// normal table processing
 			for (var column = 0; column < resourceTypes.length; column++) {
 				if (sectionTitle.length && resourceTypes[column].length) {
-					headers.filter(":contains('"+sectionTitle+": "+resourceTypes[column]+"')").each(function() {
+					headers.filter(":startsWith('"+sectionTitle+": "+resourceTypes[column]+"')").each(function() {
 
 						if(location.href.indexOf("Content.")>0)
 							$(this).parents(tweak_bb.row_element).hide();
@@ -99,7 +103,7 @@ jQuery(function($){
 						var thiscell = $unitMap.find("tr:eq("+(row+1)+") td:eq("+(column+columnOffset)+")");
 
 						// set up link (if there is one): consider / is there better way that deals with filtering edit mode links ok
-						var thislink = $(this).find("a:contains('"+sectionTitle+": "+resourceTypes[column]+"')").clone();
+						var thislink = $(this).find("a:startsWith('"+sectionTitle+": "+resourceTypes[column]+"')").clone();
 						if (thislink.length)
 							thislink = setUpLinkOptions(thislink, thiscell, displayLinkTopicIndexText, displayLinkResourceText, sectionTitle, resourceTypes[column]);
 					
