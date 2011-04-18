@@ -22,7 +22,7 @@ jQuery(function($){
 		return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase())>=0;
 	};
 	jQuery.expr[':'].startsWith = function(a,i,m){
-		var startsWithRegExp = new RegExp('^\\s*'+trim(m[3])+'\\s*', 'i');
+		var startsWithRegExp = new RegExp('^\\s*'+jQuery.trim(m[3])+'\\s*', 'i');
 		return jQuery(a).text().match(startsWithRegExp);
 	};	
 	// load headers as parsed several times in script
