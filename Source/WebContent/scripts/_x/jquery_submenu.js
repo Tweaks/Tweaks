@@ -271,6 +271,7 @@ function localFixLearningObjLink($) {
 			}
 			else if($(this).text() == "play") {
 				var this_href = $(this).attr("href");
+				var blackboardServerURL = location.protocol + "//" + location.host + "/";
 				var decoded_path =  unescape(blackboardServerURL+singleDecodeLink(this_href.substr(this_href.search("href=")+8, this_href.length)));
 				if ($(this).parents("span").find("a.downloadlink").length == 0)
 					$(this).after(" | <a href='"+decoded_path+"' target='_download' class='downloadlink' title='Right-click and save this file to your computer' alt='Right-click and save this file to your computer'>download</a>");	
