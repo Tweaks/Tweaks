@@ -176,8 +176,8 @@ else
 			 <%	  }
 				}
 				%>
-				var padding = 24;
-				jQuery(".tweak_fieldset").css("min-height",jQuery(".tweak_fieldset").parent().height()-padding);
+				var maxheight = 0;
+				jQuery(".tweak_fieldset").each(function(){ if (jQuery(this).height() > maxheight) { maxheight = jQuery(this).height();} }).height(maxheight);
 			});
 			function inlineFormatInstructions() {
 				jQuery("#usage_instruction").html(jQuery("#usage_instruction").html().replace(/&lt;br[\/]?&gt;/g, "<br/>").replace(/'/g, "\""));

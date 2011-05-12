@@ -156,8 +156,9 @@ else
 				$("#<%=tweakItems.get(i)[7]%>").click(function(){$("#usage_instruction").text("<%=tweakItems.get(i)[5]%>").show();inlineFormatInstructions();});
  		  	 <%   } 
 				} %>
-				var padding = 24;
-				jQuery(".tweak_fieldset").css("min-height",jQuery(".tweak_fieldset").parent().height()-padding);
+				jQuery("fieldset.tweak_fieldset").parents("li").find(".label:contains(\"Tweak Type\")").css("float", "none").end().find(".field:first").css("width", "95%");
+				var maxheight = 0;
+				jQuery(".tweak_fieldset").each(function(){ if (jQuery(this).height() > maxheight) { maxheight = jQuery(this).height();} }).height(maxheight);
 			});
 			function inlineFormatInstructions() {
 				jQuery("#usage_instruction").html(jQuery("#usage_instruction").html().replace(/&lt;br[\/]?&gt;/g, "<br/>").replace(/'/g, "\""));
