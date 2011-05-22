@@ -29,13 +29,16 @@ jQuery(function($){
   var descItem = $("#description, .description");
 
   // 9.x utility functions to preload images
-  var buildPreload = function(src, index) {
-	return (jQuery.browser.mozilla) ?
-		"<iframe src=\""+src+"\" name=\""+index+"\" width=\"55\" height=\"55\"></iframe>" :
-		"<img src=\""+src+"\" id=\""+index+"\" width=\"55\" height=\"55\">";
+  var useFramesForPreload = jQuery.browser.mozilla;
+  var buildPreload = function(src, thisMapName, index) {
+  	var this_rolloverid = thisMapName+"_"+index;
+	return (useFramesForPreload && index > 0) ?
+		"<iframe src=\""+src+"\" name=\""+this_rolloverid+"\" width=\"55\" height=\"55\"></iframe>" :
+		"<img src=\""+src+"\" id=\""+this_rolloverid+"\" width=\"55\" height=\"55\">";
   };
-  var getPreloadURL = function(url, framename) {
-	return (jQuery.browser.mozilla) ? 
+  var getPreloadURL = function(url, thisMapName, index) {
+  	var framename = thisMapName+"_"+index;
+	return (useFramesForPreload && index > 0) ? 
 		frames[framename].window.location.href :
 		url;
   };
@@ -90,10 +93,9 @@ jQuery(function($){
 					var this_href= matchingRolloverItem.attr("href");
 					if (this_href.search("href=") > -1)
 						this_href = unescape(this_href.substr(this_href.search("href=")+5, this_href.length)).replace("amp;", ""); 
-					var this_rolloverid = thisMapName+"_"+index;
-					preloadrolloverHTML += buildPreload(this_href, this_rolloverid);
+					preloadrolloverHTML += buildPreload(this_href, thisMapName, index);
 					$(this).mouseover(function(){
-						thisMapImage.attr("src", getPreloadURL(this_href, this_rolloverid));
+						thisMapImage.attr("src", getPreloadURL(this_href, thisMapName, index));
 					});
 				}
 			}
@@ -102,11 +104,10 @@ jQuery(function($){
 	
 	// add preload images and attach mouseout event
 	if (hasRollovers) {
-		var this_rolloverid = thisMapName+"_"+0;
-		preloadrolloverHTML += buildPreload(thisMapImageSrc, this_rolloverid);
+		preloadrolloverHTML += buildPreload(thisMapImageSrc, thisMapName, 0);
 	  	rolloverRow.find("div.details").append(preloadrolloverHTML);
 		$(this).children().mouseout(function(){ 
-			thisMapImage.attr("src", getPreloadURL(thisMapImageSrc, this_rolloverid));
+			thisMapImage.attr("src", getPreloadURL(thisMapImageSrc, thisMapName, 0));
 		});
 	}
   });
