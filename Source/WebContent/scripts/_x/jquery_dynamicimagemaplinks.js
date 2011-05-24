@@ -51,7 +51,7 @@ jQuery(function($){
   	hasRollovers = (rolloverItems.length > 0);
   }
   
-  $(tweak_bb.page_id+" map").each(function() {
+  $("map").each(function() {
 	// parse each map
     var thisMapName = $(this).attr("name");
     var thisMapImage = $("img[usemap*=\""+thisMapName+"\"]");
