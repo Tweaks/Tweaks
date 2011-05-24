@@ -114,7 +114,7 @@ function setupMenuLinks(intMenuItems) {
 		menuHTML+= "<a href='"+ intMenuItems[i].href + "' id='"+ intMenuItems[i].id +"' title='"+ altText +"' target='"+ intMenuItems[i].target +"'>"+ intMenuItems[i].title+"</a> ";
 		// set any corresponding image map item. benchmark new image map changes
 		if (imageMapLinksExist)
-			imageMapLinks.filter("[alt*="+intMenuItems[i].title+"]").attr({
+			imageMapLinks.filter("[alt*='"+intMenuItems[i].title+"']").attr({
 				id: intMenuItems[i].id,
 				href: intMenuItems[i].href,
 				target: intMenuItems[i].target
