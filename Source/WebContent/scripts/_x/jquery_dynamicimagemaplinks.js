@@ -111,7 +111,7 @@ jQuery(function($){
 		});
 	}
   });
-    
+  
   // attach description event
   if (descItem.length) {
 	$("area").mouseover(function(){
