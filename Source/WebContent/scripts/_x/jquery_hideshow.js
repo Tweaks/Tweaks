@@ -32,7 +32,7 @@ jQuery(function($) {
  instText = ($("#showHideInstruction").length) ? $("#showHideInstruction").text() : defaultInstruction;
  $("<a href='#' class='hideShowLink'>"+instText+"</a>").insertBefore(tweak_bb.page_id+" div."+hideClass);
  $(tweak_bb.page_id+" a.hideShowLink").click(function(e){ $(this).next().toggleClass("hidden"); e.preventDefault();});
- if($("body.ineditmode").length == 0){
+ if (tweak_bb.display_view) {
 	 $(tweak_bb.page_id+" .hidemyrow").parents(tweak_bb.row_element).hide();
 	 $("#showHideInstruction").hide();
  }

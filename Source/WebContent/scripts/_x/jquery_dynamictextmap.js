@@ -248,7 +248,7 @@ if (dynamicTextMapInstance.hasCustomStyle()) {
 			}
 		});
 		
-		if ($("body.ineditmode").length == 0)
+		if (tweak_bb.display_view)
 			styleSheetHeaders.parents(tweak_bb.row_element).hide();
 
 		var numStylesheets = styleSheets.length;

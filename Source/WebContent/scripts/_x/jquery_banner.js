@@ -27,5 +27,6 @@ jQuery(function($){
 	$("#titleicon").hide();
 	$("#pageTitleDiv h1").css({"padding-top": "8px", "float": "none"});
 	// edit mode
-	$("body.ineditmode "+tweak_bb.page_id+" > "+tweak_bb.row_element+".banner").show();
+	if (tweak_bb.display_view === false)
+		$(tweak_bb.page_id+" > "+tweak_bb.row_element+".banner").show();
 });

@@ -101,7 +101,7 @@ jQuery(function() {
 	findReplacementIcons();
 	hideIcons();
 	// clean up
-	if (jQuery("body.ineditmode").length == 0)
+	if (tweak_bb.display_view)
 	{
 		replacementIconHeaders.parents(tweak_bb.row_element).hide();
 		jQuery(tweak_bb.page_id +" h3.hideicon").parents(tweak_bb.row_element).hide();	
