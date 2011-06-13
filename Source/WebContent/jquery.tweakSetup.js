@@ -47,7 +47,7 @@ function BBVersionSetup() {
 	// content: h3.item siblings div.details now h3.parents li find div.details
 }
 
-jQuery.noConflict(); /* as using CDN version of jQuery */
+jQuery.noConflict(); /* if using CDN version of jQuery (move this out in future as switched to local version */
 jQuery(function($) {
   if (window.tweak_bb == null)
     BBVersionSetup();
