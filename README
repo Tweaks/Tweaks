@@ -1,4 +1,4 @@
-Copyright 2010 Tim Plaisted, Queensland University of Technology
+Copyright 2011 Tim Plaisted and Queensland University of Technology
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use files from this project except in compliance with the License.
@@ -18,8 +18,9 @@ Description:
 Tweaks is a Building Block for the Blackboard LMS which enables academics and support staff to customise and extend their site presentation, navigation and structure as well as add templated page designs, small learning activities and Blackboard functionality.
 
 Repository URL: http://github.com/Tweaks/Tweaks
-Building Blocks available: http://projects.oscelot.org/gf/project/tweak_bb/
 
-Project files:
-README				this file
-/Source				full source
+The project uses the following resources:
+jQuery library http://jquery.org/license/ (MIT license)
+Lazy Loading code in jquery.tweakSetup.js adapted from xLazyLoader plugin for jQuery (MIT license)
+Self Enrol Tweak includes Thickbox plugin for jQuery (MIT license)
+Add Coloured Icon Box Tweak uses open licensed Knob Toolbar Icons collection http://itweek.deviantart.com/art/Knob-Buttons-Toolbar-icons-73463960 and CSS from http://www.jankoatwarpspeed.com/post/2008/05/22/CSS-Message-Boxes-for-different-message-types.aspx
