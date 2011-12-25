@@ -176,8 +176,8 @@ css: 'styles/quickpoll.css']]></embed>
 <package id="icons">
 <title>Add Coloured Icon Box</title>
 <type>Presentation</type>
-<visible>false</visible>
-<available>false</available>
+<visible>true</visible>
+<available>true</available>
 <description>Tested:&#13;
 Firefox 3.5 Mac&#13;
 Safari 4 Mac&#13;
@@ -304,6 +304,19 @@ Chrome B7&#13;
 IE 7, IE 8</description>
 <instruction>This tweak is useful for loading a section of another Blackboard Site into the full content area of your current Blackboard site (for example - if you have content section created in a shared site that you want embedded in other sites).&lt;br/&gt;&lt;br/&gt;1. Copy a link to the section of the sub site (e.g. from the left hand menu, or the Blackboard folder). Make sure you are in EDIT mode OFF -- and that students have guest or enrolled access to the subsite.&lt;br/&gt;2. In the parent Blackboard Site, create an External Link called 'Site Link' and paste in the URL to the sub site section.&lt;br/&gt;3. After adding this Tweak, switch to EDIT Mode Off to see the subsite load.</instruction>
 <embed><![CDATA[js: 'scripts/jquery_loadsubsite.js']]></embed>
+</package>
+<package id="localdomainsubsite">
+<title>Load Subsite (Local Domain)</title>
+<type>Tools</type>
+<visible>false</visible>
+<available>false</available>
+<description>Tested:&#13;
+Firefox 3.5, 3.6&#13;
+Safari 5 Mac&#13;
+Chrome B7&#13;
+IE 7, IE 8</description>
+<instruction>This tweak is an extension to load subsite which adds the ability to load local domain sites as well as Blackboard sites into Blackboard. It is useful for loading a section of another site into the full content area or an item of your current Blackboard site (for example - if you have content section created in a shared site that you want embedded in other sites).&lt;br/&gt;&lt;br/&gt;1. Copy a link to the section of the sub site (e.g. from the left hand menu, or the Blackboard folder). Make sure you are in EDIT mode OFF -- and that students have guest or enrolled access to the subsite.&lt;br/&gt;2. In the parent Blackboard Site, create an External Link called 'Site Link' (or 'Resource Site Link' to just replace the items content area) and paste in the URL to the sub site section.&lt;br/&gt;3. After adding this Tweak, switch to EDIT Mode Off to see the subsite load.</instruction>
+<embed><![CDATA[js: 'scripts/jquery_loadsubsite2.js']]></embed>
 </package>
 <package id="banner">
 <title>Banner</title>
