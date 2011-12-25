@@ -5,7 +5,7 @@
     <name value="Tweak "/>
     <handle value="tweakbb"></handle>
     <description value="To make Tweaks easy for academics to embed in their Blackboard pages."></description>
-    <version value="3.1.7"></version>
+    <version value="3.1.8"></version>
     <requires>
     	<bbversion value="9.0.0.0"/>
     </requires>
