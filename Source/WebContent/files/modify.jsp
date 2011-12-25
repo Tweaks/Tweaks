@@ -25,9 +25,11 @@
 		errorPage="/error.jsp"
 	
 %>
-<%@ taglib uri="/bbUI" prefix="bbUI"%>
+
 <%@ taglib uri="/bbData" prefix="bbData"%>
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
+<%@ taglib uri="/bbUI" prefix="bbUI"%>
+
 <bbNG:learningSystemPage ctxId="ctx">
 <%
 if (!PlugInUtil.authorizeForCourseControlPanel(request, response))
@@ -177,7 +179,7 @@ else
 				}
 				%>
 				var maxheight = 0;
-				jQuery(".tweak_fieldset").each(function(){ if (jQuery(this).height() > maxheight) { maxheight = jQuery(this).height();} }).height(maxheight);
+				jQuery("fieldset.tweak_fieldset").each(function(){ if (jQuery(this).height() > maxheight) { maxheight = jQuery(this).height();} }).height(maxheight);
 			});
 			function inlineFormatInstructions() {
 				jQuery("#usage_instruction").html(jQuery("#usage_instruction").html().replace(/&lt;br[\/]?&gt;/g, "<br/>").replace(/'/g, "\""));

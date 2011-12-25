@@ -43,8 +43,6 @@ if (!PlugInUtil.authorizeForCourseControlPanel(request, response))
 Course thisCourse = ctx.getCourse();
 String thisCourseId=thisCourse.getCourseId();
 String srcCourseId = thisCourseId;
-//String thisPluginUriStem = PlugInUtil.getUriStem("qut", "tweakbb");
-//String thisPluginImageUrlPath = thisPluginUriStem + "images/tweakbb-icon2.gif";
 String action = request.getParameter("action");
 String title = "Tweak";
 
@@ -95,11 +93,9 @@ if (action.equals("create"))
 </bbNG:pageHeader>
 <%@ include file="/admin/genConfigPath.jsp"%>
 <%@ include file="XMLData.jsp"%>
-
-
 <bbNG:jsFile href="jquery.js"/>
 <bbNG:jsFile href="jquery.tweakSetup.js"/>
-<bbNG:jsFile href="jquery.tweakAdmin.js"/>	
+<bbNG:jsFile href="jquery.tweakAdmin.js"/>
 <bbNG:cssBlock>
 	<link type="text/css" href="../styles/tweakAdmin.css" rel="stylesheet">
 </bbNG:cssBlock>
@@ -158,7 +154,7 @@ else
 				} %>
 				jQuery("fieldset.tweak_fieldset").parents("li").find(".label:contains(\"Tweak Type\")").css("float", "none").end().find(".field:first").css("width", "95%");
 				var maxheight = 0;
-				jQuery(".tweak_fieldset").each(function(){ if (jQuery(this).height() > maxheight) { maxheight = jQuery(this).height();} }).height(maxheight);
+				jQuery("fieldset.tweak_fieldset").each(function(){ if (jQuery(this).height() > maxheight) { maxheight = jQuery(this).height();} }).height(maxheight);
 			});
 			function inlineFormatInstructions() {
 				jQuery("#usage_instruction").html(jQuery("#usage_instruction").html().replace(/&lt;br[\/]?&gt;/g, "<br/>").replace(/'/g, "\""));
