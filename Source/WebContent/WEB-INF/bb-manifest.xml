@@ -6,6 +6,7 @@
     <handle value="tweakbb"></handle>
     <description value="To make Tweaks easy for academics to embed in their Blackboard pages."></description>
     <version value="3.1.8"></version>
+    <!-- keep client viewable version up to date in jquery.tweakSetup.js -->
     <requires>
     	<bbversion value="9.0.0.0"/>
     </requires>
