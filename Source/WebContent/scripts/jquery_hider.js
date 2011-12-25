@@ -23,8 +23,8 @@ jQuery(function($){
 	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
 		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
 
-	if(jQuery("body.ineditmode").length == 0) {
+	if(tweak_bb.display_view) {
 		$(tweak_bb.page_id +" ."+rowIdentifier).parents(tweak_bb.row_element).hide();
-		$(tweak_bb.page_id +" ."+iconIdentifier).parents(tweak_bb.element).each(function(){$(this).find(".item_icon").hide();});
+		$(tweak_bb.page_id +" ."+iconIdentifier).parents(tweak_bb.row_element).each(function(){$(this).find(".item_icon").hide();});
 	}
 });

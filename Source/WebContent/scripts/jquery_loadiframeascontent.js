@@ -22,7 +22,7 @@ jQuery(function($) {
 	jQuery.expr[':'].cicontains = function(a,i,m){
 		return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase())>=0;
 	};		
-	if ($("body.ineditmode").length == 0) {
+	if (tweak_bb.display_view) {
 		if($("iframe").length) // look for iframe
 			$("#content").replaceWith($("iframe:eq(0)").get());
 		else

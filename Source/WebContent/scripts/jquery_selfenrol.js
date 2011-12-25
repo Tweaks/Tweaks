@@ -381,12 +381,12 @@ jQuery(function($){
 		$(tweak_bb.page_id).show();
 	
 	// if no enrol flag found -- or in edit mode, add enrol link and set up
-	if (!enrolFlagged || jQuery("body.ineditmode").length > 0)
+	if (!enrolFlagged || !tweak_bb.display_view)
 	{
 	  var comname = $("#breadcrumbs .courseName").text();
 	  var enrolMessage = "Self Enrol in ("+comname+") Organization/Community Site</a></h3>You will need to self enrol in this site in order to participate. Click Close after you have enrolled to return to this page.<br><br>";
 	  $(tweak_bb.page_id).before("<div><h3><a href=\"#\" class=\"thickbox\">"+enrolMessage+"</div>");
-	  $("a.thickbox").attr("title", "Click close after enrolling in site or to cancel enrolment").click(function(){ $("body.ineditmode #addCmItem").hide(); });
+	  $("a.thickbox").attr("title", "Click close after enrolling in site or to cancel enrolment").click(function(){ if (tweak_bb.display_view === false) { $("#addCmItem").hide(); } });
 	  // set up enrol link
 	  var bb_course_id = location.href.replace(/.*course_id=([^&]+).*/, "$1");
 	  var fixedEnrolURL = "/webapps/blackboard/execute/enrollCourse?context=Org&course_id=" + bb_course_id +"&KeepThis=true&TB_iframe=true&height=410&width=795";

@@ -14,8 +14,8 @@
    limitations under the License.
    
 	Dynamically link image map using blackboard links
-	Version: 1.5
-	Author: Tim Plaisted 2010
+	Version: 1.6
+	Author: Tim Plaisted 2011
 	Usage: 1. Add image map to image, and use ALT tags to enter short description of links, href can be left at "#".
 	       2. Add Blackboard folders, items with files, site or external links with title as full description (including short description text exactly e.g. unit code).
 	       3. Optionally include detailed description in details field -- and add a HTML item with id="description" to have mouseover text
@@ -24,43 +24,97 @@ jQuery(function($){
   if (window.tweak_bb == null || window.tweak_bb.page_id == null)
 	window.tweak_bb = { page_id: "#pageList", row_element: "li" };
 	
-  // load headers and description as parsed several times in script
+  // preload headers and description parsing outside of loops
   var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item");
   var descItem = $("#description, .description");
 
-  $(tweak_bb.page_id+" map").children().each(function() {
-	var altText = $.trim($(this).attr("alt"));
-	if (altText.length) {
-		// find alt text in page headers
-		var matchingHeader = headers.filter(":contains('"+altText+"'):first");
-		if (matchingHeader.length) {
-			// check header for a link
-			var link = $(matchingHeader).find("a:first:contains('"+altText+"')");
-			var details = $(matchingHeader).parents(tweak_bb.row_element).children("div.details");
-			
-			// if no link found in header, look for item's file attachment
-			if (link.length == 0)
-				link = details.find("ul.attachments a:first");
-			
-			// look for description: store html or text with map item
-			if (descItem.length) {
-				var desc = (descItem.hasClass("html")) ? details.clone().html() : $.trim(details.clone().remove("a").text());
-				if (desc) { $(this).data("desc", desc); }
+  // 9.x utility functions to preload images
+  var useFramesForPreload = jQuery.browser.mozilla;
+  var buildPreload = function(src, thisMapName, index) {
+  	var this_rolloverid = thisMapName+"_"+index;
+	return (useFramesForPreload && index > 0) ?
+		"<iframe src=\""+src+"\" name=\""+this_rolloverid+"\" width=\"55\" height=\"55\"></iframe>" :
+		"<img src=\""+src+"\" id=\""+this_rolloverid+"\" width=\"55\" height=\"55\">";
+  };
+  var getPreloadURL = function(url, thisMapName, index) {
+  	var framename = thisMapName+"_"+index;
+	return (useFramesForPreload && index > 0) ? 
+		frames[framename].window.location.href :
+		url;
+  };
+
+  // check if rollover images set up required (
+  var hasRollovers = false, rolloverItems, preloadrolloverHTML = "";
+  var rolloverRow = headers.filter(":contains('Rollover Images'):first").parents(tweak_bb.row_element);
+  if (rolloverRow) {
+  	rolloverItems = rolloverRow.find("ul.attachments a");
+  	hasRollovers = (rolloverItems.length > 0);
+  }
+  
+  $("map").each(function() {
+	// parse each map
+    var thisMapName = $(this).attr("name");
+    var thisMapImage = $("img[usemap*=\""+thisMapName+"\"]");
+    var thisMapImageSrc = $(thisMapImage).attr("src");
+    
+    // parse each maps area tags
+	$(this).children().each(function(index, areaItem) {
+		var altText = $.trim($(areaItem).attr("alt"));
+		if (altText.length) {
+			// find alt text in page headers
+			var matchingHeader = headers.filter(":contains('"+altText+"'):first");
+			if (matchingHeader.length) {
+				// check header for a link
+				var link = $(matchingHeader).find("a:first:contains('"+altText+"')");
+				var details = $(matchingHeader).parents(tweak_bb.row_element).children("div.details");
+				
+				// if no link found in header, look for item's file attachment
+				if (link.length == 0)
+					link = details.find("ul.attachments a:first");
+				
+				// look for description: store html or text with map item
+				if (descItem.length) {
+					var desc = (descItem.hasClass("html")) ? details.clone().html() : $.trim(details.clone().remove("a").text());
+					if (desc) { $(areaItem).data("desc", desc); }
+				}
+				
+				// if link found
+				if (link.length) {
+					$(areaItem).attr("href", link.attr("href"));
+					if (tweak_bb.display_view)
+						$(matchingHeader).parents(tweak_bb.row_element).hide();
+				}
 			}
 			
-			// if link found
-			if (link.length) {
-				$(this).attr("href", link.attr("href"));
-				if ($("body.ineditmode").length == 0)
-					$(matchingHeader).parents(tweak_bb.row_element).hide();
+			// rollover images: find and attach rollover functionality
+			if (hasRollovers) {
+				var matchingRolloverItem = rolloverItems.filter(":contains('"+altText+"'):first");
+				if (matchingRolloverItem.length) {
+					var this_href= matchingRolloverItem.attr("href");
+					if (this_href.search("href=") > -1)
+						this_href = unescape(this_href.substr(this_href.search("href=")+5, this_href.length)).replace("amp;", ""); 
+					preloadrolloverHTML += buildPreload(this_href, thisMapName, index);
+					$(this).mouseover(function(){
+						thisMapImage.attr("src", getPreloadURL(this_href, thisMapName, index));
+					});
+				}
 			}
 		}
+	});
+	
+	// add preload images and attach mouseout event
+	if (hasRollovers) {
+		preloadrolloverHTML += buildPreload(thisMapImageSrc, thisMapName, 0);
+	  	rolloverRow.find("div.details").append(preloadrolloverHTML);
+		$(this).children().mouseout(function(){ 
+			thisMapImage.attr("src", getPreloadURL(thisMapImageSrc, thisMapName, 0));
+		});
 	}
   });
   
   // attach description event
   if (descItem.length) {
-	$(tweak_bb.page_id+" map area").mouseover(function(){
+	$("area").mouseover(function(){
 		var desc = jQuery(this).data("desc");
 		if (desc != null) { 
 			if (descItem.hasClass("html"))
@@ -70,4 +124,8 @@ jQuery(function($){
 		}
 	});
   }
+  
+  // finish tidy up after preload images added
+  if (hasRollovers)
+	rolloverRow.toggle(tweak_bb.display_view == false);
 });

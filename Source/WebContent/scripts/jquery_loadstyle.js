@@ -31,6 +31,8 @@ jQuery(function($){
 			$.xLazyLoader('loadRootPath', { css: URLofCSS});
 		}
 	});
-	$(tweak_bb.page_id+" .hidemyrow").parents(tweak_bb.row_element).hide();
-	$("body.ineditmode "+tweak_bb.page_id+" .loadStyle").show().parents(tweak_bb.row_element).show();
+	if (tweak_bb.display_view)
+		$(tweak_bb.page_id+" .hidemyrow").parents(tweak_bb.row_element).hide();
+	else if (tweak_bb.display_view === false)
+		$(tweak_bb.page_id+" .loadStyle").show().parents(tweak_bb.row_element).show();
 });

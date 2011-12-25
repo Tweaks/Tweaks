@@ -17,12 +17,12 @@ jQuery(function($){
 	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
 		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
 
-	// utility extensions: case insensitive contains and case and leading whitespace insensitive startsWith using regexp
+	// utility extensions: case insensitive contains and case and leading whitespace insensitive startsWith using regexp (parses from start plus nb rows)
 	jQuery.expr[':'].contains = function(a,i,m){
 		return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase())>=0;
 	};
 	jQuery.expr[':'].startsWith = function(a,i,m){
-		var startsWithRegExp = new RegExp('^\\s*'+jQuery.trim(m[3])+'\\s*', 'i');
+		var startsWithRegExp = new RegExp('^\\s*(nb2*:)*\\s*'+jQuery.trim(m[3])+'\\s*', 'i');
 		return jQuery(a).text().match(startsWithRegExp);
 	};	
 	// load headers as parsed several times in script

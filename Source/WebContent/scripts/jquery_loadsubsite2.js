@@ -26,12 +26,22 @@ jQuery(function($) {
 		else
 		{ // look for item called site link
 			var siteLink = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:cicontains(\"Site Link\")").parents(tweak_bb.row_element).find("a:first");
-			if (siteLink.length)
+			// decide on target: if it contains Resource, target this item's content as target, otherwise target whole page
+			var target = (siteLink.text().indexOf("Resource")>-1) ? siteLink.parents(tweak_bb.row_element).find("div.details").attr("id", "subsiteTarget") : $("#content");
+			if (siteLink.length && target.length)
 			{
 				unWrapLink(siteLink);
-				$("#content").hide();
-				$("#content").html("<iframe src=\""+siteLink.attr("href")+"\" width=\"100%\" height=\"2950\" frameBorder=\"0\"></iframe>");
-				$("#content iframe").load(restyleFrame).ready(restyleFrame);
+				// check if local url or subdomain url
+				var url = siteLink.attr("href");
+				var sameDomain = (url.indexOf("/")==0 || url.indexOf(location.protocol+"//"+location.host)==0);
+				if (!sameDomain) {
+					// pull in if different subdomain within same main domain via parseLocalFile
+					var tweak_fileprocessing_path = ((window.tweak_path == null) ? "/webapps/qut-tweakbb-bb_bb60/" : tweak_path) + "files/parseLocalFiles.jsp";
+					url = tweak_fileprocessing_path+"?url="+escape(url);
+				}
+				target.hide();
+				target.html("<iframe src=\""+url+"\" width=\"100%\" height=\"2950\" frameBorder=\"0\"></iframe>");
+				target.find("iframe").load(restyleFrame).ready(restyleFrame);
 			}
 		}
 		$("#contentPanel div.topRound").hide();
@@ -58,10 +68,13 @@ function restyleFrame() {
 			} else
 				jQuery("#content iframe").css("margin-left", "-2000px");
 		});
-		jQuery("#content").show();
-		jQuery("#content iframe").height(frame.find("body").height()+55);
-		jQuery("#content iframe").css("margin-left", "auto");
+	} else {
+		// todo: test if issue with loading in all browsers
+		// logic to process non Blackboard pages
 	}
+	jQuery("#content, #subsiteTarget").show();
+	jQuery("#content iframe").height(frame.find("body").height()+55).css("margin-left", "auto");
+	if (window.prepareImportedContent != null) { window.prepareImportedContent(); }
 }
 
 function unWrapLink(link) { 

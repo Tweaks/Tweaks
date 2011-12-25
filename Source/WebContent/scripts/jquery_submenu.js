@@ -55,7 +55,7 @@ jQuery(function($) {
 	var id = $(this).attr("id");
 	var desc = $.trim($(this).parents(tweak_bb.row_element).find("div.details").text().replace("'",""));
 	var href= "#";
-	var target = "self";
+	var target = "_self";
     $(this).addClass("inMenu");
 
 	// content and link functionality: if not contain link: then this row was an item so add class
@@ -66,7 +66,8 @@ jQuery(function($) {
 			 itemLink.attr("href").indexOf("contentWrapper")>0 ||
 			 itemLink.attr("href").indexOf("course_id")<0) { // check this 
 		href = itemLink.attr("href");
-		target = itemLink.attr("target");
+		if (itemLink.filter("[target]").length)
+			target = itemLink.attr("target");
 	}
 
 	// push to array
@@ -89,8 +90,8 @@ jQuery(function($) {
   addMenuToPage(menuLinksHTML);
   
   // setup menu event actions
-  setupMenuEvents();
-// todo: see if this can work split back into image map tweak
+  setupMenuEvents("#intmenu, #menuHTMLSplash, #menuHTML");
+ // todo: see if this can work split back into image map tweak
   setupImageMapMouseover(headers);
   
   // see if there is an item to display on load
@@ -111,10 +112,12 @@ function setupMenuLinks(intMenuItems) {
 	var intMenuItemsLength = intMenuItems.length;
 	for(var i = 0; i < intMenuItemsLength; i++) {
 		var altText = (intMenuItems[i].desc.length > 0) ? intMenuItems[i].desc : intMenuItems[i].title;
-		menuHTML+= "<a href='"+ intMenuItems[i].href + "' id='"+ intMenuItems[i].id +"' title='"+ altText +"' target='"+ intMenuItems[i].target +"'>"+ intMenuItems[i].title+"</a> ";
+		menuHTML+= "<a href='"+ intMenuItems[i].href + "' id='"+ intMenuItems[i].id 
+				+ "' title='"+ altText +"' target='"+ intMenuItems[i].target +"' class='menu_nav_item_"
+				+ i +"'>"+ intMenuItems[i].title+"</a> ";
 		// set any corresponding image map item. benchmark new image map changes
 		if (imageMapLinksExist)
-			imageMapLinks.filter("[alt*="+intMenuItems[i].title+"]").attr({
+			imageMapLinks.filter("[alt*='"+intMenuItems[i].title+"']").attr({
 				id: intMenuItems[i].id,
 				href: intMenuItems[i].href,
 				target: intMenuItems[i].target
@@ -168,8 +171,8 @@ function dynamicPositionImageMenu() {
 }
 
 //-- menu events functionality --
-function setupMenuEvents() {
-  jQuery("#intmenu, #menuHTMLSplash, #menuHTML").find("a, area").click(function(event) {
+function setupMenuEvents(menuIDs) {
+  jQuery(menuIDs).find("a, area").click(function(event) {
   	var link = jQuery(this);
   	// load content if submenu link or return if normal link
     if(link.attr("href").indexOf("#") != (link.attr("href").length-1)) { return true; } // use regex: IE fix href includes server
@@ -205,7 +208,7 @@ function selectSubPage() {
 	    dynamicPositionImageMenu();
 	    jQuery("#menuImageSplash").remove();
 	} else
-	    setupMenuEvents(); // not sure why cloning events isn't working - children of intmenu? / does first item only?
+	    setupMenuEvents("#intmenu"); // check see if required. don't reset up image map areas as submenu double loading events. original comment: not sure why cloning events isn't working - children of intmenu? / does first item only?
 }
 
 /*** menu > content display and page loading code ***/
@@ -234,29 +237,49 @@ function loadMenuPage(menuid) {
 
 	// load content and append to page
 	jQuery("#loading ul").load(menupageURL+" "+tweak_bb.page_id+">"+tweak_bb.row_element, function() {
+		// hide and prep loading items
 		jQuery("#loadingGraphic").hide();
 		jQuery("#loading>ul>li").addClass("menuitem");
 		jQuery("#loading>ul>li").addClass(menuid);
-		// clean up and append
+
+		// clean up
 		jQuery("#loading li:contains('Tweak')").remove();
+		// clean up links: learning objects, target new frame, and unwrap attachment docs (makes IE play nicer)
 		localFixLearningObjLink(jQuery);
+		jQuery("#loading a").attr("target", "_blank"); //.filter(function(){var href=jQuery(this).attr("href"); if (href.match("^/.*")){ href=serverPrefix+href; jQuery(this).attr("href", href); return true;} else { return false;}}).length;
+		jQuery("#loading .attachments a").each(function(){
+			jQuery(this).attr("href", jQuery(this).attr("href").replace(/.*?(\/courses\/.*)/, "$1").replace("%25", "%"));
+		});
+		
+		// append
 		jQuery(tweak_bb.page_id +"").append(jQuery("#loading>ul>li"));
 		jQuery("#loading li").remove();
-		// retrigger replace icons
-		retriggerReplaceIcons();
+		
+		// retrigger tweaks from sub menus
+		retriggerTweaks(menuid);
 	});
 }
 
-/* functionality to retrigger sub page customisation: currently just icons */
-function retriggerReplaceIcons() {
-	// replace and hide
+/* functionality to retrigger sub page customisation: currently just icons and quick test */
+function retriggerTweaks(menuid) {
+	// replace and hide icons
 	if (window.findReplacementIcons) {
 		findReplacementIcons();
 		hideIcons();
-		// clean up
-		jQuery(tweak_bb.page_id +" h3.replacementicon, "+tweak_bb.page_id +" div.replacementicon, "+tweak_bb.page_id +" h3.hideicon").parents(tweak_bb.row_element).hide();	
+		// clean up: hide and remove menuid class so that they don't get reshown
+		jQuery(tweak_bb.page_id +" h3.replacementicon, "+tweak_bb.page_id +" div.replacementicon, "+tweak_bb.page_id +" h3.hideicon").parents(tweak_bb.row_element).hide().removeClass(menuid);	
 		jQuery(tweak_bb.page_id +" img.replacementicon").hide();
 	}
+	// quiz
+	if (tweak_bb.setupQuiz)
+		tweak_bb.setupQuiz(jQuery);
+	// faq
+	if (tweak_bb.faq)
+		tweak_bb.faq(jQuery);
+		
+	// custom scripts
+	if (window.tweak_customScripts)
+		tweak_customScripts(menuid);
 }
 
 /* temporary fix for Learning Objects / BB9: required until Learning Objects Fix put in place: based on header script */
