@@ -13,27 +13,33 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-jQuery(function($){
-	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
-		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
-		
-	$(tweak_bb.page_id +" .quiz").each(function(q){
-		$(this).attr("id", "quiz"+q).wrapInner("<span class=\"question\"></span>").addClass("quicktest");
-		
-		// answers
-		var answers = $(this).nextAll("table,*:has(table)").eq(0).hide().find("tr");
-		var formattedanswers = "";
-		for (var a = 0; a < answers.length; a++) {
-			var answerid = "quiz" + q +"_"+ a;
-			formattedanswers += "<div class=\"answer\">"+
-								  "<input type=\"radio\" name=\"quiz"+q+"\" id=\""+answerid+"\" value=\""+a+"\"/>"+
-								  "<label for=\""+answerid+"\">"+$(answers).eq(a).find("td").eq(0).html()+"</label></div>";
-		};
-		$("#quiz"+q).append(formattedanswers+"<div class=\"feedback\">feedback</div>");
-		$("#quiz"+q+" input").each(function(i){
-			$(this).data("answer", $(answers).eq(i).find("td").eq(1).html());
-		}).click(function(){
-			$("#quiz"+q+" .feedback").html($(this).data("answer")).show();
-		});
-	});
+// tweak default variables
+if (window.tweak_bb == null || window.tweak_bb.page_id == null)
+    window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+
+tweak_bb.setupQuiz = function($){
+    $(tweak_bb.page_id +" .quiz:not('.setup')").addClass("setup").each(function(q){
+        var item_id = $(this).parents(tweak_bb.row_element).find(".item").attr("id");
+        var quiz_id = "quiz" + item_id + "_" + q;
+        $(this).attr("id", quiz_id).wrapInner("<span class=\"question\"></span>").addClass("quicktest");
+        // answers
+        var answers = $(this).nextAll("table,*:has(table)").eq(0).hide().find("tr");
+        var formattedanswers = "";
+        for (var a = 0; a < answers.length; a++) {
+            var answerid = quiz_id + "_" + a;
+            formattedanswers += "<div class=\"answer\">"+
+                                  "<input type=\"radio\" name=\""+quiz_id+"\" id=\""+answerid+"\" value=\""+a+"\"/>"+
+                                  "<label for=\""+answerid+"\">"+$(answers).eq(a).find("td").eq(0).html()+"</label></div>";
+        };
+        $("#"+quiz_id).append(formattedanswers+"<div class=\"feedback\">feedback</div>");
+        $("#"+quiz_id+" input").each(function(i){
+            $(this).data("answer", $(answers).eq(i).find("td").eq(1).html());
+        }).click(function(){
+            $("#"+quiz_id+" .feedback").html($(this).data("answer")).show();
+        });
+    });
+};
+
+jQuery(function($){     
+    tweak_bb.setupQuiz($);
 });

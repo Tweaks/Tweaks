@@ -381,7 +381,7 @@ jQuery(function($){
 		$(tweak_bb.page_id).show();
 	
 	// if no enrol flag found -- or in edit mode, add enrol link and set up
-	if (!enrolFlagged || tweak_bb.display_view)
+	if (!enrolFlagged || !tweak_bb.display_view)
 	{
 	  var comname = $("#breadcrumbs .courseName").text();
 	  var enrolMessage = "Self Enrol in ("+comname+") Organization/Community Site</a></h3>You will need to self enrol in this site in order to participate. Click Close after you have enrolled to return to this page.<br><br>";

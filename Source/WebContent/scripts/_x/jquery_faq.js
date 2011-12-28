@@ -15,9 +15,13 @@
 
  * jquery_faq
  */
-jQuery(function($) {
+// tweak default variables
+if (window.tweak_bb == null || window.tweak_bb.page_id == null)
+    window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+
+tweak_bb.faq = function($){
 	// find faqs
-	var faqRows = jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:contains('FAQ')").parents(tweak_bb.row_element).addClass("faq");
+	var faqRows = jQuery(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:contains('FAQ')").parents(tweak_bb.row_element+":not('.setup')").addClass("faq");
 	if (faqRows) {
 		// find questions and answers
 		// jQuery 1.4.2>4 bug: faqRows.children("div.details").find("b, strong, *[style*='bold']").addClass("faqQuestion").each(function(){
@@ -60,6 +64,10 @@ jQuery(function($) {
 			jQuery(this).nextUntil(".faqQuestion, *:has(.faqQuestion)").toggle(!faqShowing);
 		});
 		// hide on init
-		faqRows.find(".faqAnswer").hide();
+		faqRows.addClass("setup").find(".faqAnswer").hide();
 	}
+};
+
+jQuery(function($){     
+    tweak_bb.faq($);
 });
