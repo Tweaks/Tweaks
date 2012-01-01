@@ -1,5 +1,5 @@
 /* Tweak Setup. File also contains lazy Loading code adapted from xLazyLoader by Oleg Slobodoskoi (see separate copyright notice below)
-
+Version 3.1.8 -- client viewable version of BB Manifest
 Copyright 2011 Tim Plaisted, Queensland University of Technology
 
    Licensed under the Apache License, Version 2.0 (the "License");
