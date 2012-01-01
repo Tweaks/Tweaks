@@ -1,0 +1,35 @@
+3.1.8
+* jQuery update to 1.6.4
+* New in Submenu: run FAQ, Quiz and custom scripts on submenu pages, added class names for each menu item for styling
+* Changes to FAQ and Quiz to support above
+* Change to Dynamic Unit/Course Map Table. Parses rows that start with NB, NB2 and highlights them
+* Fix in Submenu: supports image maps for splash page and banner, file attachment behaviour in IE, link target behaviour for empty targets
+* Fix to Self Enrol to hide link in display view
+
+3.1.7
+* Dynamic Resource Table: request for change to header search functionality (https://github.com/Tweaks/Tweaks/issues/7) 
+* jQuery update to 1.6.1 (.2 pending)
+* Fix Submenu and Image Map Tweaks interaction not working on IE8 depending on order on page
+* Fix Self enrol for path to loading image
+* Fix Submenu for missing var to learning objects path fixing
+* Added loadsubsite (local domain) for testing
+* Code clean removed reference to body class="ineditmode"
+* Code clean to normal loadsubsite and removed redundant scripts
+* Cosmetic fix to modify and create files to make cols same height
+* Testing: support for rollover images in Image Map Tweak
+
+3.1.6
+* Submenu (graphic menu now can be done without HTML including splash page), fix for imagemap items with external/unit links 
+* Quick Quiz: fix for change in authoring support in bb 
+* Image Map Link Mapper: added support in rollover description for html
+* jQuery update from 1.4.4 to 1.5.1 
+* URL to public accessible help area 
+* Load Style: trim on name in case bb editor inserts 
+
+3.1.5
+* Optimised parsing of Blackboard pages (speed improvement)
+* Fixed: Unix path error on Windows servers + removed a deprecated function on 9.1 (Many thanks for reporting!)
+* Fixed: FAQ authoring restrictions (no longer BETA)
+
+3.1.4 to 3.1.6
+* Porting and abstracted structural changes between 9.0 and 9.1
