@@ -1,3 +1,6 @@
+3.1.9
+* jQuery update to 1.7.2
+
 3.1.8
 * jQuery update to 1.6.4
 * New in Submenu: run FAQ, Quiz and custom scripts on submenu pages, added class names for each menu item for styling
