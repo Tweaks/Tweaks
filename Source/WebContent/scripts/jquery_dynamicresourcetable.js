@@ -117,6 +117,7 @@ jQuery(function($){
 						
 						// details field
 						var detailsHTML = $.trim(details.find("span").find("script").remove().end().html());
+						detailsHTML += $.trim(details.find(".vtbegenerated").find("script").remove().end().html());
 						if (detailsHTML.length)
 							detailsHTML = "<div class=\"insertDetails\">"+detailsHTML+"</div>";
 							
