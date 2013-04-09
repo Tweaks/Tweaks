@@ -1,6 +1,6 @@
 // process settings XML from repository
 var jXML;
-var sourceRepositoryURL = "http://tweaks.github.com/Tweaks/Source/WebContent/";
+var sourceRepositoryURL = "http://tweaks.github.io/Tweaks/Source/WebContent/";
 jQuery.ajax({
     type: "GET",
 	url: sourceRepositoryURL+"admin/tweak_packages.xml",
