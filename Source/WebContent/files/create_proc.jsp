@@ -1,3 +1,4 @@
+<%@ include file="/includes/doctype.jspf" %> 
 <%@	page language="java"            
                 import="java.text.*,
 				java.util.regex.*,
@@ -102,7 +103,7 @@ if (tweakScript != "")
 		if (tweakItems.get(i)[7].equals(usage_type)){  		
 			tweakName = tweakItems.get(i)[0];
 	 		String stEmbed = tweakItems.get(i)[6];
-	 		String tweak_header = "<br> Edit this item to see instructions. This item will be hidden in Edit Mode: OFF (i.e. the view that students see)." +
+	 		String tweak_header = "<div class='tweak_bb_blurb'>Edit this item to see instructions. This item will be hidden in Edit Mode: OFF (i.e. the view that students see).</div>" +
 			"<script src='"+uriStem+"jquery.js' type='text/javascript'></script>"+
 		 	 "<script src='"+uriStem+"jquery.tweakSetup.js' type='text/javascript'></script>\n"+
 			"<script type='text/javascript' class='tweak_script'>\n"+
@@ -129,7 +130,7 @@ if (tweakScript != "")
 	success = false;
 }
 
-String strMessage = (success) ? "Success: Tweak "+tweakName+" added." : "Fail: Tweak settings empty.";
+String strMessage = (success) ? "Success: Tweak "+tweakName+" created." : "Fail: Tweak settings empty.";
 StringBuffer returnUrl = new StringBuffer("");
 returnUrl.append(strReturnUrl);
 returnUrl.append("&");

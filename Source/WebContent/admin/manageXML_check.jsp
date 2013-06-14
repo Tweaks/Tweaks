@@ -27,7 +27,6 @@
 				java.io.File,
 				java.io.IOException,
 				java.io.FileWriter,
-				org.apache.commons.io.FileUtils,
 				javax.servlet.http.HttpServletRequest,
 				javax.servlet.ServletInputStream,
 				org.xml.sax.InputSource,
@@ -49,7 +48,7 @@ try
 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 DocumentBuilder builder = factory.newDocumentBuilder();
 builder.parse(new InputSource(new StringReader(xmlString)));
-//saveSettingFile = false;
+//saveSettingFile = true;
 }
 catch (Exception ioe)
 {

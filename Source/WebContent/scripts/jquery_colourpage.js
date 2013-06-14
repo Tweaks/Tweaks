@@ -18,11 +18,13 @@
  */
 // Use with span with class = colourSpan with colour code embedded:
 // <span class="colourSpan">[colourcode]</span>
+
 jQuery(function($){
   if (window.tweak_bb == null || window.tweak_bb.page_id == null)
-	window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+	window.tweak_bb = { page_id: "#content_listContainer", row_element: "> li" };
 
   var colourCODE = $("#colourPage").hide().html();
-  $(tweak_bb.page_id+" "+tweak_bb.row_element+", #content, #content div, #contentPanel").css("background", colourCODE);
+  $(tweak_bb.page_id+" "+tweak_bb.row_element+", #content").css("background", colourCODE);
   $("#pageHeader, .pageTitle").css("border-bottom", "0"); 
+
 });

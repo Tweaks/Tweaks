@@ -1,3 +1,4 @@
+<%@ include file="/includes/doctype.jspf" %> 
 <%@ page import="java.io.*,
 				java.net.*"%>
 <%

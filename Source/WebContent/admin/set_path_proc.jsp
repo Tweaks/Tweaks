@@ -1,3 +1,4 @@
+<%@ include file="/includes/doctype.jspf" %> 
 <%@	page language="java"            
                 import="java.text.*,
 				java.util.regex.*,
@@ -29,8 +30,6 @@
 		errorPage="/error.jsp"
 	
 %>
-<%@ taglib uri="/bbUI" prefix="bbUI"%>
-<%@ taglib uri="/bbData" prefix="bbData"%>
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
 <%@ include file="/admin/genConfigPath.jsp"%>
 

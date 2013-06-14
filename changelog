@@ -1,3 +1,17 @@
+3.2.0
+* jQuery update to jquery 1.8.2
+* Admin interface now accepts HTML for inline documentation (see /WebContent/doco dir for examples)
+* New tweak "Replace Content with Webpage" replaces Load Iframe and Load Subsite.  
+  Maintains legacy support for older 9.0-type Web Package attachments, works on items named 'Load Webpage', 'Web Package', 'Site Link'
+  Existing jquery_loadiframeascontent and jquery_loadsubsite items will use this newer script.
+* New CSS tweak to "Hide content item lines"
+* Dynamic Tables now support Bootstrap-style classes (doco: http://twitter.github.io/bootstrap/base-css.html#tables)
+* Various other "AS_2012 (9.1sp9)" theme fixes.
+* Minor 9.1sp12 testing
+* NO LONGER SUPPORTS Bb 9.0
+
+
+
 3.1.9
 * jQuery update to 1.7.2
 

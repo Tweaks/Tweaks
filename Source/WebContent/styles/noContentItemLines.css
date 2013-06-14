@@ -1,0 +1,12 @@
+﻿.contentList > li,
+.buildList > li,
+.contentListPlain > li,
+.announcementList > li,
+.contentPageItem {
+  border-top-color: transparent;
+}
+
+.liItem:hover,
+.buildList > li:hover {
+  border-top-color: #CCC;
+}

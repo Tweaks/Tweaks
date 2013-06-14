@@ -22,7 +22,7 @@
 */
 jQuery(function($){
   if (window.tweak_bb == null || window.tweak_bb.page_id == null)
-	window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+	window.tweak_bb = { page_id: "#contentList", row_element: "li" };
 	
   // preload headers and description parsing outside of loops
   var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item");

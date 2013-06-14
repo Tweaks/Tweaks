@@ -164,3 +164,8 @@ margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = d
 
 /* ---------->>> custom style <<<----------------------------------------------------------------*/
 #TB_title { font-weight: bold; background: #EB0;}
+
+#self-enrol-tweak-generated { max-width: 850px; }
+#self-enrol-tweak-generated.default-position { padding: 9px 18px; margin-bottom: 25px }
+
+

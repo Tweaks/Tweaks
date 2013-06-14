@@ -56,17 +56,25 @@ function findReplacementIcons() {
 }
 // content type replace call
 function replaceContentTypeIcon(contentIconSrc, textID, replacementIconID) {
-	replacementIconHeaders.filter(":contains('"+textID+" Replacement')").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id", replacementIconID);
-	if (jQuery("#"+replacementIconID).length) {
-		jQuery(tweak_bb.page_id +" div.item_icon img[src*='"+contentIconSrc+"'], "+
-			   tweak_bb.page_id +" img.item_icon[src*='"+contentIconSrc+"']").attr("src", jQuery("#"+replacementIconID).addClass("replacementicon").attr("src")).addClass("replaced");
-	}
+    replacementIconHeaders.filter(":contains('"+textID+" Replacement')").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id", replacementIconID);
+    if (jQuery("#"+replacementIconID).length) {
+        jQuery(tweak_bb.page_id +" div.item_icon img[src*='"+contentIconSrc+"'], "+
+               tweak_bb.page_id +" img.item_icon[src*='"+contentIconSrc+"']").attr("src", jQuery("#"+replacementIconID).addClass("replacementicon").attr("src")).addClass("replaced");
+    }
 }
 // title type replace call
 function replaceTitleIcon(textID, replacementIconID) {
 	replacementIconHeaders.filter(":contains('"+textID+" Replacement')").siblings("div.details").find("img:first").attr("id", replacementIconID);
 	if (jQuery("#"+replacementIconID).length)
-		jQuery("#titleicon").attr("src", jQuery("#"+replacementIconID).addClass("replacementicon").attr("src")).addClass("replaced");
+    // 9.1 - force replacement icon to show CCB 10/12/2012
+		jQuery("#titleicon").attr("src", jQuery("#"+replacementIconID).addClass("replacementicon").attr("src")).addClass("replaced").css({
+          display: 'inline',
+          position: 'relative',    
+          padding: '0',
+          margin: '0',
+          top: '-5px',
+          left: '-13px'
+         });
 }
 function getRowName(itemTitle, key) {
 	//!check return jQuery.trim(jQuery(itemTitle).clone().find("div, span").remove().end().text().replace(key, ""));
