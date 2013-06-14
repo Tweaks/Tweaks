@@ -85,7 +85,7 @@ String thisPluginImageUrlPath = thisPluginUriStem + "images/tweakbb-icon2.gif";
 			example:<br /> 
 			js: 'scripts/hider.js'<br/><br/>
 			For multiple js, css and image files, separate with ",":<br/>
-			js: 'scripts/hider.js', 'scripts/file2.js',<br/>
+			js: ['scripts/hider.js', 'scripts/file2.js'],<br/>
 			css: 'styles/file.css',<br/>
 	  		image: 'images/image.jpg'<br />
 		</bbNG:dataElement>

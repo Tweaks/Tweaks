@@ -29,6 +29,7 @@
 
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <bbNG:learningSystemPage ctxId="ctx">
 <%
 if (!PlugInUtil.authorizeForCourseControlPanel(request, response))
@@ -87,6 +88,7 @@ labelForAction = "Modify";
 <bbNG:jsFile href="jquery.js"/>
 <bbNG:jsFile href="jquery.tweakSetup.js"/>
 <bbNG:jsFile href="jquery.tweakAdmin.js"/>
+<bbNG:cssFile href="../styles/tweakAdmin.css"/>
 <bbNG:cssBlock>
 	<link type="text/css" href="../styles/tweakAdmin.css" rel="stylesheet">
 </bbNG:cssBlock>

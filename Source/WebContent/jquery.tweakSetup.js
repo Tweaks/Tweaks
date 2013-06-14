@@ -1,6 +1,6 @@
 /* Tweak Setup. File also contains lazy Loading code adapted from xLazyLoader by Oleg Slobodoskoi (see separate copyright notice below)
 Version 3.1.9 -- client viewable version of BB Manifest
-Copyright 2011 Tim Plaisted, Queensland University of Technology
+Copyright 2011, 2012, 2013 Tim Plaisted, Queensland University of Technology
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ Status: rewriting and testing for online trial deployment for BB 9.1sp9
 */ 
 // paths: configured via bb admin
 var tweak_path = "/webapps/qut-tweakbb-bb_bb60/"; 
-var tweak_live_help = "/webapps/portal/frameset.jsp?tab_group=community&url=%2Fwebapps%2Fblackboard%2Fexecute%2FcourseMain%3Fcourse_id%3D_59724_1"; 
+var tweak_live_help = "http://tweaks.github.com/Tweaks/description.html"; 
 var tweak_bb_active_url_pattern = "listContent.jsp";
 // static code: tweak currently compatible with 8, 9 and 9.1
 function BBVersionSetup() {
