@@ -12,12 +12,12 @@ Copyright 2013 Tim Plaisted, Christopher Baldwin and Queensland University of Te
    See the License for the specific language governing permissions and
    limitations under the License.
    
-Project: qutels/Tweaks
+Project: Tweaks
 
 Description:
 Tweaks is a Building Block for the Blackboard LMS which enables academics and support staff to customise and extend their site presentation, navigation and structure as well as add templated page designs, small learning activities and Blackboard functionality.
 
-Repository URL: http://github.com/qutels/Tweaks
+Repository URL: http://github.com/Tweaks/Tweaks
 
 The project uses the following resources:
 -  jQuery library http://jquery.org/license/ (MIT license)
