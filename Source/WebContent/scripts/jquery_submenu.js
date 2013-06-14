@@ -22,6 +22,7 @@ looks for "Menu Image" item,  #menuImage, #menuImageSplash > generates Image men
 if (window.tweak_bb == null || window.tweak_bb.page_id == null)
 	window.tweak_bb = { page_id: "#pageList", row_element: "li" };
 var intMenuItems = new Array();
+
 jQuery(function($) {
  if (location.href.indexOf("listContent.jsp")>0) {
 
@@ -160,6 +161,7 @@ function addMenuToPage(menuLinksHTML) {
 }
 // build graphics container
 function addMenuImageWrapper(image, menuHTML) {
+	fixGraphicMenuHeight(image);
 	return "<div id=\"graphicMenu\" style=\"background: url("+image.attr("src")+"); width:"+image.attr("width")+"px; height:"+image.attr("height")+"px;\" class=\""+image.attr("class")+"\">"+menuHTML+"</div>";
 }
 function dynamicPositionImageMenu() {
@@ -207,6 +209,7 @@ function selectSubPage() {
     	jQuery("#graphicMenu").css("background", "url("+image.attr("src")+")").attr("class", image.attr("class")).width(image.attr("width")).height(image.attr("height"));
 	    dynamicPositionImageMenu();
 	    jQuery("#menuImageSplash").remove();
+           fixGraphicMenuHeight(image);
 	} else
 	    setupMenuEvents("#intmenu"); // check see if required. don't reset up image map areas as submenu double loading events. original comment: not sure why cloning events isn't working - children of intmenu? / does first item only?
 }
@@ -313,7 +316,7 @@ function setupImageMapMouseover(headers) {
 	jQuery("#menuHTMLSplash, #menuHTML").find("area").each(function(){
 	  var matchingHeader = headers.filter(":contains('"+jQuery.trim(jQuery(this).attr("alt"))+"')").eq(0);
 	  if (matchingHeader.length) {
-		  var desc = matchingHeader.parents(tweak_bb.row_element).find("div.details > span").html();
+		  var desc = matchingHeader.parents(tweak_bb.row_element).find("div.details > .vtbegenerated").html();
 		  if (desc) { jQuery(this).data("desc", desc); }
 	  }
 	}).mouseover(function(){
@@ -321,4 +324,23 @@ function setupImageMapMouseover(headers) {
 	  if (desc != null) { jQuery("#description").html(desc); }
 	});
   }
+}
+
+
+
+function fixGraphicMenuHeight(badimage){
+  
+  var img = new Image();
+  
+  img.onload = function() {
+    // set the height of our div based on what height the image loads as
+    // debug console.log(this.width + 'x' + this.height);
+    
+    jQuery('#graphicMenu').css({
+      height: this.height,
+      width: this.width
+    });
+  };
+  
+  img.src = badimage.attr('src');
 }

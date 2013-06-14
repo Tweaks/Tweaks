@@ -1,3 +1,4 @@
+<%@ include file="/includes/doctype.jspf" %> 
 <%@	page language="java"            
                 import="java.text.*,
 				java.util.regex.*,
@@ -31,11 +32,11 @@
 		errorPage="/error.jsp"
 	
 %>
-<%@ taglib uri="/bbUI" prefix="bbUI"%>
-<%@ taglib uri="/bbData" prefix="bbData"%>
+
+<%@ taglib uri="/bbNG" prefix="bbNG"%>
 <%@ include file="/admin/genConfigPath.jsp"%>
 
-<bbData:context id="ctx">
+<bbNG:genericPage ctxId="ctx" authentication="Y">
 
 <%
 if (!PlugInUtil.authorizeForSystemAdmin(request, response))
@@ -82,22 +83,22 @@ transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 DOMSource source = new DOMSource(doc); 
 transformer.transform(source, new StreamResult(new FileOutputStream(configFilePath)));
 
-//out.print("tweak id  " +  thisTweakID +"<hr>");
-//out.print("avail_value  " +  avail_value +"<hr>");
 %>
-<bbUI:docTemplate title="Tweak Package Display Option" >
-<bbUI:breadcrumbBar handle="admin_plugin_manage">
-<bbUI:breadcrumb href="../admin/config.jsp">Tweak Properties</bbUI:breadcrumb>
-<bbUI:breadcrumb>Tweak Package Display Option</bbUI:breadcrumb>
-</bbUI:breadcrumbBar>
-<bbUI:titleBar iconUrl="../images/tweakbb-icon2_big.gif">Display Option Updated</bbUI:titleBar>
- <bbUI:receipt type="SUCCESS" title="Tweak Package Updated" recallUrl="manage.jsp">
+<bbNG:pageHeader>
+	<bbNG:pageTitleBar iconUrl="../images/tweakbb-icon2_big.gif">Display Option Updated</bbNG:pageTitleBar>
+</bbNG:pageHeader>
+
+<bbNG:breadcrumbBar handle="admin_plugin_manage">
+	<bbNG:breadcrumb href="../admin/config.jsp">Tweak Properties</bbNG:breadcrumb>
+	<bbNG:breadcrumb>Tweak Package Display Option</bbNG:breadcrumb>
+</bbNG:breadcrumbBar>
+
+ <bbNG:receipt type="SUCCESS" title="Tweak Package Updated" recallUrl="manage.jsp">
  
 Display Option of Tweak Package (Type:<strong><%=thisTweakID%></strong>) has been updated successfully.
  <br>
  
 
-</bbUI:receipt><br>
-</bbUI:docTemplate>
+</bbNG:receipt><br>
 
-</bbData:context>
+</bbNG:genericPage>

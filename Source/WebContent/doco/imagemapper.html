@@ -1,0 +1,36 @@
+<h3>Image Mapper</h3>
+<dl class='tweakbb_info'>
+    <dt>Description</dt>
+    <dd>This tweak dynamically maps Blackboard resources (folders and links) into an Image Map.</dd>
+    <dt>Skill Level</dt>
+    <dd>Advanced (Moderate HTML, Image Creation)</dd>
+    <dt>How to Use</dt>
+    <dd>
+        <ol>
+            <li>Create an image or find a copyright-free image to use</li>
+            <li>Create your folders, links or other content items in Blackboard that your image map will link to.</li>
+            <li>
+                <p>Generate an image map for your image.  Use a web editor such as Dreamweaver (<a href="http://www.ehow.com/how_15719_create-clickable-image.html">Instructions</a>) or an online image map editor such as <a href="http://www.maschek.hu/imagemap">maschek.hu/imagemap</a>.</p>
+                <p>Make sure you add the exact titles of the folders or links to the ALT tag for each image map area.  You can leave <span style='font-weight:bold;color:#074726; '>href</span><span style='font-weight:bold;color:#308080; '>=</span><span style='font-weight:bold;color:#1060b6; '>"#"</span></p>
+            </li>
+						<li>Create a Blackboard item and add the image using the 'Attach Image' button.</li>
+						<li>
+							<p>Toggle HTML Source Mode, and add your image map HTML. Make sure to add the <span style='font-weight:bold;color:#074726; '>usemap</span><span style='font-weight:bold;color:#308080; '>=</span><span style='font-weight:bold;color:#1060b6; '>"#MyImageMap"</span> attribute to the image.</p>
+							<p>Your image map should look similar to this:</p>
+							<pre style='color:#000020;display:block;background:#f6f8ff;'><span style='color:#0057a6; '>&lt;</span><span style='color:#200080; font-weight:bold; '>img</span><span style='color:#474796; '> </span><span style='color:#074726; '>border</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"0"</span><span style='color:#474796; '> </span><span style='color:#074726; '>src</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"[BLACKBOARD IMAGE URL]"</span><span style='color:#474796; '> </span><span style='color:#074726; '>alt</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"My Image Map"</span><span style='color:#474796; '> </span><span style='color:#074726; '>usemap</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"#MyImageMap"</span><span style='color:#0057a6; '>/></span></pre>
+							
+							<pre style='color:#000020;display:block;background:#f6f8ff;'><span style='color:#0057a6; '>&lt;</span><span style='color:#200080; font-weight:bold; '>map</span><span style='color:#474796; '> </span><span style='color:#074726; '>name</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"MyImageMap"</span><span style='color:#0057a6; '>></span></pre>
+							
+							<pre style='color:#000020;display:block;background:#f6f8ff;'><span style='color:#0057a6; '>&lt;</span><span style='color:#200080; font-weight:bold; '>area</span><span style='color:#474796; '> </span><span style='color:#074726; '>shape</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"rect"</span><span style='color:#474796; '> </span><span style='color:#074726; '>coords</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"31,46,100,77"</span><span style='color:#474796; '> </span><span style='color:#074726; '>href</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"#"</span><span style='color:#474796; '> </span><span style='color:#074726; '>alt</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"Link 1"</span><span style='color:#0057a6; '>/></span></pre>
+							
+							<pre style='color:#000020;display:block;background:#f6f8ff;'><span style='color:#0057a6; '>&lt;</span><span style='color:#200080; font-weight:bold; '>area</span><span style='color:#474796; '> </span><span style='color:#074726; '>shape</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"rect"</span><span style='color:#474796; '> </span><span style='color:#074726; '>coords</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"31,106,100,137"</span><span style='color:#474796; '> </span><span style='color:#074726; '>href</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"#"</span><span style='color:#474796; '> </span><span style='color:#074726; '>alt</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"Link 2"</span><span style='color:#0057a6; '>/></span></pre>
+							
+							<pre style='color:#000020;display:block;background:#f6f8ff;'><span style='color:#0057a6; '>&lt;</span><span style='color:#200080; font-weight:bold; '>area</span><span style='color:#474796; '> </span><span style='color:#074726; '>shape</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"rect"</span><span style='color:#474796; '> </span><span style='color:#074726; '>coords</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"398,48,467,79"</span><span style='color:#474796; '> </span><span style='color:#074726; '>href</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"#"</span><span style='color:#474796; '> </span><span style='color:#074726; '>alt</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"Link 3"</span><span style='color:#0057a6; '>/></span></pre>
+							
+							<pre style='color:#000020;display:block;background:#f6f8ff;'><span style='color:#0057a6; '>&lt;</span><span style='color:#200080; font-weight:bold; '>area</span><span style='color:#474796; '> </span><span style='color:#074726; '>shape</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"rect"</span><span style='color:#474796; '> </span><span style='color:#074726; '>coords</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"398,108,467,139"</span><span style='color:#474796; '> </span><span style='color:#074726; '>href</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"#"</span><span style='color:#474796; '> </span><span style='color:#074726; '>alt</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"Link 4"</span><span style='color:#0057a6; '>/></span></pre>
+							
+							<pre style='color:#000020;display:block;background:#f6f8ff;'><span style='color:#0057a6; '>&lt;/</span><span style='color:#200080; font-weight:bold; '>map</span><span style='color:#0057a6; '>></span></pre>
+						</li>
+        </ol>
+    </dd>
+</dl>

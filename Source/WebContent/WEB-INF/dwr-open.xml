@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+
+  <init/>
+
+  <allow>
+
+    <create creator="new" javascript="CourseMenuDWRFacade">
+      <param name="class" value="blackboard.servlet.tags.ajax.facade.course.CourseMenuDWRFacade"/>
+    </create>
+
+    <create creator="new" javascript="CourseDesignDWRFacade">
+      <param name="class" value="blackboard.servlet.tags.ajax.facade.course.CourseDesignDWRFacade"/>
+    </create>
+
+    <create creator="new" javascript="UserPageInstructionsSettingDWRFacade">
+      <param name="class" value="blackboard.servlet.tags.ajax.facade.user.UserPageInstructionsSettingDWRFacade"/>
+    </create>
+
+    <create creator="new" javascript="UserDataDWRFacade">
+      <param name="class" value="blackboard.servlet.tags.ajax.facade.user.UserDataDWRFacade"/>
+    </create>
+
+    <!-- HTML Validation -->
+    <create creator="new" javascript="MarkupValidationDWRFacade">
+      <param name="class" value="blackboard.servlet.tags.ajax.facade.content.MarkupValidationDWRFacade"/>
+    </create>
+    
+    <!-- TinyMce -->
+    <create creator="new" javascript="TinyMceDWRFacade">
+      <param name="class" value="blackboard.servlet.tags.ajax.facade.textbox.TinyMceDWRFacade"/>
+    </create>
+
+    <!-- nautilus registrations -->
+    <create creator="new" javascript="NautilusViewService">
+      <param name="class" value="blackboard.servlet.tags.ajax.facade.nautilus.NautilusViewDWRFacade"/>
+    </create>
+
+    <create creator="new" javascript="FileMimeDWRFacade">
+      <param name="class" value="blackboard.cms.apis.FileMimeDWRFacade"/>
+    </create>
+
+    <create creator="script" javascript="ArtifactContentGetter">
+      <param name="language" value="beanshell"/>
+      <param name="script" >
+        import blackboard.servlet.tags.ajax.facade.contentsystem.ArtifactContentGetter;
+        return ArtifactContentGetter.getInstance();
+       </param>
+    </create>
+
+    <create creator="script" javascript="EvidenceAreaDwrFacade">
+      <param name="language" value="beanshell" />
+      <param name="script">
+        import blackboard.servlet.tags.ajax.facade.caliper.EvidenceAreaDwrFacade;
+        return EvidenceAreaDwrFacade.getInstance();
+      </param>
+    </create>
+
+    <create creator="script" javascript="EPortfolioDwrFacade">
+      <param name="language" value="beanshell" />
+      <param name="script">
+        import blackboard.servlet.tags.ajax.facade.caliper.EPortfolioDwrFacade;
+        return EPortfolioDwrFacade.getInstance();
+      </param>
+    </create>
+
+    <convert converter="bean" match="blackboard.servlet.tags.ajax.facade.nautilus.NotificationItemView"/>
+    <convert converter="bean" match="blackboard.servlet.tags.ajax.facade.nautilus.NotificationItemRecipientView"/>
+    <convert converter="bean" match="blackboard.servlet.tags.ajax.facade.nautilus.NautilusActionView"/>
+    <convert converter="bean" match="blackboard.servlet.tags.ajax.facade.nautilus.NautilusSourceInfo"/>
+    <convert converter="bean" match="blackboard.servlet.tags.ajax.facade.nautilus.NautilusViewInfo"/>
+    <convert converter="bean" match="blackboard.servlet.tags.ajax.facade.nautilus.NautilusEwsRuleDisplayItem"/>
+    <convert converter="bean" match="blackboard.servlet.tags.ajax.facade.nautilus.NautilusEwsRuleDisplayInfo"/>
+    <convert converter="bean" match="blackboard.servlet.tags.ajax.facade.nautilus.NautilusUnreadCountViewInfo"/>
+    <convert converter="bean" match="blackboard.servlet.tags.ajax.facade.nautilus.DiscussionBoardUnreadInfo"/>
+    <convert converter="bean" match="blackboard.servlet.tags.ajax.facade.nautilus.BlogUnreadInfo"/>
+
+    <convert converter="bean" match="blackboard.data.discussionboard.SimpleDiscussionBoardUnreadCount"/>
+    <convert converter="bean" match="blackboard.data.discussionboard.SimpleGroupDiscussionBoardUnreadCount"/>
+    <convert converter="bean" match="blackboard.platform.blog.SimpleBlogUnreadCount"/>
+    <convert converter="enum" match="blackboard.platform.nautilus.internal.NotificationItemRecipient$Type"/>
+    <convert converter="enum" match="blackboard.platform.nautilus.internal.NautilusAction$ActionKind" />
+
+    <convert match="blackboard.servlet.tags.ajax.facade.nautilus.NautilusViewException" converter="exception"/>
+
+  </allow>
+
+  <signatures/>
+
+</dwr>

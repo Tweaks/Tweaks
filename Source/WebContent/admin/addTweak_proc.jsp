@@ -1,3 +1,4 @@
+<%@ include file="/includes/doctype.jspf" %>  
 <%@	page language="java"            
                 import="java.text.*,
 				java.util.regex.*,
@@ -26,8 +27,7 @@
 		errorPage="/error.jsp"
 	
 %>
-<%@ taglib uri="/bbUI" prefix="bbUI"%>
-<%@ taglib uri="/bbData" prefix="bbData"%>
+
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
 <%@ include file="/admin/genConfigPath.jsp"%>
 
@@ -74,7 +74,9 @@ if (request.getParameter("description").length() != 0) {
 packageT.appendChild(description);
 
 Element instructions = doc.createElement("instruction");
-InsructionRep = request.getParameter("instructions").replaceAll("\"","'");
+InsructionRep = request.getParameter("instructions").trim();
+InsructionRep = InsructionRep.replaceAll("\"","\'");
+InsructionRep = InsructionRep.replaceAll("\n","");
 instructions.setTextContent(InsructionRep);
 packageT.appendChild(instructions);
 Element embed = doc.createElement("embed");

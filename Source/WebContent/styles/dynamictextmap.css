@@ -64,3 +64,6 @@
 .linear .module4 { left: 35px;		top: 230px; }
 .linear .module5 { left: 290px;		top: 230px; }
 .linear .module6 { left: 545px;		top: 230px; }
+
+/* CCB20130321 - override 9.1's style rule for .module */
+#tweakmap.module, #tweakmap .module { padding: 0px; }

@@ -14,7 +14,7 @@ Copyright 2011, 2012, 2013 Tim Plaisted, Queensland University of Technology
    See the License for the specific language governing permissions and
    limitations under the License.
 
-Status: rewriting and testing for online trial deployment across BB8, BB9 and BB9.1
+Status: rewriting and testing for online trial deployment for BB 9.1sp9
 */ 
 // paths: configured via bb admin
 var tweak_path = "/webapps/qut-tweakbb-bb_bb60/"; 
