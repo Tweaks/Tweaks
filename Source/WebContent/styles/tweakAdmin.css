@@ -28,3 +28,54 @@ form fieldset.tweak_fieldset legend {
 	top: -10px;
 	width: 130px;
 }
+
+#usage_instruction p     {  
+	padding-bottom: 10px;    
+}
+
+#usage_instruction pre {
+	display: inline-block
+}
+
+dl.tweakbb_info dd ol    { 
+	list-style-type: decimal; 
+	margin-left: 16px;
+}
+
+dl.tweakbb_info dd ol li { 
+} 
+
+
+dl.tweakbb_info dd ul {
+	list-style-type: square;
+	padding: 6px 0;
+	margin: 6px 0;
+}
+
+
+
+dl.tweakbb_info dd ul li {
+	margin: 0 0 0 2em;
+	padding: 0;
+}
+
+dl.tweakbb_info { 
+    border-bottom: 1px solid #999;
+}
+
+dl.tweakbb_info dt {
+    clear: left;
+    float: left;
+		width: 120px;
+    margin: 0;
+    padding: 5px;
+    font-weight: bold;
+    border-top: 1px solid #999;
+}
+
+dl.tweakbb_info dd {
+    padding: 6px;
+    border-top: 1px solid #999;
+		margin-left: 130px;
+}
+

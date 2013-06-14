@@ -13,8 +13,8 @@
 		pageEncoding="UTF-8"
 	
 %>
-<%@ taglib uri="/bbUI" prefix="bbUI"%>
-<%@ taglib uri="/bbData" prefix="bbData"%>
+
+<%@ taglib uri="/bbNG" prefix="bbNG"%>
 
 <%
 if (!PlugInUtil.authorizeForCourse(request, response))
@@ -24,18 +24,15 @@ String thisPluginUriStem = PlugInUtil.getUriStem("qut", "tweakbb");
 String thisPluginImageUrlPath = thisPluginUriStem + "images/becareful.png";
 %>
 
-<bbData:context id="ctx">
-<bbUI:docTemplateHead title="Tweak">
-	
-</bbUI:docTemplateHead>
-<bbUI:docTemplateBody>
-	<bbUI:breadcrumbBar  environment="COURSE" handle="course_tools_area">	
-	 	<bbUI:breadcrumb>TWEAK</bbUI:breadcrumb>
-	</bbUI:breadcrumbBar>
-	<br>
-	<bbUI:titleBar iconUrl="<%=thisPluginImageUrlPath %>">Tweak
+<bbNG:learningSystemPage ctxId="ctx" authentication="Y">
+<bbNG:pageHeader>
+	<bbNG:pageTitleBar iconUrl="<%=thisPluginImageUrlPath %>">Tweak</bbNG:pageTitleBar>
 	<br>
 	<div ALIGN="right" STYLE="font-size:9">REDUNDANT FILE</div>
-	</bbUI:titleBar>
-</bbUI:docTemplateBody>
-</bbData:context>
+</bbNG:pageHeader>
+
+<bbNG:breadcrumbBar  environment="COURSE" handle="course_tools_area">	
+ 	<bbUI:breadcrumb>TWEAK</bbUI:breadcrumb>
+</bbNG:breadcrumbBar>
+<br>
+</bbNG:learningSystemPage>

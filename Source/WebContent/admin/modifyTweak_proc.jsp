@@ -32,9 +32,11 @@
 		errorPage="/error.jsp"
 	
 %>
-<%@ taglib uri="/bbUI" prefix="bbUI"%>
-<%@ taglib uri="/bbData" prefix="bbData"%>
-<%@ taglib uri="/bbNG" prefix="bbNG"%>
+
+
+
+<%@ taglib prefix="bbNG" uri="/bbNG" %>
+
 <%@ include file="/admin/genConfigPath.jsp"%>
 
 <bbNG:genericPage authentication="Y"  ctxId="ctx" bodyClass='bbDefault' >
@@ -45,6 +47,7 @@ if (!PlugInUtil.authorizeForSystemAdmin(request, response))
 
 String thisPluginUriStem = PlugInUtil.getUriStem("qut", "tweakbb");
 String thisPluginImageUrlPath = thisPluginUriStem + "images/tweakbb-icon2.gif";
+String InsructionRep ="";
 
 DocumentBuilderFactory dbf2 = DocumentBuilderFactory.newInstance();
 DocumentBuilder db2 = dbf2.newDocumentBuilder();
@@ -91,7 +94,13 @@ for (int s = 0; s < totalPackages; s++){
 			}
 			if (childName=="instruction"){
 				//out.println("child name : " + childName + "..." + packageChild.getNodeValue() + "<br>");
-				packageChild.setTextContent(request.getParameter("instructions").trim());
+        
+        InsructionRep = request.getParameter("instructions");
+        InsructionRep = InsructionRep.replaceAll("\\r\\n", "");
+        InsructionRep = InsructionRep.replaceAll("\\n", "");
+        InsructionRep = InsructionRep.replaceAll("\"","\'");
+				packageChild.setTextContent(InsructionRep);
+        
 			}
 			if (childName=="embed"){
 					intToMod =s;
@@ -124,7 +133,6 @@ transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 DOMSource source = new DOMSource(doc); 
 transformer.transform(source, new StreamResult(new FileOutputStream(configFilePath)));
 %>
-
 
 <bbNG:pageHeader>
 <bbNG:breadcrumbBar environment="SYS_ADMIN" navItem="admin_plugin_manage" >

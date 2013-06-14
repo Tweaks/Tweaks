@@ -29,8 +29,8 @@ jQuery(function($) {
 			if (siteLink.length)
 			{
 				unWrapLink(siteLink);
-				$("#content").hide();
-				$("#content").html("<iframe src=\""+siteLink.attr("href")+"\" width=\"100%\" height=\"2950\" frameBorder=\"0\"></iframe>");
+				$("#content").children().remove();
+				$("#content").html("<iframe id=\"subsitetweak\"src=\""+siteLink.attr("href")+"\" width=\"100%\" height=\"100%\"frameBorder=\"0\"></iframe>");
 				$("#content iframe").load(restyleFrame).ready(restyleFrame);
 			}
 		}
@@ -41,26 +41,43 @@ jQuery(function($) {
 function restyleFrame() {
 	var frame = jQuery("#content iframe").contents();
 	window.scrollTo(window.scrollX,0); // trial scroll
+	
+	// if it's a blackboard-y frame
 	if (frame.find("#navigationPane, #breadcrumbs").length) {
-		frame.find("#navigationPane, #breadcrumbs").hide();
+		
+		// re-style parent content item
+		jQuery("#content").css({
+			"height": frame.find(".locationPane").height() + 10,
+			"border": "none","-moz-border-radius": "none",
+			"-webkit-border-radius": "none",
+			"border-radius": "none",
+			"-moz-box-shadow": "none",
+			"-webkit-box-shadow": "none",
+			"box-shadow": "none"
+		});
+		
+		// restyle frame elements
 		frame.find("body").css("padding","0");
+		frame.find("#navigationPane, #breadcrumbs").hide();
 		frame.find("div.locationPane").css("margin-top", "0");
-		frame.find("#contentPane, div.contentPane").css("margin","0px 4px 0px 0px");
+		frame.find("#contentPane, div.contentPane").css("margin","0px");
 		frame.find("script.tweak_script").parents(tweak_bb.row_element).hide();
+		
+		// hyperlink click events
 		frame.find("a").click(function(){
-			// filtering better here as only occurs on click?
+		
+			// check for javascript link, targetted link, hideshow, submenu
 			if (jQuery(this).attr("href") == "#" ||
 				jQuery(this).filter("[target]").length > 0 ||
 				jQuery(this).hasClass("hideShowLink") ||
-				jQuery(this).parent("#intmenu").length > 0) { 
-				/* javascript link, targetted link, hideshow, submenu: do nothing */
-				return true;
-			} else
-				jQuery("#content iframe").css("margin-left", "-2000px");
+				jQuery(this).parent("#intmenu").length > 0) {
+					// don't get in the way
+					return true;
+			}
 		});
-		jQuery("#content").show();
-		jQuery("#content iframe").height(frame.find("body").height()+55);
-		jQuery("#content iframe").css("margin-left", "auto");
+		
+		// reveal
+		jQuery("#content").show()
 	}
 }
 

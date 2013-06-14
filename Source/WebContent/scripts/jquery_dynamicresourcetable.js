@@ -12,10 +12,15 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-   version 1.9. author Tim Plaisted 2010, 2011 */
+   
+   version 1.9 author Tim Plaisted 2010, 2011 
+   
+   UPDATE: 1.9.1 (CCB) -  adds <br>'s when parsing content, fixed div.vtbegenerated instead of span for content descriptions
+   
+   */
 jQuery(function($){
 	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
-		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+		window.tweak_bb = { page_id: "#content_listContainer", row_element: "li" };
 
 	// utility extensions: case insensitive contains and case and leading whitespace insensitive startsWith using regexp (parses from start plus nb rows)
 	jQuery.expr[':'].contains = function(a,i,m){
@@ -26,7 +31,7 @@ jQuery(function($){
 		return jQuery(a).text().match(startsWithRegExp);
 	};	
 	// load headers as parsed several times in script
-	var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item");
+	var headers = $(tweak_bb.page_id +" > "+tweak_bb.row_element).find(".item h3");
 	
 	// find id="unitMap" or table in BB item "Unit Map"
 	if ($("#unitMap").length == 0)
@@ -37,7 +42,7 @@ jQuery(function($){
 	if (numResources) {
 		// benchmark strategies to remove or clone and replace table from DOM while manipulating
 		$unitMap.wrap("<div></div>");
-		var $uniMapParent = $unitMap.parent();
+		var $unitMapParent = $unitMap.parent();
 		$unitMap.remove();
 
 		// set up default col widths. leave 10 for first column
@@ -106,7 +111,7 @@ jQuery(function($){
 						var thislink = $(this).find("a:contains('"+sectionTitle+": "+resourceTypes[column]+"')").clone();
 						if (thislink.length)
 							thislink = setUpLinkOptions(thislink, thiscell, displayLinkTopicIndexText, displayLinkResourceText, sectionTitle, resourceTypes[column]);
-					
+						
 						// find details item
 						var details = $(this).parents(tweak_bb.row_element).children("div.details");
 						
@@ -116,15 +121,16 @@ jQuery(function($){
 										  }).addClass("attachmentLink");
 						
 						// details field
-						var detailsHTML = $.trim(details.find("span").find("script").remove().end().html());
+						var detailsHTML = $.trim(details.find("div.vtbegenerated").find("script").remove().end().html());
 						if (detailsHTML.length)
 							detailsHTML = "<div class=\"insertDetails\">"+detailsHTML+"</div>";
+              
 							
 						// add to cell
 						if(prependLinks)
-							thiscell.prepend(" ").prepend(detailsHTML).prepend(attachments).prepend(thislink);
+							thiscell.prepend("<br>").prepend(" ").prepend(detailsHTML).prepend(attachments).prepend(thislink);
 						else
-							thiscell.append(" ").append(thislink).append(attachments).append(detailsHTML);
+							thiscell.append(" ").append(thislink).append(attachments).append(detailsHTML).append("<br>");
 					});
 				}
 			}
@@ -137,7 +143,7 @@ jQuery(function($){
 		$unitMap.find(".attachmentLink").attr("target", "_blank").each(function() { unWrapLink(this); }).after("<span>&nbsp; </span>");
 		
 		// reattach to DOM
-		$uniMapParent.append($unitMap);
+		$unitMapParent.append($unitMap);
 	}
 });
 
@@ -158,8 +164,10 @@ function setUpLinkOptions(thislink, thiscell, displayLinkTopicIndexText, display
 		thislink.text(thislink.text().replace("NB2:", ""));
 		thiscell.addClass("NB2");
 	}
+
 	thislink.text(jQuery.trim(thislink.text()));
-		
+	
+	
 	return thislink;
 }
 

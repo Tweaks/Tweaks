@@ -26,9 +26,7 @@
 	
 %>
 
-<%@ taglib uri="/bbData" prefix="bbData"%>
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
-<%@ taglib uri="/bbUI" prefix="bbUI"%>
 
 <bbNG:learningSystemPage ctxId="ctx">
 <%
@@ -155,43 +153,41 @@ else
 %>
 
 
-<form action="modify_proc.jsp" method="post" name="addModify">
+<form action="modify_proc.jsp" method="post" name="addModify" id="addModify">
 	<bbNG:dataCollection showSubmitButtons="true"> 
 	<input type=hidden name=content_id value="<%=request.getParameter("content_id")%>">
 	<input type=hidden name=course_id value="<%=request.getParameter("course_id")%>">
 	<input type=hidden name=action value="<%=action%>">
 	<input type=hidden name=title value="<%=title%>">
-	<bbNG:step title="Script Options">
-		<bbNG:dataElement>
+	<bbNG:step title="Tweak Selection">
+		<bbNG:dataElement isRequired='true' label="Tweak Type">
 		<bbNG:jsBlock>
-        <script language="javascript" type="text/javascript">
-			jQuery(function($) {
+		<script language="javascript" type="text/javascript">
+			jQuery(function($) { 
+				jQuery("#addModify input:submit").click(function(e){   
+					if ($("#addModify li.required:first input:checked").length == 0) {
+						alert("You haven't selected a tweak type!");
+						e.preventDefault();
+					}
+				});
 			 <% 
 			 	for (int i=0; i < tweakItems.size(); i++) { 
 				  if (tweakItems.get(i)[3].equals("true")) { %>
-				$("#<%=tweakItems.get(i)[7]%>").click(function(){$("#usage_instruction").text("<%=tweakItems.get(i)[5]%>");inlineFormatInstructions();});
- 		  	 <%   }
-			 	  if (tweakID.equals(tweakItems.get(i)[7])) {
-			  %>
-			  	$("#usage_instruction").text("<%=tweakItems.get(i)[5]%>").show();
-				inlineFormatInstructions();
-			 <%	  }
-				}
-				%>
+				$("#<%=tweakItems.get(i)[7]%>").click(function(){$("#usage_instruction").html("<%=tweakItems.get(i)[5]%>").show();});
+ 		  	 <%   } 
+				} %>
+				jQuery("fieldset.tweak_fieldset").parents("li").find(".label:contains(\"Tweak Type\")").css("float", "none").end().find(".field:first").css("width", "95%");
 				var maxheight = 0;
 				jQuery("fieldset.tweak_fieldset").each(function(){ if (jQuery(this).height() > maxheight) { maxheight = jQuery(this).height();} }).height(maxheight);
 			});
-			function inlineFormatInstructions() {
-				jQuery("#usage_instruction").html(jQuery("#usage_instruction").html().replace(/&lt;br[\/]?&gt;/g, "<br/>").replace(/'/g, "\""));
-			}
         </script>
         </bbNG:jsBlock>
   		<fieldset class="tweak_fieldset">
 		 <span><strong>Structure</strong></span>
-		  	<% for (int i=0; i < tweakItems.size(); i++) {
-		  		if (tweakItems.get(i)[3].equals("true")) {
-		 			if (tweakItems.get(i)[1].equals("Structure")){ %>
-		 				<input type="radio" name="tweak_script" id="<%=tweakItems.get(i)[7]%>" value="<%=tweakItems.get(i)[7]%>" <%if (tweakID.equals(tweakItems.get(i)[7])){out.print("CHECKED");}%>><label for="<%=tweakItems.get(i)[7]%>" class="tweak_fieldset"><%=tweakItems.get(i)[0]%></label><br>
+		 	  <% for (int i=0; i < tweakItems.size(); i++) { 
+          if (tweakItems.get(i)[3].equals("true")) {
+          if (tweakItems.get(i)[1].equals("Structure")){ %>
+            <input type="radio" name="tweak_script" id="<%=tweakItems.get(i)[7]%>" value="<%=tweakItems.get(i)[7]%>" <%if (tweakID.equals(tweakItems.get(i)[7])){out.print("CHECKED");}%>><label for="<%=tweakItems.get(i)[7]%>" class="tweak_fieldset"><%=tweakItems.get(i)[0]%></label><br>
   		  <%    }
 			  } 
 			} %>
@@ -200,8 +196,8 @@ else
 			  <span><strong>Presentation</strong></span>
 			  <% for (int i=0; i < tweakItems.size(); i++) { 
 				  if (tweakItems.get(i)[3].equals("true")) {
-			  		if (tweakItems.get(i)[1].equals("Presentation")){ %>
-		 				<input type="radio" name="tweak_script" id="<%=tweakItems.get(i)[7]%>" value="<%=tweakItems.get(i)[7]%>" <%if (tweakID.equals(tweakItems.get(i)[7])){out.print("CHECKED");}%>><label for="<%=tweakItems.get(i)[7]%>" class="tweak_fieldset"><%=tweakItems.get(i)[0]%></label><br>
+			 		if (tweakItems.get(i)[1].equals("Presentation")){ %>
+			 		<input type="radio" name="tweak_script" id="<%=tweakItems.get(i)[7]%>" value="<%=tweakItems.get(i)[7]%>" <%if (tweakID.equals(tweakItems.get(i)[7])){out.print("CHECKED");}%>><label for="<%=tweakItems.get(i)[7]%>" class="tweak_fieldset"><%=tweakItems.get(i)[0]%></label><br>
   		  <%    }
 			  } 
 			} %>
@@ -211,7 +207,7 @@ else
 		 	<% for (int i=0; i < tweakItems.size(); i++) { 
 		 		if (tweakItems.get(i)[3].equals("true")) {
 		 			if (tweakItems.get(i)[1].equals("Learning Activities")){ %>
-		 				<input type="radio" name="tweak_script" id="<%=tweakItems.get(i)[7]%>" value="<%=tweakItems.get(i)[7]%>" <%if (tweakID.equals(tweakItems.get(i)[7])){out.print("CHECKED");}%>><label for="<%=tweakItems.get(i)[7]%>" class="tweak_fieldset"><%=tweakItems.get(i)[0]%></label><br>
+		 			<input type="radio" name="tweak_script" id="<%=tweakItems.get(i)[7]%>" value="<%=tweakItems.get(i)[7]%>");" <%if (tweakID.equals(tweakItems.get(i)[7])){out.print("CHECKED");}%>><label for="<%=tweakItems.get(i)[7]%>" class="tweak_fieldset"><%=tweakItems.get(i)[0]%></label><br>
   		  <%    }
 			  } 
 			} %>
@@ -220,14 +216,17 @@ else
 			  <span><strong>Tools</strong></span>
 			  <% for (int i=0; i < tweakItems.size(); i++) { 
 				  if (tweakItems.get(i)[3].equals("true")) {
-			  		if (tweakItems.get(i)[1].equals("Tools")){ %>
-		 				<input type="radio" name="tweak_script" id="<%=tweakItems.get(i)[7]%>" value="<%=tweakItems.get(i)[7]%>" <%if (tweakID.equals(tweakItems.get(i)[7])){out.print("CHECKED");}%>><label for="<%=tweakItems.get(i)[7]%>" class="tweak_fieldset"><%=tweakItems.get(i)[0]%></label><br>
+			 		if (tweakItems.get(i)[1].equals("Tools")){ %>
+			 		<input type="radio" name="tweak_script" id="<%=tweakItems.get(i)[7]%>" value="<%=tweakItems.get(i)[7]%>" <%if (tweakID.equals(tweakItems.get(i)[7])){out.print("CHECKED");}%>><label for="<%=tweakItems.get(i)[7]%>" class="tweak_fieldset"><%=tweakItems.get(i)[0]%></label><br>
   		  <%    }
 			  } 
 			} %>
 		</fieldset>
+    <bbNG:jsBlock>
+      <script language="javascript" type="text/javascript">jQuery(document).ready(function($){$('input:checked[name="tweak_script"]').click();});</script>
+    </bbNG:jsBlock>
 		</bbNG:dataElement>
-		 <bbNG:dataElement label="Usage Instructions">
+		 <bbNG:dataElement>
 		 	<div id="usage_instruction"></div>
 		</bbNG:dataElement>
 		<bbNG:dataElement>

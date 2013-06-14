@@ -16,17 +16,16 @@
 looks for "Banner" item or image with id="banner" and inserts it above the page title
 */
 jQuery(function($){
-	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
+	if (window.tweak_bb == null || window.tweak_bb.page_id == null) {
 		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
-
+  }
 	// find banner and append
-	if ($("#banner").length == 0)
+	if ($("#banner").length == 0) {
 		$(tweak_bb.page_id +" > "+tweak_bb.row_element).children(".item:contains(\"Banner\"):eq(0)").parents(tweak_bb.row_element).find("div.details").find("img:first").attr("id","banner");
-	$("#banner").css("display", "block").parents(tweak_bb.row_element).addClass("banner").hide().end().prependTo("#pageTitleDiv");
-	// style
-	$("#titleicon").hide();
-	$("#pageTitleDiv h1").css({"padding-top": "8px", "float": "none"});
+    $("#banner").css("display", "block").parents(tweak_bb.row_element).addClass("banner").hide().end().prependTo("#content");
+  }
 	// edit mode
-	if (tweak_bb.display_view === false)
+	if (tweak_bb.display_view === false) {
 		$(tweak_bb.page_id+" > "+tweak_bb.row_element+".banner").show();
+  }
 });

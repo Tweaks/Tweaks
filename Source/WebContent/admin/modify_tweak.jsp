@@ -25,8 +25,7 @@
 				
                 errorPage="/error.jsp"%>
 	
-<%@ taglib uri="/bbUI" prefix="bbUI"%>
-<%@ taglib uri="/bbData" prefix="bbData"%>
+
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
 <bbNG:genericPage authentication="Y"  ctxId="ctx" bodyClass='bbDefault' >
 <bbNG:cssBlock>
@@ -98,9 +97,11 @@ for (int i=0; i < tweakItems.size(); i++) {
 	</bbNG:step>
 	<bbNG:step title="Enter the Instructions for Use">
   		<bbNG:dataElement label="Instructions">
-			<textarea ROWS="4" COLS="67" WRAP="soft" name="instructions" CLASS="usagetext"><%=thisTweakInstruction%></textarea><br>
-            Use &lt;br/&gt; for line breaks. All other HTML will display to user for instructions.<br/>
-            Use single quote characters instead of double quote. (all single quotes will display as double quotes in instructions)
+			<textarea ROWS="4" COLS="67" WRAP="soft" name="instructions" CLASS="usagetext"><%=thisTweakInstruction%></textarea>
+      <p>Notes when creating Instructions:</p>
+      <p>-  Use valid HTML markup.</p>
+      <p>-  To give copy/pastable HTML examples, use escaped text.  A website like <a href="http://www.htmlescape.net/htmlescape_tool.html">htmlescape.net</a> may come in handy.</p>
+      <p>-  CSS can be added to styles/tweakAdmin.css (inline works too)</p>
 		</bbNG:dataElement>
 	</bbNG:step>
 	<bbNG:step title="Enter the Embed Code">
@@ -111,7 +112,7 @@ for (int i=0; i < tweakItems.size(); i++) {
 			For multiple js, css and image files, separate with ",":<br/>
 			js: 'scripts/hider.js', 'scripts/file2.js',<br/>
 			css: 'styles/file.css',<br/>
-	  		image: 'images/image.jpg'<br />
+      image: 'images/image.jpg'<br />
 		</bbNG:dataElement>
 	</bbNG:step>
 	

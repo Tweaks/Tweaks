@@ -13,6 +13,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+
+jQuery(function(){
+	jQuery('.vtbegenerated script.tweak_script:contains("jquery_nocontentwrapper")').prevAll('.tweak_bb_blurb').replaceWith('<div class="tweak_bb_blurb warning fieldError" style="width: 500px;margin-top:20px;"><h2 style="margin: 12px 8px">This tweak is no longer supported.</h2><p style="margin: 12px 12px;">Please visit <a href="http://zombo.com">Upgrade Docs</a> for further information about the removal of this tweak.</p></div>');
+});
+
+/*
 function unWrapLink(link) { 
 	var this_href=jQuery(link).attr("href"); 
 	if (this_href.search("href=") > -1)
@@ -27,3 +33,5 @@ jQuery(function() {
 
 	jQuery(tweak_bb.page_id +" div.noContentWrapper a").each(function() { unWrapLink(this); });
 });
+
+*/

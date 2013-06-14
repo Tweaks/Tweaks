@@ -1,5 +1,5 @@
 /* Tweak Setup. File also contains lazy Loading code adapted from xLazyLoader by Oleg Slobodoskoi (see separate copyright notice below)
-Version 3.1.8 -- client viewable version of BB Manifest
+Version 3.1.9 -- client viewable version of BB Manifest
 Copyright 2011 Tim Plaisted, Queensland University of Technology
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,7 @@ Status: rewriting and testing for online trial deployment across BB8, BB9 and BB
 */ 
 // paths: configured via bb admin
 var tweak_path = "/webapps/qut-tweakbb-bb_bb60/"; 
-var tweak_live_help = "http://tweaks.github.com/Tweaks/description.html"; 
+var tweak_live_help = "http://boree06.qut.edu.au/webapps/portal/frameset.jsp?url=%2Fwebapps%2Fblackboard%2Fexecute%2Flauncher%3Ftype%3DCourse%26id%3D_59724_1%26url%3D"; 
 var tweak_bb_active_url_pattern = "listContent.jsp";
 // static code: tweak currently compatible with 8, 9 and 9.1
 function BBVersionSetup() {

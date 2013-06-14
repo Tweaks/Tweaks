@@ -42,3 +42,4 @@
 .blacktext {
 	color: #000;
 }
+.noicon { background-image: none; padding:15px 10px 15px 15px; }

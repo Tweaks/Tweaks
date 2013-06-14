@@ -14,6 +14,12 @@
    limitations under the License.
    version 2. author Tim Plaisted 2010
 */
+
+jQuery(function(){
+	jQuery('.vtbegenerated script.tweak_script:contains("jquery_loadiframeascontent")').prevAll('.tweak_bb_blurb').replaceWith('<div class="tweak_bb_blurb warning fieldError" style="width: 500px;margin-top:20px;"><h2 style="margin: 12px 8px">This tweak is no longer supported.</h2><p style="margin: 12px 12px;">Please visit <a href="http://zombo.com">Upgrade Docs</a> for further information about the removal of this tweak.</p></div>');
+});
+
+/*
 jQuery(function($) {
 	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
 		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
@@ -33,3 +39,4 @@ jQuery(function($) {
 		} 
 	}
 });
+*/

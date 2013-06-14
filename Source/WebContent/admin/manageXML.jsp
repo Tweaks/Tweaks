@@ -34,7 +34,6 @@
 	errorPage="/error.jsp"%>
 	
 <%@ taglib uri="/bbUI" prefix="bbUI"%>
-<%@ taglib uri="/bbData" prefix="bbData"%>
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
 
 <bbNG:genericPage authentication="Y"  ctxId="ctx" bodyClass='bbDefault' >
@@ -67,6 +66,7 @@ String jsPattern ="";
 <bbNG:dataCollection showSubmitButtons="false">
 <%-- Preview link --%>
 <bbNG:step title="Preview">
+	<%// See http://forums.edugarage.com/forums/t/1920.aspx, it is still ok to use some bbUI tags, even Blackboard core product still uses them (Ralph 21/08/2012) %>
 	<bbUI:caretList>
 	<bbUI:caret title="Preview"
 				href="tweak_packages_preview.jsp">

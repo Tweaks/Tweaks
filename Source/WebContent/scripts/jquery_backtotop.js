@@ -22,7 +22,9 @@ jQuery(function($) {
 		$linkRows = $(tweak_bb.page_id +" script.tweak_script").parents(tweak_bb.row_element).filter(":contains(\"Back to Top\")");
 				   //(BBpageID +" li:contains(\"Back to Top\") script.tweak_script").parents("li"); // Note: not working in IE
 		$linkRows.find("div.details").append("<a href=\"#top\">Back to top</a>");
-		if (tweak_bb.display_view)
+		if (tweak_bb.display_view) {
 			$linkRows.find("img:eq(0), h3, div.details span, div.details .vtbegenerated").hide().end().find("script").removeClass("tweak_script").parents(tweak_bb.row_element).show();
+			$linkRows.find("div.details .vtbegenerated").attr('style','display: none !important').parent().parent().attr('style','border-top: 0px;');
+		}
 	}
 });

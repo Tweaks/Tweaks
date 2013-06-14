@@ -1,10 +1,10 @@
-<%@ taglib uri="/bbUI" prefix="bbUI"%>
+<%@ taglib uri="/bbNG" prefix="bbNG"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page isErrorPage = "true" %>
 <%
 	String strException = exception.getMessage();
 %>
-<bbUI:receipt type="FAIL" title="Error">
+<bbNG:receipt type="FAIL" title="Error">
 <%=strException%>
 <p>
 <pre>
@@ -14,4 +14,4 @@
   exception.printStackTrace( pw );
 %>
 </pre>
-</bbUI:receipt><br>
+</bbNG:receipt><br>

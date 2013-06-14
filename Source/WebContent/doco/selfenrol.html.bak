@@ -1,0 +1,21 @@
+<h3>Self Enrol Link</h3>
+<dl class='tweakbb_info'>
+    <dt>Description</dt>
+    <dd>
+			<p>This tweak adds a Self Enrol link to the top of a page</p>
+			<p><b>Note:</b> Self Enrol Tweak will only work if your Organization/Community Site is set up with 'Self Enrolment' option on.</p>
+		</dd>
+    <dt>Skill Level</dt>
+    <dd>Easy (No HTML)</dd>
+    <dt>How to Use</dt>
+    <dd>
+			<ol>
+				<li>
+					<p>Add this tweak to your page, then reposition it as requried.</p>
+				</li>
+				<li>
+					<p><b>Optional:</b> To make the Enrol link disappear after enrolment, set Review Status to Enabled for the Tweak.</p>
+				</li>
+			<ol>
+		</dd>
+</dl>

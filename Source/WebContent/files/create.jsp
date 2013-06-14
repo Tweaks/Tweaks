@@ -25,9 +25,8 @@
 	
 %>
 
-<%@ taglib uri="/bbData" prefix="bbData"%>
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
-<%@ taglib uri="/bbUI" prefix="bbUI"%>
+
 
 <bbNG:learningSystemPage ctxId="ctx">
 <%
@@ -142,31 +141,28 @@ else
 			jQuery(function($) { 
 				jQuery("#addModify input:submit").click(function(e){   
 					if ($("#addModify li.required:first input:checked").length == 0) {
-						alert("Please select Tweak type and press Add button");
+						alert("You haven't selected a tweak type!");
 						e.preventDefault();
 					}
 				});
 			 <% 
 			 	for (int i=0; i < tweakItems.size(); i++) { 
 				  if (tweakItems.get(i)[3].equals("true")) { %>
-				$("#<%=tweakItems.get(i)[7]%>").click(function(){$("#usage_instruction").text("<%=tweakItems.get(i)[5]%>").show();inlineFormatInstructions();});
+				$("#<%=tweakItems.get(i)[7]%>").click(function(){$("#usage_instruction").html("<%=tweakItems.get(i)[5]%>").show();});
  		  	 <%   } 
 				} %>
 				jQuery("fieldset.tweak_fieldset").parents("li").find(".label:contains(\"Tweak Type\")").css("float", "none").end().find(".field:first").css("width", "95%");
 				var maxheight = 0;
 				jQuery("fieldset.tweak_fieldset").each(function(){ if (jQuery(this).height() > maxheight) { maxheight = jQuery(this).height();} }).height(maxheight);
 			});
-			function inlineFormatInstructions() {
-				jQuery("#usage_instruction").html(jQuery("#usage_instruction").html().replace(/&lt;br[\/]?&gt;/g, "<br/>").replace(/'/g, "\""));
-			}
         </script>
         </bbNG:jsBlock>
-  		<fieldset class="tweak_fieldset"  >
+  		<fieldset class="tweak_fieldset">
 		 <span><strong>Structure</strong></span>
-		 	<% for (int i=0; i < tweakItems.size(); i++) { 
-			  if (tweakItems.get(i)[3].equals("true")) {
-		 		if (tweakItems.get(i)[1].equals("Structure")){ %>
-		 		<input type="radio"  name="tweak_script" id="<%=tweakItems.get(i)[7]%>" value="<%=tweakItems.get(i)[7]%>"><label for="<%=tweakItems.get(i)[7]%>" class="tweak_fieldset"><%=tweakItems.get(i)[0]%></label><br>
+		 	  <% for (int i=0; i < tweakItems.size(); i++) { 
+          if (tweakItems.get(i)[3].equals("true")) {
+          if (tweakItems.get(i)[1].equals("Structure")){ %>
+            <input type="radio" name="tweak_script" id="<%=tweakItems.get(i)[7]%>" value="<%=tweakItems.get(i)[7]%>"><label for="<%=tweakItems.get(i)[7]%>" class="tweak_fieldset"><%=tweakItems.get(i)[0]%></label><br>
   		  <%    }
 			  } 
 			} %>
@@ -202,7 +198,7 @@ else
 			} %>
 		</fieldset>			
 		</bbNG:dataElement> 
-		 <bbNG:dataElement label="Usage Instructions">
+		 <bbNG:dataElement>
 		 	<div id="usage_instruction"></div>
 		</bbNG:dataElement>
 		<bbNG:dataElement>

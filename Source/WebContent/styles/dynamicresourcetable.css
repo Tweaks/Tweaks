@@ -45,34 +45,41 @@ html>body .moduleTopic td ul
 {
 	padding: 2px 0 0 0;
 }
-/* default colour */
-#unitMap .th td				{	background:#b9c9fe; color:#039; border-top:4px solid #AABCFE;}
-#unitMap td					{	background:#e8edff; color:#669;}
-#unitMap tr:hover td		{	background:#d0dafd; color: #339;}
+/* default colour - grey with different shades of grey*/
+#unitMap td					{	background:#eee; color: #333; transition-duration: 0.2s; -moz-transition-duration: 0.2s; -webkit-transition-duration: 0.2s; -o-transition-duration: 0.2s;}
+#unitMap .th td				{	background:#ccc; color: #333; border-top:1px solid #ddd;}
+#unitMap .th:hover td		{	background:#ccc; color: #333;}
+#unitMap tr:hover td		{	background:#eaeaea; color: #666;}
+#unitMap tr td:hover		{	background:#e5e5e5; color: #666;}
+
 /* extra colours */
+#unitMap.blue td					{	background:#e8edff; color:#669;}
+#unitMap.blue tr:hover td		{	background:#d0dafd; color: #339;}
+#unitMap.blue .th td				{	background:#b9c9fe; color:#039; border-top:4px solid #AABCFE;}
 #unitMap.green .th td,
-#unitMap.green tr.th:hover td{	background:#3A5;	color:#FFF; border-top:4px solid #193;}
 #unitMap.green td			{	background:#E8FFED;	color:#585; }
 #unitMap.green tr:hover td	{	background:#D0FDDA; color:#393; }
+#unitMap.green tr.th:hover td{	background:#3A5;	color:#FFF; border-top:4px solid #193;}
 #unitMap.red .th td,
-#unitMap.red tr.th:hover td	{	background:#C03;	color:#FEE; border-top:4px solid #B02;}
 #unitMap.red td				{	background:#FCC;	color:#702; }
 #unitMap.red tr:hover td	{	background:#FAA;	color:#501; }
+#unitMap.red tr.th:hover td	{	background:#C03;	color:#FEE; border-top:4px solid #B02;}
 #unitMap.khaki .th td,
-#unitMap.khaki tr.th:hover td{	background:#996;	color:#FFE; border-top:4px solid #885;}
 #unitMap.khaki td			{	background:#CC9;	color:#663; }
 #unitMap.khaki tr:hover td	{	background:#FF9;	color:#441; }
+#unitMap.khaki tr.th:hover td{	background:#996;	color:#FFE; border-top:4px solid #885;}
 #unitMap.grey .th td,
-#unitMap.grey tr.th:hover td{	background:#555;	color:#FFF; border-top:4px solid #333;}
 #unitMap.grey td			{	background:#AAA;	color:#333; }
 #unitMap.grey tr:hover td	{	background:#CCC;	color:#111; }
-#unitMap.orange .th td 		{	background:#F6C377;	color:#850; border-top:4px solid #FECE99; }
+#unitMap.grey tr.th:hover td{	background:#555;	color:#FFF; border-top:4px solid #333;}
 #unitMap.orange td 			{	background:#FFE8CD;	color:#962; }
 #unitMap.orange tr:hover td	{	background:#FAD601;	color:#850; }
+#unitMap.orange .th td 		{	background:#F6C377;	color:#850; border-top:4px solid #FECE99; }
 #unitMap.brown .th:hover td,
-#unitMap.brown .th td 		{	background:#4E2727;	color:#FFF; border-top:0; }
 #unitMap.brown td 			{	background:#F5E8CD;	color:#3E331E; }
 #unitMap.brown tr:hover td	{	background:#FBF5D7;	color:#333333; }
+#unitMap.brown .th td 		{	background:#4E2727;	color:#FFF; border-top:0; }
+
 /* NB and special highlight cells */
 #unitMap td.NB, #unitMap tr:hover td.NB
 {

@@ -28,13 +28,10 @@
 				au.edu.qut.b2.tweak.TweakItemComparator,
 				blackboard.platform.persistence.PersistenceServiceFactory,
 				java.io.File,
-				java.io.IOException,
-				org.apache.commons.io.FileUtils"
+				java.io.IOException"
 				
 	errorPage="/error.jsp"%>
 	
-<%@ taglib uri="/bbUI" prefix="bbUI"%>
-<%@ taglib uri="/bbData" prefix="bbData"%>
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
 
 

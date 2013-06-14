@@ -24,14 +24,13 @@
 				javax.xml.transform.*,
 				javax.xml.transform.dom.DOMSource,
 				javax.xml.transform.stream.StreamResult,
+				org.apache.commons.io.FileUtils,
 				org.xml.sax.SAXException,
 				au.edu.qut.b2.tweak.TweakItemComparator,
 				blackboard.platform.persistence.PersistenceServiceFactory"
 
 	errorPage="/error.jsp"%>
 	
-<%@ taglib uri="/bbUI" prefix="bbUI"%>
-<%@ taglib uri="/bbData" prefix="bbData"%>
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
 
 <bbNG:genericPage authentication="Y"  ctxId="ctx" bodyClass='bbDefault' >
