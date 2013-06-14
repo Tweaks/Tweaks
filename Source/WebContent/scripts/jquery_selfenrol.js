@@ -386,8 +386,17 @@ jQuery(function($){
 	if (!enrolFlagged || !tweak_bb.display_view)
 	{
 	  var comname = $('#courseMenu_link').text();
-	  var enrolMessage = "Self Enrol in \""+comname+"\" (Community Site)</a></h3>You will need to self enrol in this site in order to participate. Click Close after you have enrolled to return to this page.<br><br>";
-	  $(tweak_bb.page_id).before("<div><h3><a href=\"#\" class=\"thickbox\">"+enrolMessage+"</div>");
+	  var enrolMessage = "Self Enrol in \""+comname+"\" (Community Site)</a></h3>You will need to click the above link to self enrol in this site in order to participate. Click Close after you have enrolled to return to this page.<br><br>";
+    
+    
+    if ($('div.self-enrol-tweak').length === 0) {
+      // put it at the top of the page (legacy)
+      $(tweak_bb.page_id).before("<div id='self-enrol-tweak-generated' class='liveArea default-position'><h3><a href=\"#\" class=\"thickbox\">"+enrolMessage+"</div>");
+    } else {
+      // a div has been setup, dump the link in there
+      $('div.self-enrol-tweak').html("<div id='self-enrol-tweak-generated' class='liveArea custom-area'><h3><a href=\"#\" class=\"thickbox\">"+enrolMessage+"</div>");
+    }
+      
 	  $("a.thickbox").attr("title", "Click close after enrolling in site or to cancel enrolment").click(function(){ if (tweak_bb.display_view === false) { $("#addCmItem").hide(); } });
 	  // set up enrol link
 	  var bb_course_id = location.href.replace(/.*course_id=([^&]+).*/, "$1");

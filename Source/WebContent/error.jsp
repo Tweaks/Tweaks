@@ -1,3 +1,4 @@
+<%@ include file="/includes/doctype.jspf" %> 
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page isErrorPage = "true" %>

@@ -79,3 +79,10 @@ dl.tweakbb_info dd {
 		margin-left: 130px;
 }
 
+#live_help a {
+  font-size: 16px;
+}
+
+#live_help a:hover {
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+}

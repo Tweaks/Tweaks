@@ -1,3 +1,4 @@
+<%@ include file="/includes/doctype.jspf" %> 
 <%@	page language="java"            
                 import="java.text.*,
 				java.util.regex.*,

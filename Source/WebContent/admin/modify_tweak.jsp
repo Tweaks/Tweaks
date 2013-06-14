@@ -1,3 +1,4 @@
+<%@ include file="/includes/doctype.jspf" %> 
 <%@ page language="java" import="java.util.*,
                 blackboard.platform.plugin.*,
                 java.util.regex.*,

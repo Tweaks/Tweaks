@@ -14,17 +14,35 @@
    limitations under the License.
 */
 jQuery(function($) {
+  
 	if (window.tweak_bb == null || window.tweak_bb.page_id == null)
-		window.tweak_bb = { page_id: "#pageList", row_element: "li" };
+		window.tweak_bb = { page_id: "#content_listContainer", row_element: "li" };
 
+  // don't operate on pages that already have #topTarget
 	if ($("#topTarget").length == 0) {
-		$("#content").before("<a name=\"top\" id=\"topTarget\"></a>");		
-		$linkRows = $(tweak_bb.page_id +" script.tweak_script").parents(tweak_bb.row_element).filter(":contains(\"Back to Top\")");
-				   //(BBpageID +" li:contains(\"Back to Top\") script.tweak_script").parents("li"); // Note: not working in IE
+    
+    // add anchor above #content
+		$("#content").before("<a name=\"top\" id=\"topTarget\"></a>");
+    
+    // find tweak instance
+    $linkRows = $(tweak_bb.page_id +" script.tweak_script").parents(tweak_bb.row_element).filter(":contains(\"Back to Top\")");
+
+    // append back to tops
 		$linkRows.find("div.details").append("<a href=\"#top\">Back to top</a>");
+    
+    
+    
+    // when not in edit mode
 		if (tweak_bb.display_view) {
+    
+      // prevent any other back to top tweaks from running (we just covered them)
 			$linkRows.find("img:eq(0), h3, div.details span, div.details .vtbegenerated").hide().end().find("script").removeClass("tweak_script").parents(tweak_bb.row_element).show();
+      
+      // restyle
 			$linkRows.find("div.details .vtbegenerated").attr('style','display: none !important').parent().parent().attr('style','border-top: 0px;');
+      
 		}
+    
 	}
+  
 });

@@ -22,7 +22,7 @@ Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
-		<instruction>&lt;h3&gt;Add Colour Stripe&lt;/h3&gt;&lt;dl class='tweakbb_info'&gt;    &lt;dt&gt;Description&lt;/dt&gt;    &lt;dd&gt;This tweak adds a colour stripe to a Blackboard item.&lt;/dd&gt;    &lt;dt&gt;Skill Level&lt;/dt&gt;    &lt;dd&gt;Medium (Simple HTML)&lt;/dd&gt;    &lt;dt&gt;How to Use&lt;/dt&gt;    &lt;dd&gt;        &lt;ol&gt;            &lt;li&gt;                &lt;p&gt;Edit any item.&lt;/p&gt;            &lt;/li&gt;            &lt;li&gt;                &lt;p&gt;In the text editor, toggle HTML Source Mode add the following code anywhere:&lt;/p&gt;                &lt;p&gt;&lt;pre style='color:#000020;background:#f6f8ff;'&gt;&lt;span style='color:#0057a6; '&gt;&lt;&lt;/span&gt;&lt;span style='color:#200080; font-weight:bold; '&gt;span&lt;/span&gt;&lt;span style='color:#474796; '&gt; &lt;/span&gt;&lt;span style='color:#074726; '&gt;class&lt;/span&gt;&lt;span style='color:#308080; '&gt;=&lt;/span&gt;&lt;span style='color:#1060b6; '&gt;'colourSpan'&lt;/span&gt;&lt;span style='color:#0057a6; '&gt;&gt;&lt;/span&gt;#99BBCC&lt;span style='color:#0057a6; '&gt;&lt;/&lt;/span&gt;&lt;span style='color:#200080; font-weight:bold; '&gt;span&lt;/span&gt;&lt;span style='color:#0057a6; '&gt;&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/p&gt;            &lt;/li&gt;            &lt;li&gt;                &lt;p&gt;Replace &lt;b&gt;#99BBCC&lt;/b&gt; with a valid HTML hex colour. &lt;/p&gt;                &lt;p&gt;You can use &lt;a href='http://www.colorpicker.com/' target='_blank'&gt;www.colorpicker.com&lt;/a&gt; to help you choose a colour code.&lt;/p&gt;            &lt;/li&gt;        &lt;/ol&gt;    &lt;/dd&gt;&lt;/dl&gt;</instruction>
+		<instruction>&lt;h3&gt;Add Colour Stripe&lt;/h3&gt;&lt;dl class='tweakbb_info'&gt;    &lt;dt&gt;Description&lt;/dt&gt;    &lt;dd&gt;This tweak adds a colour stripe to a Blackboard item.&lt;/dd&gt;    &lt;dt&gt;Skill Level&lt;/dt&gt;    &lt;dd&gt;Medium (Simple HTML)&lt;/dd&gt;    &lt;dt&gt;How to Use&lt;/dt&gt;    &lt;dd&gt;        &lt;ol&gt;            &lt;li&gt;                &lt;p&gt;Edit any item.&lt;/p&gt;            &lt;/li&gt;            &lt;li&gt;                &lt;p&gt;In the text editor, toggle HTML Source Mode add the following code anywhere:&lt;/p&gt;                &lt;p&gt;&lt;pre style='color:#000020;background:#f6f8ff;'&gt;&lt;span style='color:#0057a6; '&gt;&amp;lt;&lt;/span&gt;&lt;span style='color:#200080; font-weight:bold; '&gt;span&lt;/span&gt;&lt;span style='color:#474796; '&gt; &lt;/span&gt;&lt;span style='color:#074726; '&gt;class&lt;/span&gt;&lt;span style='color:#308080; '&gt;=&lt;/span&gt;&lt;span style='color:#1060b6; '&gt;'colourSpan'&lt;/span&gt;&lt;span style='color:#0057a6; '&gt;&gt;&lt;/span&gt;#99BBCC&lt;span style='color:#0057a6; '&gt;&amp;lt;/&lt;/span&gt;&lt;span style='color:#200080; font-weight:bold; '&gt;span&lt;/span&gt;&lt;span style='color:#0057a6; '&gt;&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/p&gt;            &lt;/li&gt;            &lt;li&gt;                &lt;p&gt;Replace &lt;b&gt;#99BBCC&lt;/b&gt; with a valid HTML hex colour. &lt;/p&gt;                &lt;p&gt;You can use &lt;a href='http://www.colorpicker.com/' target='_blank'&gt;www.colorpicker.com&lt;/a&gt; to help you choose a colour code.&lt;/p&gt;            &lt;/li&gt;        &lt;/ol&gt;    &lt;/dd&gt;&lt;/dl&gt;</instruction>
 		
 
 <embed><![CDATA[js: 'scripts/jquery_addcolourstripe.js']]></embed>
@@ -127,7 +127,7 @@ IE 7, IE 8</description>
 <title>Load IFRAME as Content</title>
 <type>Tools</type>
 <visible>true</visible>
-<available>true</available>
+<available>false</available>
 <description>Tested:&#13;
 Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
@@ -268,7 +268,7 @@ css: 'styles/checklist.css']]></embed>
 <title>No Content Wrapper</title>
 <type>Tools</type>
 <visible>true</visible>
-<available>true</available>
+<available>false</available>
 <description>Browser(s) tested:</description>
 <instruction>This Tweak is no longer supported in BB 9.1 SP9</instruction>
 <embed><![CDATA[js: 'scripts/jquery_nocontentwrapper.js']]></embed>
@@ -283,7 +283,7 @@ Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
 Chrome B7&#13;
 IE 7, IE 8</description>
-<instruction>This tweak adds a horizontal submenu based on the content items and subfolders of the current page. The menu can be text only, text overlaying an image or inserted into custom HTML. Integrates with other tweaks - e.g. check the Tweak Example site below for an example which uses Image Map, CSS and Icon replacement to great effect.&lt;br/&gt;&lt;br/&gt;1. Add your content items and folders to your page.&lt;br/&gt;2. Add the tweak at the base of the page.&lt;br/&gt;Optional:&lt;br/&gt;3. Add a Content item called 'Menu Image' and insert an image in the content area of the item. Make sure to include image height, width, alt text (and optionally CSS class). The image should be wide enough to accommodate the text of the menu items.&lt;br/&gt;&lt;br/&gt;See the Tweak site for advanced examples using custom HTML.</instruction>
+<instruction>&lt;h3&gt;Submenu&lt;/h3&gt;&lt;dl class='tweakbb_info'&gt;    &lt;dt&gt;Description&lt;/dt&gt;    &lt;dd&gt;This tweak adds a horizontal submenu based on the content items and subfolders of the current page. The menu can be text only, text overlaying an image or inserted into custom HTML.&lt;/dd&gt;    &lt;dt&gt;Skill Level&lt;/dt&gt;    &lt;dd&gt;Advanced (Requires HTML)&lt;/dd&gt;    &lt;dt&gt;How to Use&lt;/dt&gt;    &lt;dd&gt;			&lt;ol&gt;				&lt;li&gt;Add your content items and folders to your page.&lt;/li&gt;				&lt;li&gt;Add the tweak at the base of the page&lt;/li&gt;        &lt;li&gt;&lt;em&gt;Optional:&lt;/em&gt; Add a Content item called 'Menu Image' and insert an image in the content area of the item. Make sure to include image height, width, alt text (and optionally CSS class). The image should be wide enough to accommodate the text of the menu items&lt;/li&gt;			&lt;/ol&gt;		&lt;/dd&gt;    &lt;dt&gt;Additional Options&lt;/dt&gt;    &lt;dd&gt;&lt;p&gt;See the Tweak site (link below) for advanced examples on how to use this tweak.&lt;/p&gt;&lt;/dd&gt;&lt;/dl&gt;</instruction>
 <embed><![CDATA[js: 'scripts/jquery_submenu.js',
 css: 'styles/submenu.css']]></embed>
 </package>
@@ -291,7 +291,7 @@ css: 'styles/submenu.css']]></embed>
 <title>Load Subsite</title>
 <type>Tools</type>
 <visible>true</visible>
-<available>true</available>
+<available>false</available>
 <description>Tested:&#13;
 Firefox 3.5, 3.6&#13;
 Safari 5 Mac&#13;
@@ -339,5 +339,23 @@ IE 7, IE 8</description>
 <instruction>&lt;h3&gt;FAQ&lt;/h3&gt;&lt;dl class='tweakbb_info'&gt;    &lt;dt&gt;Description&lt;/dt&gt;    &lt;dd&gt;This tweak creates a clickable FAQ section.  Answers are hidden until it's associated question is clicked.&lt;/dd&gt;    &lt;dt&gt;Skill Level&lt;/dt&gt;    &lt;dd&gt;Easy&lt;/dd&gt;    &lt;dt&gt;How to Use&lt;/dt&gt;    &lt;dd&gt;			&lt;ol&gt;				&lt;li&gt;Create a new item, and ensure the letters 'FAQ' are somewhere in the item's Title.&lt;/li&gt;				&lt;li&gt;In the Text Editor, write your questions followed immediatley by their answers on the next line.  Ensure that your questions are in &lt;b&gt;bold&lt;/b&gt; format.&lt;/li&gt;				&lt;div&gt;&lt;p&gt;&lt;em&gt;eg:&lt;/em&gt;&lt;/p&gt;&lt;/div&gt;				&lt;div style='margin-left:1em'&gt;&lt;p&gt;&lt;b&gt;I am a question.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;And I am an Answer.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Are you the king of questions?&lt;/b&gt;&lt;/p&gt;&lt;p&gt;No, I'm the king of answers.&lt;/p&gt;&lt;/div&gt;				&lt;li&gt;&lt;p&gt;Save your FAQ and test to see if the answers appear when clicked.&lt;/p&gt;&lt;/li&gt;			&lt;/ol&gt;		&lt;/dd&gt;&lt;/dl&gt;</instruction>
 <embed><![CDATA[js: 'scripts/jquery_faq.js',
 css: 'styles/faq.css']]></embed>
+</package>
+<package id="noContentItemLines">
+<title>Remove Content Item Lines</title>
+<type>Presentation</type>
+<visible>true</visible>
+<available>true</available>
+<description>Browser(s) tested:</description>
+<instruction>This tweak will remove the thin line between individual Content Items.  Simply add this tweak to your page.  There are no options to configure.</instruction>
+<embed><![CDATA[css: 'styles/noContentItemLines.css']]></embed>
+</package>
+<package id="replaceContentWithWebpage">
+<title>Replace Content with Webpage</title>
+<type>Tools</type>
+<visible>true</visible>
+<available>true</available>
+<description>Browser(s) tested:</description>
+<instruction>UNDER CONSTRUCTION</instruction>
+<embed><![CDATA[js: 'scripts/jquery_replacecontentwithwebpage.js']]></embed>
 </package>
 </packages>

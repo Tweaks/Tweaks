@@ -1,3 +1,4 @@
+<%@ include file="/includes/doctype.jspf" %> 
 <%@ page import="java.util.*,
                 blackboard.platform.plugin.*,
 				blackboard.base.FormattedText,
