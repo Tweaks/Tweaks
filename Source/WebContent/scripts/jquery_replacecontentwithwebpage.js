@@ -1,4 +1,4 @@
-﻿/* 
+/* 
  
  Replace Content with Webpage
  
@@ -93,9 +93,7 @@ var restyleFrame = function() {
   else {
     jQuery('#inlineReceipt_good').remove();
     jQuery('#contentPanel').prepend('<div id="inlineReceipt_good" class="receipt good"><h3 class="hideoff">External Webiste</h3><span tabindex="-1" id="goodMsg1">The following website is outside this Blackboard system.</span><br>  <a class="close" href="#" title="Close" onclick="Element.remove($(\'inlineReceipt_good\'));return false;"><img alt="Close" src="/images/ci/ng/close_mini.gif"></a></div>');
-    jQuery("#content, #tweakframe").css({
-      "height": "4920px"
-    });
+    jQuery("#content, #tweakframe").height = "4920px";
   }
 
   // we all done, reveal
@@ -105,7 +103,7 @@ var restyleFrame = function() {
 
 var replaceContentWithURL = function(url) {
   jQuery(function($) {
-    $("#content").html("<iframe id='tweakframe' src=\"" + url + "\" width=\"100%\" frameBorder=\"0\"></iframe>");
+    $("#content").html("<iframe id='tweakframe' src=\"" + url + "\" width=\"100%\" height=\"4920px\" frameBorder=\"0\"></iframe>");
     $("#tweakframe").load(restyleFrame).ready(restyleFrame);
   });
 };

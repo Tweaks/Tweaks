@@ -18,7 +18,7 @@ Status: rewriting and testing for online trial deployment for BB 9.1sp9
 */ 
 // paths: configured via bb admin
 var tweak_path = "/webapps/qut-tweakbb-bb_bb60/"; 
-var tweak_live_help = "/webapps/portal/frameset.jsp?tab_tab_group_id=_5_1&url=%2Fwebapps%2Fblackboard%2Fexecute%2Flauncher%3Ftype%3DCourse%26id%3D_95453_1%26url%3D"; 
+var tweak_live_help = "/webapps/portal/frameset.jsp?tab_group=community&url=%2Fwebapps%2Fblackboard%2Fexecute%2FcourseMain%3Fcourse_id%3D_59724_1"; 
 var tweak_bb_active_url_pattern = "listContent.jsp";
 // static code: tweak currently compatible with 8, 9 and 9.1
 function BBVersionSetup() {
