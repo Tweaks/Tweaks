@@ -1,4 +1,4 @@
-3.2.0
+3.1.9
 * jQuery update to jquery 1.8.2
 * Admin interface now accepts HTML for inline documentation (see /WebContent/doco dir for examples)
 * New tweak "Replace Content with Webpage" replaces Load Iframe and Load Subsite.  
@@ -12,7 +12,7 @@
 
 
 
-3.1.9
+3.1.8.1
 * jQuery update to 1.7.2
 
 3.1.8
