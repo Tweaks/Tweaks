@@ -1,3 +1,11 @@
+3.2.1
+* Load Stylesheet tweak now supports loading IE specific CSS stylesheets
+	(usage: `<div class="loadStyle if-ie-8 if-ie-9">path/to/css.css<div>`)
+* Load Stylesheet tweak also supports dynamically loading CSS from a site's Course Files path, allowing course / web designers to use relative CSS paths and manage all files within Course Files.
+	(usage: <div class="loadStyle fromCourseFiles">relative/coursefiles/path.css`)
+* Minor updates to work with SP13 and the TinyMCE VTBE
+  
+
 3.2.0
 * jQuery update to jquery 1.8.2
 * Admin interface now accepts HTML for inline documentation (see /WebContent/doco dir for examples)
