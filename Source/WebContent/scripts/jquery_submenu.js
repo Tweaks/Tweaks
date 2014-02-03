@@ -206,6 +206,10 @@ function selectSubPage() {
     // image version - check if there is a subimage
     if (jQuery("#graphicMenu, #menuImage").length == 2) {
     	var image = jQuery("#menuImage");
+      
+      // 20130709 CCB - oops.
+      fixGraphicMenuHeight(image);
+      
     	jQuery("#graphicMenu").css("background", "url("+image.attr("src")+")").attr("class", image.attr("class")).width(image.attr("width")).height(image.attr("height"));
 	    dynamicPositionImageMenu();
 	    jQuery("#menuImageSplash").remove();

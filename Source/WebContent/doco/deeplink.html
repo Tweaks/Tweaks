@@ -1,27 +1,22 @@
 <h3>Make Deep Link</h3>
-<dl class='tweakbb_info'>
-    <dt>Description</dt>
-    <dd>
-			<p>This tweak will automatically fix direct links to Blackboard folders, ensuring they open correctly in a new window.</p>
-			<p><b>Note:</b> Use Blackboard's native "Unit Links" to link to items within the same unit, as direct links may break when performing a Unit Copy.</p>
-		</dd>
-    <dt>Skill Level</dt>
-    <dd>Easy (No HTML)</dd>
-    <dt>How to Use</dt>
-    <dd>
-			<ol>
-				<li>
-					<p>Add a Blackboard item named 'Unit Map'.  Use the Text Editor to insert an Image, and then Save this item.</p>
-				</li>
-				<li>
-					<p>Move this new item with your image above the items you wish to have buttons automatically</p>
-				</li>
-				<li>
-					<p>Create an External Link titled 'Site Link', and paste in the URL to the sub site section</p>
-				</li>
-				<li>
-					<p>Switch Edit Mode: OFF to test the tweak.</p>
-				</li>
-			<ol>
-		</dd>
+<dl class="tweakbb_info">   
+  <dt>Description</dt>
+  <dd>
+    <p>This tweak will automatically fix direct links to Blackboard folders, ensuring they open correctly in a new window.</p>
+    <p><b>Note:</b> Use Blackboard's native 'Unit Links' to link to items within the same unit, as direct links may break when performing a Unit Copy.</p>
+  </dd>
+  <dt>Skill Level</dt>
+  <dd>Easy (Some HTML)</dd>
+  <dt>How to Use</dt>
+  <dd>
+    <ol>
+      <li>Find a link to another site's content area by right-clicking it's link in the left hand navigation, or on the title of a folder in the site</li>
+      <li>Create a 'Web Link' on the page you wish</li>
+      <li>In the text editor toggle HTML Source Mode and add the following HTML:
+      <pre style="background:#fff;color:#3b3b3b"><span style="color:#7a7a7a">&lt;<span style="color:#016cff">span</span> <span style="color:#963dff">class</span>=<span style="color:#666">&quot;makeDeepLink&quot;</span>&gt;</span></pre>
+      </li>
+      <li>Click Submit, then add this tweak to the page to activate.</li>
+      <ol></ol>
+    </ol>
+  </dd>
 </dl>

@@ -38,7 +38,6 @@
   
   
 /**** Default Colour ****/
-#unitMap a { text-decoration: underline; }
 #unitMap td { background: #e8edff; color: #669; }
 #unitMap tr:hover td { background: #F2F5FF; color: #339; }
 #unitMap tr td:hover { background: #FAFBFF; color: #666; }

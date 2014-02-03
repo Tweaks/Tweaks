@@ -2,7 +2,7 @@ package au.edu.qut.b2.tweak;
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class TextRep
+public class TextRep  
 {
 	// the main function
 	public static void TweakPathSet(String[] args)
