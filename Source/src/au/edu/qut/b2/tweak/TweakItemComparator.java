@@ -5,6 +5,7 @@ import java.util.Comparator;
 
 
 
+@SuppressWarnings("rawtypes")
 public class TweakItemComparator implements Comparator {
 	
 	public int compare(Object strgArrayA, Object strgArrayB){ 

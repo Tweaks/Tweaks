@@ -108,6 +108,7 @@ function generateUnitMap() {
                 $(this).parents(tweak_bb.row_element).hide();
               
               var thiscell = $unitMap.find("tr:eq("+(row+1)+") td:eq("+(column+columnOffset)+")");
+			  thiscell.html(thiscell.html().replace(/^&nbsp;/,""));
 
               // set up link (if there is one): consider / is there better way that deals with filtering edit mode links ok
               var thislink = $(this).find("a:contains('"+sectionTitle+": "+resourceTypes[column]+"')").clone();
